@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wzniesienie Osowy parkrun - dyplomy</title>
+    <!-- Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Load jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="fonts/Zeyada-Regular.js"></script>
+    <script src="fonts/CaveatBrush-Regular.js"></script>
+    <style>
+        /* Custom scrollbar for aesthetics */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #9ca3af;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen p-4 sm:p-8">
+
+    <!-- Main Application Container -->
+    <div id="app" class="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl p-6 sm:p-10 border border-gray-100">
+        
+        <h1 class="text-3xl font-extrabold text-blue-800 mb-6 text-center">
+            parkrun Wzniesienie Osowy generator dyplomów
+        </h1>
+        <p class="text-gray-600 mb-8 text-center">
+            Select a report below to instantly generate and download the corresponding personalized diploma.
+        </p>
+
+        <!-- Reports Table Container -->
+        <div id="report-table-container" class="overflow-x-auto custom-scrollbar">
+            <!-- Table will be injected here by JavaScript -->
+        </div>
+
+        <!-- Notification Modal (Hidden by default) -->
+        <div id="notification" class="fixed inset-0 bg-gray-600 bg-opacity-75 hidden items-center justify-center p-4 z-50">
+            <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full">
+                <h3 id="notification-title" class="text-lg font-semibold text-gray-900 mb-3">Processing...</h3>
+                <p id="notification-message" class="text-sm text-gray-500">Generating PDF, please wait...</p>
+                <div id="notification-actions" class="mt-4 text-right">
+                    <button onclick="document.getElementById('notification').classList.add('hidden')" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-150">Close</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+<script>
+        const { jsPDF } = window.jspdf;
+
+        // --- 1. DATA SOURCE (Remains unchanged, returns a Promise) ---
+        async function loadReportsData() { // Renamed for clarity
+            try {
+                const response = await fetch('reports-data.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+                }
+                
+                return await response.json(); 
+            } catch (error) {
+                console.error('Could not fetch the reports data:', error);
+                // Display an error message to the user if fetch fails
+                document.getElementById('report-table-container').innerHTML = 
+                    '<p class="text-center text-red-600 font-semibold">ERROR: Could not load report data. Please ensure reports-data.json exists and is accessible.</p>';
+                return []; 
+            }
+        }
+        
+        // --- 2. TEMPLATE CONFIGURATION MAP (Unchanged) ---
+        // ... (TEMPLATE_CONFIGS, TEMPLATE_FOLDER, getImageUrl function remain here) ...
+        const TEMPLATE_CONFIGS = {
+            "default": {
+                orientation: 'portrait',
+                width: 595,
+                height: 842,
+                nameY: 580,
+                dateX: 510,
+                dateY: 710,
+                placeY: 732
+            }
+        };
+        const TEMPLATE_FOLDER = 'templates/'; 
+        
+        function getImageUrl(templateFileName) {
+            return `${TEMPLATE_FOLDER}${templateFileName}`; 
+        }
+
+        // --- 3. CORE PDF GENERATION FUNCTION (Unchanged) ---
+        // ... (generateSingleDiploma function remains here) ...
+        async function generateSingleDiploma(item, index) {
+            const notification = document.getElementById('notification');
+            const titleElement = document.getElementById('notification-title');
+            const messageElement = document.getElementById('notification-message');
+            const actionsElement = document.getElementById('notification-actions');
+            
+            titleElement.textContent = `Generating PDF...`;
+            messageElement.textContent = `Processing report #${index + 1}: ${item.Name}`;
+            actionsElement.innerHTML = `<button onclick="document.getElementById('notification').classList.add('hidden')" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg shadow-md hover:bg-gray-400 transition duration-150">Dismiss</button>`;
+            notification.classList.remove('hidden');
+
+            // --- Determine Config based on Template ---
+            const configKey = item.Report_Template;
+            const config = TEMPLATE_CONFIGS["default"];
+            
+            // Set image format directly as all templates are PNGs
+            const format = 'PNG';
+
+            try {
+                const doc = new jsPDF({
+                    orientation: config.orientation, 
+                    unit: 'pt',              
+                    format: 'a4'             
+                });
+                
+                const templateImageUrl = getImageUrl(item.Report_Template); 
+
+                // 1. Add the Image Background
+                // NOTE: For jsPDF v2.x, using an image element or Data URI is safer than direct path if errors occur.
+                const img = new Image();
+                img.crossOrigin = 'Anonymous'; // Essential for images on other domains (or local servers)
+                img.src = templateImageUrl;
+                
+                await new Promise((resolve, reject) => {
+                    img.onload = resolve;
+                    img.onerror = () => reject(new Error(`Failed to load image: ${templateImageUrl}`));
+                });
+
+                doc.addImage(img, format, 0, 0, config.width, config.height);
+
+
+                // 2. Overlay Dynamic Text
+                
+                // --- Name Styling ---
+                doc.setFont('CaveatBrush-Regular', 'normal'); 
+                doc.setFontSize(48);
+                doc.setTextColor(50, 50, 50); // Dark Gray
+
+                // Center the name text horizontally
+                const nameWidth = doc.getTextWidth(item.Name);
+                const nameCenterX = (config.width - nameWidth) / 2;
+                doc.text(item.Name, nameCenterX, config.nameY); 
+                
+                // --- Date Styling ---
+                doc.setFont('Zeyada-Regular', 'normal'); 
+                doc.setFontSize(22);
+                doc.setTextColor(113,113, 165);
+                
+                // Use custom date placement based on the template config
+                const dateX = config.dateX || (config.width - 250); 
+                const dateY = config.dateY || (config.height - 80);
+                
+                doc.text(item.CelebDate, dateX, dateY, { align: 'right' }); 
+
+                // --- Place Styling ---
+                doc.setFont('Zeyada-Regular', 'normal'); 
+                doc.setFontSize(20);
+                doc.setTextColor(113,113, 165);
+
+                const placeWidth = doc.getTextWidth("parkrun Wzniesienie Osowy");
+                const placeCenterX = (config.width - placeWidth) / 2;
+                doc.text("parkrun Wzniesienie Osowy", placeCenterX, config.placeY); 
+
+
+                // 3. Save the PDF
+                doc.save(`${item.Name.replace(/\s/g, '_')}_${item.Report_Template.split('.')[0]}.pdf`);
+                
+                notification.classList.add('hidden');
+
+                titleElement.textContent = `Success!`;
+                messageElement.textContent = `Diploma for ${item.Name} has been downloaded.`;
+                actionsElement.innerHTML = `<button onclick="document.getElementById('notification').classList.add('hidden')" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-150">Got it!</button>`;
+
+            } catch (error) {
+                // If you see a CORS or Security Error, ensure you are running a local HTTP server!
+                console.error(`Error generating PDF for ${item.Name}:`, error);
+                titleElement.textContent = `Error!`;
+                messageElement.textContent = `Failed to generate PDF. Check console for error details, and ensure 'templates/' folder exists with the images, and you are running a local HTTP server.`;
+                actionsElement.innerHTML = `<button onclick="document.getElementById('notification').classList.add('hidden')" class="px-4 py-2 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition duration-150">Close</button>`;
+            }
+        }
+
+        // --- 4. RENDER TABLE UI FUNCTION (Takes data as an argument) ---
+        // NOTE: This function no longer relies on a globally defined reportsData
+        function renderTable(data) {
+            const tableContainer = document.getElementById('report-table-container');
+            
+            if (data.length === 0) {
+                tableContainer.innerHTML = '<p class="text-center text-gray-500">No reports found to display.</p>';
+                return;
+            }
+
+            let html = `
+                <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden">
+                    <thead class="bg-blue-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">
+                                ID
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Tytuł raportu
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Imię
+                            </th>
+                            <th scope="col" class="relative px-6 py-3 rounded-tr-lg">
+                                Akcja
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+            `;
+
+            // Loop over the data passed as an argument
+            data.forEach((item, index) => {
+                // Escape single quotes for use in JS function call
+                const itemJson = JSON.stringify(item).replace(/'/g, "\\'");
+                
+                const reportId = index + 1;
+
+                html += `
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            #${reportId}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                            ${item.Report_Title}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                            ${item.Name}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <button 
+                                onclick='generateSingleDiploma(${itemJson}, ${index})'
+                                class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-full hover:bg-green-700 transition duration-150 shadow-lg hover:shadow-xl transform hover:scale-105"
+                            >
+                                Pobierz Raport
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            tableContainer.innerHTML = html;
+        }
+
+        // --- 5. INITIALIZE APP (Main Orchestration Function) ---
+        async function initApp() {
+            // 🚨 1. AWAIT the data to ensure it's loaded 🚨
+            const reportsData = await loadReportsData();
+            
+            // 2. PASS the loaded data to the rendering function
+            renderTable(reportsData);
+        }
+
+        // Run the initialization function once the window is loaded
+        window.onload = initApp; 
+    </script>
+</body>
+</html>
