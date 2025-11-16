@@ -41,7 +41,7 @@
             parkrun Wzniesienie Osowy generator dyplomów
         </h1>
         <p class="text-gray-600 mb-8 text-center">
-            Select a report below to instantly generate and download the corresponding personalized diploma.
+            <b>Liczba wizyt</b> to liczba wizyt na naszym parkrunie przez daną osobę w ostatnich 10 edycjach.
         </p>
 
         <!-- Reports Table Container -->
@@ -208,6 +208,19 @@
             }
 
             let html = `
+            <div class="mb-6 p-4 border border-gray-200 rounded-lg bg-gray-50 flex items-center space-x-4">
+        <label for="visitsFilter" class="text-sm font-medium text-gray-700 whitespace-nowrap">Filtruj wg liczby wizyt (min):</label>
+        <input 
+            type="number" 
+            id="visitsFilter" 
+            placeholder="np. 5"
+            value="3"
+            class="block w-24 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2"
+            onkeyup="filterTableByVisits()"
+            onchange="filterTableByVisits()"
+        >
+        <p id="filter-status" class="text-sm text-gray-500 ml-4"></p>
+    </div>
                 <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden">
                     <thead class="bg-blue-50">
                         <tr>
@@ -215,12 +228,15 @@
                                 ID
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Tytuł raportu
+                                Osiągnięcie
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Wizyty
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Imię
                             </th>
-                            <th scope="col" class="relative px-6 py-3 rounded-tr-lg">
+                            <th scope="col"  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Akcja
                             </th>
                         </tr>
@@ -242,6 +258,9 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                             ${item.Report_Title}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                            ${item.num_of_visits}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                             ${item.Name}
@@ -266,13 +285,45 @@
             tableContainer.innerHTML = html;
         }
 
+        function filterTableByVisits() {
+    const filterValue = parseInt(document.getElementById('visitsFilter').value);
+    const tableBody = document.querySelector('#report-table-container tbody');
+    const rows = tableBody ? tableBody.querySelectorAll('tr') : [];
+    const statusElement = document.getElementById('filter-status');
+    let visibleRowCount = 0;
+
+    // If the input is empty or NaN (not a number), show all rows
+    if (isNaN(filterValue) || filterValue < 0) {
+        rows.forEach(row => {
+            row.style.display = ''; // Show all rows
+            visibleRowCount++;
+        });
+        statusElement.textContent = `Wyświetlanie wszystkich ${rows.length} rekordów.`;
+        return;
+    }
+
+    // Apply the filter (show only rows where 'num_of_visits' >= filterValue)
+    rows.forEach(row => {
+        // The visits count is in the 3rd <td> (index 2)
+        const visitsCell = row.children[2];
+        const visits = parseInt(visitsCell.textContent.trim());
+
+        if (visits >= filterValue) {
+            row.style.display = ''; // Show row
+            visibleRowCount++;
+        } else {
+            row.style.display = 'none'; // Hide row
+        }
+    });
+
+    statusElement.textContent = `Wyświetlanie ${visibleRowCount} rekordów (min. ${filterValue} wizyt).`;
+}
+
         // --- 5. INITIALIZE APP (Main Orchestration Function) ---
         async function initApp() {
-            // 🚨 1. AWAIT the data to ensure it's loaded 🚨
-            const reportsData = await loadReportsData();
-            
-            // 2. PASS the loaded data to the rendering function
+            const reportsData = await loadReportsData();           
             renderTable(reportsData);
+            filterTableByVisits();
         }
 
         // Run the initialization function once the window is loaded
