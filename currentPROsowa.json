@@ -126683,5 +126683,873 @@
         "runs": "119",
         "vols": "116",
         "time": "1:06:55"
+    },
+    {
+        "prNumber": "196",
+        "position": "1",
+        "runnerID": "7763924",
+        "name": "Michał BARTKOWIAK",
+        "gender": "Mężczyzna",
+        "runs": "115",
+        "vols": "18",
+        "time": "19:42"
+    },
+    {
+        "prNumber": "196",
+        "position": "2",
+        "runnerID": "10406658",
+        "name": "Marcin KONKOLEWSKI",
+        "gender": "Mężczyzna",
+        "runs": "18",
+        "vols": "1",
+        "time": "19:43"
+    },
+    {
+        "prNumber": "196",
+        "position": "3",
+        "runnerID": "9261244",
+        "name": "Tomasz HENDRICH",
+        "gender": "Mężczyzna",
+        "runs": "62",
+        "vols": "0",
+        "time": "19:56"
+    },
+    {
+        "prNumber": "196",
+        "position": "4",
+        "runnerID": "889579",
+        "name": "Kieren FUNK",
+        "gender": "Mężczyzna",
+        "runs": "20",
+        "vols": "0",
+        "time": "20:02"
+    },
+    {
+        "prNumber": "196",
+        "position": "5",
+        "runnerID": "11289070",
+        "name": "Marcin PRUSINOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "17",
+        "vols": "0",
+        "time": "20:12"
+    },
+    {
+        "prNumber": "196",
+        "position": "6",
+        "runnerID": "9616351",
+        "name": "Piotr KAPISZKA",
+        "gender": "Mężczyzna",
+        "runs": "30",
+        "vols": "0",
+        "time": "20:15"
+    },
+    {
+        "prNumber": "196",
+        "position": "7",
+        "runnerID": "664153",
+        "name": "Adam GRZYSTEK",
+        "gender": "Mężczyzna",
+        "runs": "303",
+        "vols": "4",
+        "time": "20:19"
+    },
+    {
+        "prNumber": "196",
+        "position": "8",
+        "runnerID": "6000070",
+        "name": "Jakub REGLIŃSKI",
+        "gender": "Mężczyzna",
+        "runs": "161",
+        "vols": "6",
+        "time": "20:20"
+    },
+    {
+        "prNumber": "196",
+        "position": "9",
+        "runnerID": "5754389",
+        "name": "Marcin JEREMICZ",
+        "gender": "Mężczyzna",
+        "runs": "12",
+        "vols": "0",
+        "time": "21:05"
+    },
+    {
+        "prNumber": "196",
+        "position": "10",
+        "runnerID": "1025619",
+        "name": "Ireneusz SYWANYCZ",
+        "gender": "Mężczyzna",
+        "runs": "341",
+        "vols": "10",
+        "time": "21:30"
+    },
+    {
+        "prNumber": "196",
+        "position": "11",
+        "runnerID": "7805970",
+        "name": "Wojciech HILLER",
+        "gender": "Mężczyzna",
+        "runs": "67",
+        "vols": "0",
+        "time": "21:45"
+    },
+    {
+        "prNumber": "196",
+        "position": "12",
+        "runnerID": "5274840",
+        "name": "Michał ABRAMOWICZ",
+        "gender": "Mężczyzna",
+        "runs": "195",
+        "vols": "124",
+        "time": "22:23"
+    },
+    {
+        "prNumber": "196",
+        "position": "13",
+        "runnerID": "970489",
+        "name": "Janek SKOPCZYŃSKI",
+        "gender": "Mężczyzna",
+        "runs": "348",
+        "vols": "4",
+        "time": "22:47"
+    },
+    {
+        "prNumber": "196",
+        "position": "14",
+        "runnerID": "8047963",
+        "name": "Rafał ELŻANOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "144",
+        "vols": "28",
+        "time": "22:54"
+    },
+    {
+        "prNumber": "196",
+        "position": "15",
+        "runnerID": "2999269",
+        "name": "Janusz LIDZBARSKI",
+        "gender": "Mężczyzna",
+        "runs": "12",
+        "vols": "0",
+        "time": "23:23"
+    },
+    {
+        "prNumber": "196",
+        "position": "16",
+        "runnerID": "1252707",
+        "name": "Weronika WOJNAROWSKA",
+        "gender": "Kobieta",
+        "runs": "161",
+        "vols": "22",
+        "time": "23:29"
+    },
+    {
+        "prNumber": "196",
+        "position": "17",
+        "runnerID": "7769649",
+        "name": "Magda IWANOWICZ",
+        "gender": "Kobieta",
+        "runs": "151",
+        "vols": "113",
+        "time": "23:29"
+    },
+    {
+        "prNumber": "196",
+        "position": "18",
+        "runnerID": "7199535",
+        "name": "Łukasz GOŁASZEWSKI",
+        "gender": "Mężczyzna",
+        "runs": "49",
+        "vols": "165",
+        "time": "23:30"
+    },
+    {
+        "prNumber": "196",
+        "position": "19",
+        "runnerID": "723516",
+        "name": "Łukasz MURAWSKI",
+        "gender": "Mężczyzna",
+        "runs": "37",
+        "vols": "0",
+        "time": "24:01"
+    },
+    {
+        "prNumber": "196",
+        "position": "20",
+        "runnerID": "530162",
+        "name": "Paweł POTRYKUS",
+        "gender": "Mężczyzna",
+        "runs": "4",
+        "vols": "0",
+        "time": "24:12"
+    },
+    {
+        "prNumber": "196",
+        "position": "21",
+        "runnerID": "8289018",
+        "name": "Jarek KORDALSKI",
+        "gender": "Mężczyzna",
+        "runs": "67",
+        "vols": "0",
+        "time": "24:15"
+    },
+    {
+        "prNumber": "196",
+        "position": "22",
+        "runnerID": "2344365",
+        "name": "Bartosz KISZKIEL",
+        "gender": "Mężczyzna",
+        "runs": "39",
+        "vols": "3",
+        "time": "24:36"
+    },
+    {
+        "prNumber": "196",
+        "position": "23",
+        "runnerID": "771858",
+        "name": "Krzysztof ITRICH",
+        "gender": "Mężczyzna",
+        "runs": "144",
+        "vols": "3",
+        "time": "25:12"
+    },
+    {
+        "prNumber": "196",
+        "position": "24",
+        "runnerID": "1932558",
+        "name": "Marcin WÓJCIK",
+        "gender": "Mężczyzna",
+        "runs": "10",
+        "vols": "1",
+        "time": "25:17"
+    },
+    {
+        "prNumber": "196",
+        "position": "25",
+        "runnerID": "8198139",
+        "name": "Szymon DUBROWSKI",
+        "gender": "Mężczyzna",
+        "runs": "16",
+        "vols": "0",
+        "time": "25:29"
+    },
+    {
+        "prNumber": "196",
+        "position": "26",
+        "runnerID": "5091836",
+        "name": "Bartosz WITKOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "91",
+        "vols": "4",
+        "time": "25:34"
+    },
+    {
+        "prNumber": "196",
+        "position": "27",
+        "runnerID": "4430691",
+        "name": "Elżbieta TOMPOROWSKA",
+        "gender": "Kobieta",
+        "runs": "18",
+        "vols": "0",
+        "time": "25:48"
+    },
+    {
+        "prNumber": "196",
+        "position": "28",
+        "runnerID": "11730102",
+        "name": "Łukasz KOWALSKI",
+        "gender": "Mężczyzna",
+        "runs": "1",
+        "vols": "0",
+        "time": "26:08"
+    },
+    {
+        "prNumber": "196",
+        "position": "29",
+        "runnerID": "9100837",
+        "name": "Adam WRÓBLEWSKI",
+        "gender": "Mężczyzna",
+        "runs": "19",
+        "vols": "0",
+        "time": "26:10"
+    },
+    {
+        "prNumber": "196",
+        "position": "30",
+        "runnerID": "1087590",
+        "name": "Daniel DOROSZKIEWICZ",
+        "gender": "Mężczyzna",
+        "runs": "102",
+        "vols": "1",
+        "time": "26:14"
+    },
+    {
+        "prNumber": "196",
+        "position": "31",
+        "runnerID": "3796960",
+        "name": "Piotr ETMAŃSKI",
+        "gender": "Mężczyzna",
+        "runs": "27",
+        "vols": "0",
+        "time": "26:24"
+    },
+    {
+        "prNumber": "196",
+        "position": "32",
+        "runnerID": "430893",
+        "name": "Michał FIGEL",
+        "gender": "Mężczyzna",
+        "runs": "208",
+        "vols": "12",
+        "time": "26:25"
+    },
+    {
+        "prNumber": "196",
+        "position": "33",
+        "runnerID": "5457346",
+        "name": "Shyamal MUKHERJEE",
+        "gender": "Mężczyzna",
+        "runs": "85",
+        "vols": "0",
+        "time": "26:39"
+    },
+    {
+        "prNumber": "196",
+        "position": "34",
+        "runnerID": "6067918",
+        "name": "Tomasz KOWALSKI",
+        "gender": "Mężczyzna",
+        "runs": "102",
+        "vols": "1",
+        "time": "26:49"
+    },
+    {
+        "prNumber": "196",
+        "position": "35",
+        "runnerID": "2742990",
+        "name": "Zbigniew LULIS",
+        "gender": "Mężczyzna",
+        "runs": "97",
+        "vols": "1",
+        "time": "27:08"
+    },
+    {
+        "prNumber": "196",
+        "position": "36",
+        "runnerID": "366545",
+        "name": "Jarek SKOPCZYŃSKI",
+        "gender": "Mężczyzna",
+        "runs": "373",
+        "vols": "26",
+        "time": "27:31"
+    },
+    {
+        "prNumber": "196",
+        "position": "37",
+        "runnerID": "8230910",
+        "name": "Maciej Świętopełk TROJANOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "46",
+        "vols": "0",
+        "time": "27:48"
+    },
+    {
+        "prNumber": "196",
+        "position": "38",
+        "runnerID": "11725618",
+        "name": "Jan LUKAS",
+        "gender": "Mężczyzna",
+        "runs": "1",
+        "vols": "0",
+        "time": "27:56"
+    },
+    {
+        "prNumber": "196",
+        "position": "39",
+        "runnerID": "11037537",
+        "name": "Kamil PRUSINOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "21",
+        "vols": "0",
+        "time": "28:07"
+    },
+    {
+        "prNumber": "196",
+        "position": "40",
+        "runnerID": "5525982",
+        "name": "Michael LASKOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "206",
+        "vols": "9",
+        "time": "28:43"
+    },
+    {
+        "prNumber": "196",
+        "position": "41",
+        "runnerID": "9261365",
+        "name": "Izabela HENDRICH",
+        "gender": "Kobieta",
+        "runs": "61",
+        "vols": "1",
+        "time": "28:48"
+    },
+    {
+        "prNumber": "196",
+        "position": "42",
+        "runnerID": "2249987",
+        "name": "Aleksandra KOWALSKA",
+        "gender": "Kobieta",
+        "runs": "84",
+        "vols": "0",
+        "time": "29:02"
+    },
+    {
+        "prNumber": "196",
+        "position": "43",
+        "runnerID": "11299768",
+        "name": "Mateusz MIŚ",
+        "gender": "Mężczyzna",
+        "runs": "16",
+        "vols": "0",
+        "time": "29:02"
+    },
+    {
+        "prNumber": "196",
+        "position": "44",
+        "runnerID": "8333280",
+        "name": "Jan TELĘGA",
+        "gender": "Mężczyzna",
+        "runs": "24",
+        "vols": "0",
+        "time": "29:13"
+    },
+    {
+        "prNumber": "196",
+        "position": "45",
+        "runnerID": "1884943",
+        "name": "Marcin SKŁODOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "139",
+        "vols": "78",
+        "time": "29:13"
+    },
+    {
+        "prNumber": "196",
+        "position": "46",
+        "runnerID": "11685469",
+        "name": "Robert NAPIÓRKOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "2",
+        "vols": "0",
+        "time": "29:25"
+    },
+    {
+        "prNumber": "196",
+        "position": "47",
+        "runnerID": "7497541",
+        "name": "Artur SZULC",
+        "gender": "Mężczyzna",
+        "runs": "66",
+        "vols": "58",
+        "time": "29:42"
+    },
+    {
+        "prNumber": "196",
+        "position": "48",
+        "runnerID": "9111996",
+        "name": "Ewa KREFT",
+        "gender": "Kobieta",
+        "runs": "28",
+        "vols": "8",
+        "time": "29:42"
+    },
+    {
+        "prNumber": "196",
+        "position": "49",
+        "runnerID": "7710107",
+        "name": "Tomasz KLAWA",
+        "gender": "Mężczyzna",
+        "runs": "29",
+        "vols": "0",
+        "time": "29:46"
+    },
+    {
+        "prNumber": "196",
+        "position": "50",
+        "runnerID": "8392082",
+        "name": "Karolina PAETKE",
+        "gender": "Kobieta",
+        "runs": "100",
+        "vols": "4",
+        "time": "29:47"
+    },
+    {
+        "prNumber": "196",
+        "position": "51",
+        "runnerID": "7852206",
+        "name": "Monika STĘPIEŃ",
+        "gender": "Kobieta",
+        "runs": "105",
+        "vols": "6",
+        "time": "30:16"
+    },
+    {
+        "prNumber": "196",
+        "position": "52",
+        "runnerID": "7360381",
+        "name": "Przemysław HUBISZ",
+        "gender": "Mężczyzna",
+        "runs": "62",
+        "vols": "70",
+        "time": "30:57"
+    },
+    {
+        "prNumber": "196",
+        "position": "53",
+        "runnerID": "7431676",
+        "name": "Bożena SYWANYCZ",
+        "gender": "Kobieta",
+        "runs": "127",
+        "vols": "11",
+        "time": "31:40"
+    },
+    {
+        "prNumber": "196",
+        "position": "54",
+        "runnerID": "7933365",
+        "name": "Jan KAMIŃSKI",
+        "gender": "Mężczyzna",
+        "runs": "136",
+        "vols": "13",
+        "time": "32:09"
+    },
+    {
+        "prNumber": "196",
+        "position": "55",
+        "runnerID": "7698811",
+        "name": "Iwona WIŃSKA",
+        "gender": "Kobieta",
+        "runs": "17",
+        "vols": "0",
+        "time": "32:46"
+    },
+    {
+        "prNumber": "196",
+        "position": "56",
+        "runnerID": "11674317",
+        "name": "Ulf OLDENBORG",
+        "gender": "Mężczyzna",
+        "runs": "5",
+        "vols": "0",
+        "time": "32:46"
+    },
+    {
+        "prNumber": "196",
+        "position": "57",
+        "runnerID": "5660185",
+        "name": "Natalia SZYMANEK",
+        "gender": "Kobieta",
+        "runs": "22",
+        "vols": "0",
+        "time": "33:13"
+    },
+    {
+        "prNumber": "196",
+        "position": "58",
+        "runnerID": null,
+        "name": "Nieznan(a)y",
+        "gender": null,
+        "runs": "0",
+        "vols": null
+    },
+    {
+        "prNumber": "196",
+        "position": "59",
+        "runnerID": "105281",
+        "name": "David POWELL",
+        "gender": "Mężczyzna",
+        "runs": "168",
+        "vols": "2",
+        "time": "33:15"
+    },
+    {
+        "prNumber": "196",
+        "position": "60",
+        "runnerID": "7922291",
+        "name": "Włodzimierz KUSIAK",
+        "gender": "Mężczyzna",
+        "runs": "114",
+        "vols": "5",
+        "time": "34:10"
+    },
+    {
+        "prNumber": "196",
+        "position": "61",
+        "runnerID": "11695197",
+        "name": "Adrian SCHLIEWE",
+        "gender": "Mężczyzna",
+        "runs": "1",
+        "vols": "0",
+        "time": "34:24"
+    },
+    {
+        "prNumber": "196",
+        "position": "62",
+        "runnerID": "7704331",
+        "name": "Przemysław LEWANDOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "52",
+        "vols": "0",
+        "time": "34:24"
+    },
+    {
+        "prNumber": "196",
+        "position": "63",
+        "runnerID": "8054746",
+        "name": "Michał WERNER",
+        "gender": "Mężczyzna",
+        "runs": "45",
+        "vols": "0",
+        "time": "35:01"
+    },
+    {
+        "prNumber": "196",
+        "position": "64",
+        "runnerID": "430896",
+        "name": "Monika FIGEL",
+        "gender": "Kobieta",
+        "runs": "149",
+        "vols": "7",
+        "time": "35:05"
+    },
+    {
+        "prNumber": "196",
+        "position": "65",
+        "runnerID": "9909786",
+        "name": "Ihor OBOLEVYCH",
+        "gender": "Mężczyzna",
+        "runs": "22",
+        "vols": "0",
+        "time": "36:19"
+    },
+    {
+        "prNumber": "196",
+        "position": "66",
+        "runnerID": "8565360",
+        "name": "Yevgen OBOLEVYCH",
+        "gender": "Mężczyzna",
+        "runs": "57",
+        "vols": "1",
+        "time": "36:21"
+    },
+    {
+        "prNumber": "196",
+        "position": "67",
+        "runnerID": "11688630",
+        "name": "Jacek BOBKIEWICZ",
+        "gender": "Mężczyzna",
+        "runs": "3",
+        "vols": "0",
+        "time": "37:18"
+    },
+    {
+        "prNumber": "196",
+        "position": "68",
+        "runnerID": "8910498",
+        "name": "Anna KLEKOTKO",
+        "gender": "Kobieta",
+        "runs": "72",
+        "vols": "0",
+        "time": "37:34"
+    },
+    {
+        "prNumber": "196",
+        "position": "69",
+        "runnerID": "7961850",
+        "name": "Dominika RIEGEL",
+        "gender": "Kobieta",
+        "runs": "24",
+        "vols": "4",
+        "time": "37:46"
+    },
+    {
+        "prNumber": "196",
+        "position": "70",
+        "runnerID": "1165131",
+        "name": "Bogumiła TROJANOWSKA",
+        "gender": "Kobieta",
+        "runs": "135",
+        "vols": "34",
+        "time": "39:15"
+    },
+    {
+        "prNumber": "196",
+        "position": "71",
+        "runnerID": "5272371",
+        "name": "Marian KURAJK",
+        "gender": "Mężczyzna",
+        "runs": "205",
+        "vols": "2",
+        "time": "39:16"
+    },
+    {
+        "prNumber": "196",
+        "position": "72",
+        "runnerID": "7500404",
+        "name": "Krzysztof STYPUŁKOWSKI",
+        "gender": "Mężczyzna",
+        "runs": "162",
+        "vols": "46",
+        "time": "41:37"
+    },
+    {
+        "prNumber": "196",
+        "position": "73",
+        "runnerID": "9309816",
+        "name": "Bogumiła CIROCKA",
+        "gender": "Kobieta",
+        "runs": "32",
+        "vols": "35",
+        "time": "41:38"
+    },
+    {
+        "prNumber": "196",
+        "position": "74",
+        "runnerID": "11037628",
+        "name": "Malgorzata KUROWSKA",
+        "gender": "Kobieta",
+        "runs": "18",
+        "vols": "0",
+        "time": "44:03"
+    },
+    {
+        "prNumber": "196",
+        "position": "75",
+        "runnerID": "6629431",
+        "name": "Ewa KURAJK",
+        "gender": "Kobieta",
+        "runs": "176",
+        "vols": "5",
+        "time": "49:21"
+    },
+    {
+        "prNumber": "196",
+        "position": "76",
+        "runnerID": "9032517",
+        "name": "Borys NIEDŹWIECKI",
+        "gender": "Mężczyzna",
+        "runs": "27",
+        "vols": "7",
+        "time": "50:18"
+    },
+    {
+        "prNumber": "196",
+        "position": "77",
+        "runnerID": "9477219",
+        "name": "Urszula NIEDŹWIECKA",
+        "gender": "Kobieta",
+        "runs": "19",
+        "vols": "0",
+        "time": "50:52"
+    },
+    {
+        "prNumber": "196",
+        "position": "78",
+        "runnerID": "11730763",
+        "name": "Agnieszka ZAKRZEWSKA",
+        "gender": "Kobieta",
+        "runs": "1",
+        "vols": "0",
+        "time": "51:49"
+    },
+    {
+        "prNumber": "196",
+        "position": "79",
+        "runnerID": "11735871",
+        "name": "Arkadiusz MENTEL",
+        "gender": "Mężczyzna",
+        "runs": "1",
+        "vols": "0",
+        "time": "51:51"
+    },
+    {
+        "prNumber": "196",
+        "position": "80",
+        "runnerID": "10369640",
+        "name": "Emilia WAWRZUSISZYN",
+        "gender": "Kobieta",
+        "runs": "18",
+        "vols": "7",
+        "time": "51:54"
+    },
+    {
+        "prNumber": "196",
+        "position": "81",
+        "runnerID": "10368085",
+        "name": "Michał WAWRZUSISZYN",
+        "gender": "Mężczyzna",
+        "runs": "21",
+        "vols": "0",
+        "time": "51:56"
+    },
+    {
+        "prNumber": "196",
+        "position": "82",
+        "runnerID": "8096401",
+        "name": "Marian KOSZAŁKA",
+        "gender": "Mężczyzna",
+        "runs": "153",
+        "vols": "104",
+        "time": "51:58"
+    },
+    {
+        "prNumber": "196",
+        "position": "83",
+        "runnerID": null,
+        "name": "Nieznan(a)y",
+        "gender": null,
+        "runs": "0",
+        "vols": null
+    },
+    {
+        "prNumber": "196",
+        "position": "84",
+        "runnerID": "9757637",
+        "name": "Agnieszka ROLBIECKA",
+        "gender": "Kobieta",
+        "runs": "56",
+        "vols": "2",
+        "time": "58:12"
+    },
+    {
+        "prNumber": "196",
+        "position": "85",
+        "runnerID": "11005069",
+        "name": "Piotr LICA",
+        "gender": "Mężczyzna",
+        "runs": "3",
+        "vols": "0",
+        "time": "1:00:40"
+    },
+    {
+        "prNumber": "196",
+        "position": "86",
+        "runnerID": "1206578",
+        "name": "Szymon LICA",
+        "gender": "Mężczyzna",
+        "runs": "305",
+        "vols": "0",
+        "time": "1:00:41"
+    },
+    {
+        "prNumber": "196",
+        "position": "87",
+        "runnerID": "7524336",
+        "name": "Andrzej MIARCZYŃSKI",
+        "gender": "Mężczyzna",
+        "runs": "150",
+        "vols": "152",
+        "time": "1:01:07"
     }
 ]

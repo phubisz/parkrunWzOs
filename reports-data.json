@@ -2,78 +2,92 @@
     {
         "Name": "Paweł Rolbiecki",
         "Report_Title": "50 Runs",
-        "num_of_visits": 9,
+        "num_of_visits": 8,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "20.12.2025"
+        "CelebDate": "27.12.2025"
     },
     {
-        "Name": "Karolina Paetke",
-        "Report_Title": "100 Runs",
-        "num_of_visits": 6,
-        "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "20.12.2025"
+        "Name": "Łukasz Gołaszewski",
+        "Report_Title": "50 Runs",
+        "num_of_visits": 5,
+        "Report_Template": "DYPLOMB50.png",
+        "CelebDate": "27.12.2025"
+    },
+    {
+        "Name": "Dominika Riegel",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 4,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "27.12.2025"
     },
     {
         "Name": "Karolina Cieślińska",
         "Report_Title": "10 Runs",
-        "num_of_visits": 3,
+        "num_of_visits": 2,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "20.12.2025"
-    },
-    {
-        "Name": "Andrzej Golański",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "20.12.2025"
-    },
-    {
-        "Name": "Marcin Kulczyk",
-        "Report_Title": "10 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "20.12.2025"
-    },
-    {
-        "Name": "Jacek Szufrajda",
-        "Report_Title": "10 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "20.12.2025"
-    },
-    {
-        "Name": "Małgorzata Piaścik-Kowalczyk",
-        "Report_Title": "10 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "20.12.2025"
+        "CelebDate": "27.12.2025"
     },
     {
         "Name": "Barbara Toporek",
         "Report_Title": "10 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "20.12.2025"
+        "CelebDate": "27.12.2025"
+    },
+    {
+        "Name": "Marcin Kulczyk",
+        "Report_Title": "10 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB10.png",
+        "CelebDate": "27.12.2025"
+    },
+    {
+        "Name": "Jan Telęga",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "27.12.2025"
+    },
+    {
+        "Name": "Jacek Szufrajda",
+        "Report_Title": "10 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB10.png",
+        "CelebDate": "27.12.2025"
+    },
+    {
+        "Name": "Małgorzata Piaścik-Kowalczyk",
+        "Report_Title": "10 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB10.png",
+        "CelebDate": "27.12.2025"
+    },
+    {
+        "Name": "Andrzej Golański",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "27.12.2025"
     },
     {
         "Name": "Michael Laskowski",
         "Report_Title": "10 Wolo",
-        "num_of_visits": 8,
+        "num_of_visits": 9,
         "Report_Template": "DYPLOMW10.png",
-        "CelebDate": "20.12.2025"
+        "CelebDate": "27.12.2025"
     },
     {
         "Name": "Sławomir Wasilewski",
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "20.12.2025"
+        "CelebDate": "27.12.2025"
     },
     {
         "Name": "Paweł Nuszel",
         "Report_Title": "10 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW10.png",
-        "CelebDate": "20.12.2025"
+        "CelebDate": "27.12.2025"
     }
 ]
