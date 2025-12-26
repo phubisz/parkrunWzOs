@@ -96,5 +96,12 @@
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW10.png",
         "CelebDate": "27.12.2025"
+    },
+    {
+        "Name": "Tymon Bartkowiak",
+        "Report_Title": "25 Wolo",
+        "num_of_visits": 3,
+        "Report_Template": "DYPLOMW25.png",
+        "CelebDate": "27.12.2025"
     }
 ]
