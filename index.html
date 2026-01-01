@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wzniesienie Osowy parkrun - dyplomy</title>
-    <!-- Load Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,7 +16,6 @@
             }
         }
     </script>
-    <!-- Load jsPDF Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="fonts/Zeyada-Regular.js"></script>
     <script src="fonts/CaveatBrush-Regular.js"></script>
@@ -34,7 +32,6 @@
 </head>
 <body class="bg-gray-50 min-h-screen p-4 sm:p-8">
 
-    <!-- Main Application Container -->
     <div id="app" class="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl p-6 sm:p-10 border border-gray-100">
         
         <h1 class="text-3xl font-extrabold text-blue-800 mb-6 text-center">
@@ -44,12 +41,9 @@
             <b>Liczba wizyt</b> to nieprzerwana liczba wizyt na naszym parkrunie przez daną osobę w ostatnich 10 edycjach.
         </p>
 
-        <!-- Reports Table Container -->
         <div id="report-table-container" class="overflow-x-auto custom-scrollbar">
-            <!-- Table will be injected here by JavaScript -->
-        </div>
+            </div>
 
-        <!-- Notification Modal (Hidden by default) -->
         <div id="notification" class="fixed inset-0 bg-gray-600 bg-opacity-75 hidden items-center justify-center p-4 z-50">
             <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full">
                 <h3 id="notification-title" class="text-lg font-semibold text-gray-900 mb-3">Processing...</h3>
@@ -65,8 +59,8 @@
 <script>
         const { jsPDF } = window.jspdf;
 
-        // --- 1. DATA SOURCE (Remains unchanged, returns a Promise) ---
-        async function loadReportsData() { // Renamed for clarity
+        // --- 1. DATA SOURCE (Updated with Trim Logic) ---
+        async function loadReportsData() { 
             try {
                 const response = await fetch('reports-data.json');
                 
@@ -74,18 +68,27 @@
                     throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
                 }
                 
-                return await response.json(); 
+                const rawData = await response.json(); 
+
+                // TRIMMING LOGIC: Remove "(ID)" from Name for all users
+                return rawData.map(user => {
+                    if (user.Name && user.Name.includes(' (')) {
+                        // Splits "Agata Ważna (10393646)" into ["Agata Ważna", "10393646)"]
+                        // and takes the first part.
+                        user.Name = user.Name.split(' (')[0].trim();
+                    }
+                    return user;
+                });
+
             } catch (error) {
                 console.error('Could not fetch the reports data:', error);
-                // Display an error message to the user if fetch fails
                 document.getElementById('report-table-container').innerHTML = 
                     '<p class="text-center text-red-600 font-semibold">ERROR: Could not load report data. Please ensure reports-data.json exists and is accessible.</p>';
                 return []; 
             }
         }
         
-        // --- 2. TEMPLATE CONFIGURATION MAP (Unchanged) ---
-        // ... (TEMPLATE_CONFIGS, TEMPLATE_FOLDER, getImageUrl function remain here) ...
+        // --- 2. TEMPLATE CONFIGURATION MAP ---
         const TEMPLATE_CONFIGS = {
             "default": {
                 orientation: 'portrait',
@@ -103,8 +106,7 @@
             return `${TEMPLATE_FOLDER}${templateFileName}`; 
         }
 
-        // --- 3. CORE PDF GENERATION FUNCTION (Unchanged) ---
-        // ... (generateSingleDiploma function remains here) ...
+        // --- 3. CORE PDF GENERATION FUNCTION ---
         async function generateSingleDiploma(item, index) {
             const notification = document.getElementById('notification');
             const titleElement = document.getElementById('notification-title');
@@ -116,11 +118,7 @@
             actionsElement.innerHTML = `<button onclick="document.getElementById('notification').classList.add('hidden')" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg shadow-md hover:bg-gray-400 transition duration-150">Dismiss</button>`;
             notification.classList.remove('hidden');
 
-            // --- Determine Config based on Template ---
-            const configKey = item.Report_Template;
             const config = TEMPLATE_CONFIGS["default"];
-            
-            // Set image format directly as all templates are PNGs
             const format = 'PNG';
 
             try {
@@ -132,10 +130,8 @@
                 
                 const templateImageUrl = getImageUrl(item.Report_Template); 
 
-                // 1. Add the Image Background
-                // NOTE: For jsPDF v2.x, using an image element or Data URI is safer than direct path if errors occur.
                 const img = new Image();
-                img.crossOrigin = 'Anonymous'; // Essential for images on other domains (or local servers)
+                img.crossOrigin = 'Anonymous'; 
                 img.src = templateImageUrl;
                 
                 await new Promise((resolve, reject) => {
@@ -145,31 +141,23 @@
 
                 doc.addImage(img, format, 0, 0, config.width, config.height);
 
-
-                // 2. Overlay Dynamic Text
-                
-                // --- Name Styling ---
+                // Overlay Dynamic Text
                 doc.setFont('CaveatBrush-Regular', 'normal'); 
                 doc.setFontSize(48);
-                doc.setTextColor(50, 50, 50); // Dark Gray
+                doc.setTextColor(50, 50, 50);
 
-                // Center the name text horizontally
                 const nameWidth = doc.getTextWidth(item.Name);
                 const nameCenterX = (config.width - nameWidth) / 2;
                 doc.text(item.Name, nameCenterX, config.nameY); 
                 
-                // --- Date Styling ---
                 doc.setFont('Zeyada-Regular', 'normal'); 
                 doc.setFontSize(22);
                 doc.setTextColor(113,113, 165);
                 
-                // Use custom date placement based on the template config
                 const dateX = config.dateX || (config.width - 250); 
                 const dateY = config.dateY || (config.height - 80);
-                
                 doc.text(item.CelebDate, dateX, dateY, { align: 'right' }); 
 
-                // --- Place Styling ---
                 doc.setFont('Zeyada-Regular', 'normal'); 
                 doc.setFontSize(20);
                 doc.setTextColor(113,113, 165);
@@ -178,27 +166,23 @@
                 const placeCenterX = (config.width - placeWidth) / 2;
                 doc.text("parkrun Wzniesienie Osowy", placeCenterX, config.placeY); 
 
-
-                // 3. Save the PDF
-                doc.save(`${item.Name.replace(/\s/g, '_')}_${item.Report_Template.split('.')[0]}.pdf`);
+                // Save PDF (Clean filename)
+                doc.save(`${item.Name.replace(/\s/g, '_')}_Diploma.pdf`);
                 
                 notification.classList.add('hidden');
-
                 titleElement.textContent = `Success!`;
                 messageElement.textContent = `Diploma for ${item.Name} has been downloaded.`;
                 actionsElement.innerHTML = `<button onclick="document.getElementById('notification').classList.add('hidden')" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-150">Got it!</button>`;
 
             } catch (error) {
-                // If you see a CORS or Security Error, ensure you are running a local HTTP server!
                 console.error(`Error generating PDF for ${item.Name}:`, error);
                 titleElement.textContent = `Error!`;
-                messageElement.textContent = `Failed to generate PDF. Check console for error details, and ensure 'templates/' folder exists with the images, and you are running a local HTTP server.`;
+                messageElement.textContent = `Failed to generate PDF. Check console.`;
                 actionsElement.innerHTML = `<button onclick="document.getElementById('notification').classList.add('hidden')" class="px-4 py-2 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 transition duration-150">Close</button>`;
             }
         }
 
-        // --- 4. RENDER TABLE UI FUNCTION (Takes data as an argument) ---
-        // NOTE: This function no longer relies on a globally defined reportsData
+        // --- 4. RENDER TABLE UI FUNCTION ---
         function renderTable(data) {
             const tableContainer = document.getElementById('report-table-container');
             
@@ -209,66 +193,43 @@
 
             let html = `
             <div class="mb-6 p-4 border border-gray-200 rounded-lg bg-gray-50 flex items-center space-x-4">
-        <label for="visitsFilter" class="text-sm font-medium text-gray-700 whitespace-nowrap">Filtruj wg liczby wizyt (min):</label>
-        <input 
-            type="number" 
-            id="visitsFilter" 
-            placeholder="np. 5"
-            value="3"
-            class="block w-24 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2"
-            onkeyup="filterTableByVisits()"
-            onchange="filterTableByVisits()"
-        >
-        <p id="filter-status" class="text-sm text-gray-500 ml-4"></p>
-    </div>
-                <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden">
-                    <thead class="bg-blue-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">
-                                ID
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Osiągnięcie
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Wizyty
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Imię
-                            </th>
-                            <th scope="col"  class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Akcja
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                <label for="visitsFilter" class="text-sm font-medium text-gray-700 whitespace-nowrap">Filtruj wg liczby wizyt (min):</label>
+                <input 
+                    type="number" 
+                    id="visitsFilter" 
+                    placeholder="np. 5"
+                    value="3"
+                    class="block w-24 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2"
+                    onkeyup="filterTableByVisits()"
+                    onchange="filterTableByVisits()"
+                >
+                <p id="filter-status" class="text-sm text-gray-500 ml-4"></p>
+            </div>
+            <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden">
+                <thead class="bg-blue-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Osiągnięcie</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Wizyty</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Imię</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
             `;
 
-            // Loop over the data passed as an argument
             data.forEach((item, index) => {
-                // Escape single quotes for use in JS function call
                 const itemJson = JSON.stringify(item).replace(/'/g, "\\'");
-                
-                const reportId = index + 1;
-
                 html += `
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            #${reportId}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                            ${item.Report_Title}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                            ${item.num_of_visits}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                            ${item.Name}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <td class="px-6 py-4 text-sm font-medium text-gray-900">#${index + 1}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">${item.Report_Title}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">${item.num_of_visits}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">${item.Name}</td>
+                        <td class="px-6 py-4 text-center">
                             <button 
                                 onclick='generateSingleDiploma(${itemJson}, ${index})'
-                                class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-full hover:bg-green-700 transition duration-150 shadow-lg hover:shadow-xl transform hover:scale-105"
+                                class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-full hover:bg-green-700 transition shadow-md"
                             >
                                 Pobierz Raport
                             </button>
@@ -277,56 +238,42 @@
                 `;
             });
 
-            html += `
-                    </tbody>
-                </table>
-            `;
-
+            html += `</tbody></table>`;
             tableContainer.innerHTML = html;
         }
 
         function filterTableByVisits() {
-    const filterValue = parseInt(document.getElementById('visitsFilter').value);
-    const tableBody = document.querySelector('#report-table-container tbody');
-    const rows = tableBody ? tableBody.querySelectorAll('tr') : [];
-    const statusElement = document.getElementById('filter-status');
-    let visibleRowCount = 0;
+            const filterValue = parseInt(document.getElementById('visitsFilter').value);
+            const tableBody = document.querySelector('#report-table-container tbody');
+            const rows = tableBody ? tableBody.querySelectorAll('tr') : [];
+            const statusElement = document.getElementById('filter-status');
+            let visibleRowCount = 0;
 
-    // If the input is empty or NaN (not a number), show all rows
-    if (isNaN(filterValue) || filterValue < 0) {
-        rows.forEach(row => {
-            row.style.display = ''; // Show all rows
-            visibleRowCount++;
-        });
-        statusElement.textContent = `Wyświetlanie wszystkich ${rows.length} rekordów.`;
-        return;
-    }
+            if (isNaN(filterValue) || filterValue < 0) {
+                rows.forEach(row => { row.style.display = ''; visibleRowCount++; });
+                statusElement.textContent = `Wyświetlanie wszystkich ${rows.length} rekordów.`;
+                return;
+            }
 
-    // Apply the filter (show only rows where 'num_of_visits' >= filterValue)
-    rows.forEach(row => {
-        // The visits count is in the 3rd <td> (index 2)
-        const visitsCell = row.children[2];
-        const visits = parseInt(visitsCell.textContent.trim());
-
-        if (visits >= filterValue) {
-            row.style.display = ''; // Show row
-            visibleRowCount++;
-        } else {
-            row.style.display = 'none'; // Hide row
+            rows.forEach(row => {
+                const visits = parseInt(row.children[2].textContent.trim());
+                if (visits >= filterValue) {
+                    row.style.display = '';
+                    visibleRowCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            statusElement.textContent = `Wyświetlanie ${visibleRowCount} rekordów (min. ${filterValue} wizyt).`;
         }
-    });
 
-    statusElement.textContent = `Wyświetlanie ${visibleRowCount} rekordów (min. ${filterValue} wizyt).`;
-}
-
-        // --- 5. INITIALIZE APP (Main Orchestration Function) ---
+        // --- 5. INITIALIZE APP ---
         async function initApp() {
             const reportsData = await loadReportsData();           
             renderTable(reportsData);
             filterTableByVisits();
         }
 
-        // Run the initialization function once the window is loaded
         window.onload = initApp; 
     </script>
 </body>
