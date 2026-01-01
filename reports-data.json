@@ -1,86 +1,86 @@
 [
     {
-        "Name": "Agata Ważna (10393646)",
-        "Report_Title": "10 Runs",
-        "num_of_visits": 4,
-        "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "01.01.2026"
-    },
-    {
-        "Name": "Martyna Zieleniecka (11144988)",
-        "Report_Title": "10 Runs",
-        "num_of_visits": 4,
-        "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "01.01.2026"
-    },
-    {
         "Name": "Tadeusz Armatyński (8564476)",
         "Report_Title": "10 Runs",
         "num_of_visits": 3,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "01.01.2026"
+        "CelebDate": "03.01.2026"
+    },
+    {
+        "Name": "Martyna Zieleniecka (11144988)",
+        "Report_Title": "10 Runs",
+        "num_of_visits": 3,
+        "Report_Template": "DYPLOMB10.png",
+        "CelebDate": "03.01.2026"
+    },
+    {
+        "Name": "Agata Ważna (10393646)",
+        "Report_Title": "10 Runs",
+        "num_of_visits": 3,
+        "Report_Template": "DYPLOMB10.png",
+        "CelebDate": "03.01.2026"
     },
     {
         "Name": "Karolina Cieślińska (8880804)",
         "Report_Title": "10 Runs",
         "num_of_visits": 2,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "01.01.2026"
+        "CelebDate": "03.01.2026"
     },
     {
         "Name": "Jacek Szufrajda (3523242)",
         "Report_Title": "10 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "01.01.2026"
-    },
-    {
-        "Name": "Barbara Toporek (8006773)",
-        "Report_Title": "10 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "01.01.2026"
+        "CelebDate": "03.01.2026"
     },
     {
         "Name": "Milena Fic (9108660)",
         "Report_Title": "25 Runs",
         "num_of_visits": 4,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "01.01.2026"
+        "CelebDate": "03.01.2026"
     },
     {
         "Name": "Marek Skrzynski (6838959)",
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "01.01.2026"
+        "CelebDate": "03.01.2026"
     },
     {
         "Name": "Łukasz Gołaszewski (7199535)",
         "Report_Title": "50 Runs",
         "num_of_visits": 4,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "01.01.2026"
+        "CelebDate": "03.01.2026"
     },
     {
         "Name": "Magdalena Zakrzewska (6584552)",
         "Report_Title": "50 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "01.01.2026"
+        "CelebDate": "03.01.2026"
+    },
+    {
+        "Name": "Zbigniew Lulis (2742990)",
+        "Report_Title": "100 Runs",
+        "num_of_visits": 6,
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "03.01.2026"
+    },
+    {
+        "Name": "Jan Klekotko (9050913)",
+        "Report_Title": "25 Wolo",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMW25.png",
+        "CelebDate": "03.01.2026"
     },
     {
         "Name": "Sławomir Wasilewski (8761053)",
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "01.01.2026"
-    },
-    {
-        "Name": "Aneta Chojnowska (7314765)",
-        "Report_Title": "25 Wolo",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "01.01.2026"
+        "CelebDate": "03.01.2026"
     }
 ]
