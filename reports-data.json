@@ -1,8 +1,15 @@
 [
     {
-        "Name": "Dorota FIC (9124518)",
+        "Name": "Kamil PRUSINOWSKI (11037537)",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 8,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "10.01.2026"
+    },
+    {
+        "Name": "Jacek PORTEE (7739670)",
         "Report_Title": "50 Runs",
-        "num_of_visits": 6,
+        "num_of_visits": 3,
         "Report_Template": "DYPLOMB50.png",
         "CelebDate": "10.01.2026"
     },
@@ -25,6 +32,13 @@
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
+        "CelebDate": "10.01.2026"
+    },
+    {
+        "Name": "Eryk JODKO-NARKIEWICZ (713441)",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB25.png",
         "CelebDate": "10.01.2026"
     },
     {
