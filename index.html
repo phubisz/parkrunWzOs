@@ -44,6 +44,52 @@
         <div id="report-table-container" class="overflow-x-auto custom-scrollbar">
             </div>
 
+        <!-- Manual diploma generator -->
+        <div class="mt-10 pt-8 border-t border-gray-200">
+            <h2 class="text-xl font-bold text-blue-800 mb-4">Wygeneruj dyplom ręcznie</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Imię i nazwisko</label>
+                    <input id="manual-name" type="text" placeholder="np. Jan Kowalski"
+                        class="w-full rounded-md border border-gray-300 shadow-sm p-2 text-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Typ</label>
+                    <div class="flex rounded-md overflow-hidden border border-gray-300 shadow-sm">
+                        <button id="type-runner" onclick="setType('runner')"
+                            class="flex-1 py-2 text-sm font-medium bg-blue-600 text-white transition">
+                            🏃 Biegacz
+                        </button>
+                        <button id="type-vol" onclick="setType('vol')"
+                            class="flex-1 py-2 text-sm font-medium bg-white text-gray-700 transition hover:bg-gray-50">
+                            🙋 Wolontariusz
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Milestone</label>
+                    <select id="manual-milestone"
+                        class="w-full rounded-md border border-gray-300 shadow-sm p-2 text-sm focus:border-blue-500 focus:ring-blue-500">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50" selected>50</option>
+                        <option value="100">100</option>
+                        <option value="250">250</option>
+                        <option value="500">500</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Data</label>
+                    <input id="manual-date" type="date"
+                        class="w-full rounded-md border border-gray-300 shadow-sm p-2 text-sm focus:border-blue-500 focus:ring-blue-500">
+                </div>
+            </div>
+            <button onclick="generateManualDiploma()"
+                class="mt-5 px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition shadow-md">
+                Pobierz dyplom
+            </button>
+        </div>
+
         <div id="notification" class="fixed inset-0 bg-gray-600 bg-opacity-75 hidden items-center justify-center p-4 z-50">
             <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full">
                 <h3 id="notification-title" class="text-lg font-semibold text-gray-900 mb-3">Processing...</h3>
@@ -68,14 +114,14 @@
                     throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
                 }
                 
-                const rawData = await response.json(); 
-
-                // TRIMMING LOGIC: Remove "(ID)" from Name for all users
+                const rawData = await response.json();
                 return rawData.map(user => {
                     if (user.Name && user.Name.includes(' (')) {
-                        // Splits "Agata Ważna (10393646)" into ["Agata Ważna", "10393646)"]
-                        // and takes the first part.
-                        user.Name = user.Name.split(' (')[0].trim();
+                        const parts = user.Name.split(' (');
+                        user.Name = parts[0].trim();
+                        if (!user.RunnerID) {
+                            user.RunnerID = parts[1].replace(')', '').trim();
+                        }
                     }
                     return user;
                 });
@@ -225,7 +271,16 @@
                         <td class="px-6 py-4 text-sm font-medium text-gray-900">#${index + 1}</td>
                         <td class="px-6 py-4 text-sm text-gray-700">${item.Report_Title}</td>
                         <td class="px-6 py-4 text-sm text-gray-700">${item.num_of_visits}</td>
-                        <td class="px-6 py-4 text-sm text-gray-700">${item.Name}</td>
+                        <td class="px-6 py-4 text-sm text-gray-700">
+                            ${item.Name}
+                            <a href="https://www.parkrun.pl/wzniesienieosowy/parkrunner/${item.RunnerID}/" target="_blank"
+                               title="Sprawdź profil ${item.Name}" class="ml-1 inline-block text-gray-400 hover:text-blue-600 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+                                </svg>
+                            </a>
+                            ${item.FirstOpportunity ? `<br><span class="text-xs text-amber-500 font-medium">od ${item.FirstOpportunity}</span>` : ''}
+                        </td>
                         <td class="px-6 py-4 text-center">
                             <button 
                                 onclick='generateSingleDiploma(${itemJson}, ${index})'
@@ -267,14 +322,57 @@
             statusElement.textContent = `Wyświetlanie ${visibleRowCount} rekordów (min. ${filterValue} wizyt).`;
         }
 
-        // --- 5. INITIALIZE APP ---
-        async function initApp() {
-            const reportsData = await loadReportsData();           
-            renderTable(reportsData);
-            filterTableByVisits();
+        // --- 5. MANUAL DIPLOMA GENERATOR ---
+        let manualType = 'runner';
+
+        function setType(type) {
+            manualType = type;
+            document.getElementById('type-runner').className =
+                `flex-1 py-2 text-sm font-medium transition ${type === 'runner' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`;
+            document.getElementById('type-vol').className =
+                `flex-1 py-2 text-sm font-medium transition ${type === 'vol' ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`;
         }
 
-        window.onload = initApp; 
+        function getNextSaturday() {
+            const today = new Date();
+            const day = today.getDay(); // 0=Sun, 6=Sat
+            const daysAhead = day === 6 ? 0 : (6 - day);
+            const sat = new Date(today);
+            sat.setDate(today.getDate() + daysAhead);
+            return sat.toISOString().split('T')[0];
+        }
+
+        function formatDateForDiploma(isoDate) {
+            const [y, m, d] = isoDate.split('-');
+            return `${d}.${m}.${y}`;
+        }
+
+        function generateManualDiploma() {
+            const name = document.getElementById('manual-name').value.trim();
+            const milestone = document.getElementById('manual-milestone').value;
+            const date = document.getElementById('manual-date').value;
+
+            if (!name) { alert('Podaj imię i nazwisko.'); return; }
+            if (!date) { alert('Wybierz datę.'); return; }
+
+            const templateCode = manualType === 'runner' ? 'B' : 'W';
+            const item = {
+                Name: name,
+                Report_Template: `DYPLOM${templateCode}${milestone}.png`,
+                CelebDate: formatDateForDiploma(date),
+            };
+            generateSingleDiploma(item, 0);
+        }
+
+        // --- 6. INITIALIZE APP ---
+        async function initApp() {
+            const reportsData = await loadReportsData();
+            renderTable(reportsData);
+            filterTableByVisits();
+            document.getElementById('manual-date').value = getNextSaturday();
+        }
+
+        window.onload = initApp;
     </script>
 </body>
 </html>
