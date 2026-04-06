@@ -40,14 +40,6 @@
         "CelebDate": "11.04.2026"
     },
     {
-        "Name": "Sławomir PIETKUN",
-        "RunnerID": "301761",
-        "Report_Title": "100 Wolo",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMW100.png",
-        "CelebDate": "11.04.2026"
-    },
-    {
         "Name": "Adam GRZESZCZAK",
         "RunnerID": "1585149",
         "Report_Title": "25 Runs",
@@ -64,6 +56,14 @@
         "CelebDate": "11.04.2026"
     },
     {
+        "Name": "Tomasz KRASOWSKI",
+        "RunnerID": "7295695",
+        "Report_Title": "10 Wolo",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMW10.png",
+        "CelebDate": "11.04.2026"
+    },
+    {
         "Name": "Piotr ADAMCZYK",
         "RunnerID": "8333610",
         "Report_Title": "25 Runs",
@@ -74,6 +74,14 @@
     {
         "Name": "Eryk JODKO-NARKIEWICZ",
         "RunnerID": "713441",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "11.04.2026"
+    },
+    {
+        "Name": "Przemysław KIEŁBASA",
+        "RunnerID": "10122387",
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
