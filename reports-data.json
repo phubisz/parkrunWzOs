@@ -1,86 +1,90 @@
 [
     {
-        "Name": "Marika KOZICKA (10782608)",
-        "Report_Title": "50 Runs",
-        "num_of_visits": 9,
-        "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "04.04.2026"
-    },
-    {
-        "Name": "Stanisław FIC (8584616)",
-        "Report_Title": "100 Runs",
-        "num_of_visits": 7,
-        "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "04.04.2026"
-    },
-    {
-        "Name": "Zdzisław STANISŁAWSKI (10261877)",
-        "Report_Title": "50 Runs",
+        "Name": "Krzysztof STYPUŁKOWSKI",
+        "RunnerID": "7500404",
+        "Report_Title": "50 Wolo",
         "num_of_visits": 6,
-        "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "04.04.2026"
+        "Report_Template": "DYPLOMW50.png",
+        "CelebDate": "11.04.2026"
     },
     {
-        "Name": "Maciej Świętopełk TROJANOWSKI (8230910)",
+        "Name": "Maciej Świętopełk TROJANOWSKI",
+        "RunnerID": "8230910",
         "Report_Title": "50 Runs",
         "num_of_visits": 3,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "04.04.2026"
+        "CelebDate": "11.04.2026"
     },
     {
-        "Name": "Michał WAWRZUSISZYN (10368085)",
+        "Name": "Michał WAWRZUSISZYN",
+        "RunnerID": "10368085",
         "Report_Title": "25 Runs",
         "num_of_visits": 3,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "04.04.2026"
+        "CelebDate": "11.04.2026"
     },
     {
-        "Name": "Sławomir PIETKUN (301761)",
+        "Name": "Patrycja KIRYLUK",
+        "RunnerID": "5246049",
+        "Report_Title": "50 Runs",
+        "num_of_visits": 2,
+        "Report_Template": "DYPLOMB50.png",
+        "CelebDate": "11.04.2026"
+    },
+    {
+        "Name": "Rafał WENTOWSKI",
+        "RunnerID": "10512087",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 2,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "11.04.2026"
+    },
+    {
+        "Name": "Sławomir PIETKUN",
+        "RunnerID": "301761",
         "Report_Title": "100 Wolo",
-        "num_of_visits": 2,
+        "num_of_visits": 1,
         "Report_Template": "DYPLOMW100.png",
-        "CelebDate": "04.04.2026"
+        "CelebDate": "11.04.2026"
     },
     {
-        "Name": "Patrycja KIRYLUK (5246049)",
-        "Report_Title": "50 Runs",
-        "num_of_visits": 2,
-        "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "04.04.2026"
-    },
-    {
-        "Name": "Adam GRZESZCZAK (1585149)",
+        "Name": "Adam GRZESZCZAK",
+        "RunnerID": "1585149",
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "04.04.2026"
+        "CelebDate": "11.04.2026"
     },
     {
-        "Name": "Krzysztof LICA (3603681)",
+        "Name": "Krzysztof LICA",
+        "RunnerID": "3603681",
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "04.04.2026"
+        "CelebDate": "11.04.2026"
     },
     {
-        "Name": "Piotr ADAMCZYK (8333610)",
+        "Name": "Piotr ADAMCZYK",
+        "RunnerID": "8333610",
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "04.04.2026"
+        "CelebDate": "11.04.2026"
     },
     {
-        "Name": "Eryk JODKO-NARKIEWICZ (713441)",
+        "Name": "Eryk JODKO-NARKIEWICZ",
+        "RunnerID": "713441",
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "04.04.2026"
+        "CelebDate": "11.04.2026"
     },
     {
-        "Name": "Arkadiusz TORBICKI (8371743)",
+        "Name": "Arkadiusz TORBICKI",
+        "RunnerID": "8371743",
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "04.04.2026"
+        "CelebDate": "11.04.2026"
     }
 ]
