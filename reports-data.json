@@ -1,11 +1,28 @@
 [
     {
+        "Name": "Hanna JASIEWICZ",
+        "RunnerID": "9864501",
+        "Report_Title": "50 Runs",
+        "num_of_visits": 8,
+        "Report_Template": "DYPLOMB50.png",
+        "CelebDate": "18.04.2026"
+    },
+    {
         "Name": "Krzysztof STYPUŁKOWSKI",
         "RunnerID": "7500404",
         "Report_Title": "50 Wolo",
-        "num_of_visits": 6,
+        "num_of_visits": 7,
         "Report_Template": "DYPLOMW50.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
+    },
+    {
+        "Name": "Piotr ZADROGA",
+        "RunnerID": "1190389",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 4,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "18.04.2026"
     },
     {
         "Name": "Maciej Świętopełk TROJANOWSKI",
@@ -13,15 +30,16 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 3,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
     },
     {
-        "Name": "Michał WAWRZUSISZYN",
-        "RunnerID": "10368085",
+        "Name": "Marcin KONKOLEWSKI",
+        "RunnerID": "10406658",
         "Report_Title": "25 Runs",
         "num_of_visits": 3,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026"
     },
     {
         "Name": "Patrycja KIRYLUK",
@@ -29,15 +47,16 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 2,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
     },
     {
-        "Name": "Rafał WENTOWSKI",
-        "RunnerID": "10512087",
-        "Report_Title": "25 Runs",
+        "Name": "Paulina JAWORSKA",
+        "RunnerID": "360292",
+        "Report_Title": "50 Runs",
         "num_of_visits": 2,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "11.04.2026"
+        "Report_Template": "DYPLOMB50.png",
+        "CelebDate": "18.04.2026"
     },
     {
         "Name": "Adam GRZESZCZAK",
@@ -45,7 +64,8 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
     },
     {
         "Name": "Krzysztof LICA",
@@ -53,7 +73,8 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
     },
     {
         "Name": "Tomasz KRASOWSKI",
@@ -61,7 +82,8 @@
         "Report_Title": "10 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW10.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
     },
     {
         "Name": "Piotr ADAMCZYK",
@@ -69,7 +91,16 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
+    },
+    {
+        "Name": "Agnieszka MACHALICA",
+        "RunnerID": "1353334",
+        "Report_Title": "250 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB250.png",
+        "CelebDate": "18.04.2026"
     },
     {
         "Name": "Eryk JODKO-NARKIEWICZ",
@@ -77,7 +108,17 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
+    },
+    {
+        "Name": "Rafał WENTOWSKI",
+        "RunnerID": "10512087",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
     },
     {
         "Name": "Przemysław KIEŁBASA",
@@ -85,14 +126,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "11.04.2026"
-    },
-    {
-        "Name": "Arkadiusz TORBICKI",
-        "RunnerID": "8371743",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "11.04.2026"
+        "CelebDate": "18.04.2026",
+        "FirstOpportunity": "11.04.2026"
     }
 ]
