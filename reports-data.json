@@ -5,25 +5,25 @@
         "Report_Title": "50 Wolo",
         "num_of_visits": 8,
         "Report_Template": "DYPLOMW50.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
         "Name": "Hanna JASIEWICZ",
         "RunnerID": "9864501",
         "Report_Title": "50 Runs",
-        "num_of_visits": 7,
+        "num_of_visits": 6,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "18.04.2026"
     },
     {
-        "Name": "Marcin SZWARC",
-        "RunnerID": "8716816",
-        "Report_Title": "100 Runs",
-        "num_of_visits": 6,
-        "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "25.04.2026"
+        "Name": "Zosia PERKOWSKA",
+        "RunnerID": "11758434",
+        "Report_Title": "10 Runs",
+        "num_of_visits": 4,
+        "Report_Template": "DYPLOMB10.png",
+        "CelebDate": "02.05.2026"
     },
     {
         "Name": "Piotr ZADROGA",
@@ -31,7 +31,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 3,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "18.04.2026"
     },
     {
@@ -40,7 +40,7 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 2,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
@@ -49,7 +49,7 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 2,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "18.04.2026"
     },
     {
@@ -58,7 +58,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
@@ -67,7 +67,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
@@ -76,7 +76,7 @@
         "Report_Title": "10 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW10.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
@@ -85,7 +85,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
@@ -94,7 +94,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "25.04.2026",
+        "CelebDate": "02.05.2026",
         "FirstOpportunity": "11.04.2026"
     }
 ]
