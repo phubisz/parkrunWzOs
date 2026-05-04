@@ -3,19 +3,27 @@
         "Name": "Krzysztof STYPUŁKOWSKI",
         "RunnerID": "7500404",
         "Report_Title": "50 Wolo",
-        "num_of_visits": 8,
+        "num_of_visits": 7,
         "Report_Template": "DYPLOMW50.png",
-        "CelebDate": "02.05.2026",
+        "CelebDate": "09.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
         "Name": "Hanna JASIEWICZ",
         "RunnerID": "9864501",
         "Report_Title": "50 Runs",
-        "num_of_visits": 6,
+        "num_of_visits": 5,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "02.05.2026",
+        "CelebDate": "09.05.2026",
         "FirstOpportunity": "18.04.2026"
+    },
+    {
+        "Name": "Bartosz WITKOWSKI",
+        "RunnerID": "5091836",
+        "Report_Title": "100 Runs",
+        "num_of_visits": 4,
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "09.05.2026"
     },
     {
         "Name": "Zosia PERKOWSKA",
@@ -23,16 +31,8 @@
         "Report_Title": "10 Runs",
         "num_of_visits": 4,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "02.05.2026"
-    },
-    {
-        "Name": "Piotr ZADROGA",
-        "RunnerID": "1190389",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 3,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "02.05.2026",
-        "FirstOpportunity": "18.04.2026"
+        "CelebDate": "09.05.2026",
+        "FirstOpportunity": "02.05.2026"
     },
     {
         "Name": "Patrycja KIRYLUK",
@@ -40,17 +40,8 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 2,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "02.05.2026",
+        "CelebDate": "09.05.2026",
         "FirstOpportunity": "11.04.2026"
-    },
-    {
-        "Name": "Paulina JAWORSKA",
-        "RunnerID": "360292",
-        "Report_Title": "50 Runs",
-        "num_of_visits": 2,
-        "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "02.05.2026",
-        "FirstOpportunity": "18.04.2026"
     },
     {
         "Name": "Adam GRZESZCZAK",
@@ -58,16 +49,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "02.05.2026",
-        "FirstOpportunity": "11.04.2026"
-    },
-    {
-        "Name": "Krzysztof LICA",
-        "RunnerID": "3603681",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "02.05.2026",
+        "CelebDate": "09.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
@@ -76,7 +58,7 @@
         "Report_Title": "10 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW10.png",
-        "CelebDate": "02.05.2026",
+        "CelebDate": "09.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
@@ -85,7 +67,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "02.05.2026",
+        "CelebDate": "09.05.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
@@ -94,7 +76,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "02.05.2026",
+        "CelebDate": "09.05.2026",
         "FirstOpportunity": "11.04.2026"
     }
 ]
