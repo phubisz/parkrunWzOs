@@ -1,12 +1,27 @@
 [
     {
-        "Name": "Krzysztof KACZMAREK",
-        "RunnerID": "5981252",
-        "Report_Title": "50 Runs",
+        "Name": "Tymon BARTKOWIAK",
+        "RunnerID": "8058150",
+        "Report_Title": "100 Runs",
+        "num_of_visits": 5,
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "20.06.2026"
+    },
+    {
+        "Name": "Piotr LICA",
+        "RunnerID": "11005069",
+        "Report_Title": "10 Runs",
+        "num_of_visits": 5,
+        "Report_Template": "DYPLOMB10.png",
+        "CelebDate": "20.06.2026"
+    },
+    {
+        "Name": "Fabian KLEKOTKO",
+        "RunnerID": "7520381",
+        "Report_Title": "100 Runs",
         "num_of_visits": 4,
-        "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "13.06.2026",
-        "FirstOpportunity": "23.05.2026"
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "20.06.2026"
     },
     {
         "Name": "Urszula NIEDŹWIECKA",
@@ -14,15 +29,16 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 4,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "13.06.2026"
+        "CelebDate": "20.06.2026",
+        "FirstOpportunity": "13.06.2026"
     },
     {
         "Name": "Tomasz GALEK",
         "RunnerID": "10335647",
         "Report_Title": "25 Runs",
-        "num_of_visits": 4,
+        "num_of_visits": 3,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "13.06.2026",
+        "CelebDate": "20.06.2026",
         "FirstOpportunity": "30.05.2026"
     },
     {
@@ -31,7 +47,7 @@
         "Report_Title": "10 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW10.png",
-        "CelebDate": "13.06.2026",
+        "CelebDate": "20.06.2026",
         "FirstOpportunity": "11.04.2026"
     },
     {
@@ -40,23 +56,7 @@
         "Report_Title": "100 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "13.06.2026"
-    },
-    {
-        "Name": "Rafał WENTOWSKI",
-        "RunnerID": "10512087",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "13.06.2026",
-        "FirstOpportunity": "11.04.2026"
-    },
-    {
-        "Name": "Oleksij KLYMKO",
-        "RunnerID": "11031191",
-        "Report_Title": "10 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "13.06.2026"
+        "CelebDate": "20.06.2026",
+        "FirstOpportunity": "13.06.2026"
     }
 ]
