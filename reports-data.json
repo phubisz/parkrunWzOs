@@ -1,5 +1,13 @@
 [
     {
+        "Name": "Ewa KREFT",
+        "RunnerID": "9111996",
+        "Report_Title": "50 Runs",
+        "num_of_visits": 4,
+        "Report_Template": "DYPLOMB50.png",
+        "CelebDate": "11.07.2026"
+    },
+    {
         "Name": "Urszula NIEDŹWIECKA",
         "RunnerID": "9477219",
         "Report_Title": "25 Runs",
@@ -9,19 +17,19 @@
         "FirstOpportunity": "13.06.2026"
     },
     {
-        "Name": "Hubert Mateusz MIELEWCZYK",
-        "RunnerID": "11447308",
-        "Report_Title": "10 Runs",
+        "Name": "Piotr KAPISZKA",
+        "RunnerID": "9616351",
+        "Report_Title": "50 Runs",
         "num_of_visits": 4,
-        "Report_Template": "DYPLOMB10.png",
+        "Report_Template": "DYPLOMB50.png",
         "CelebDate": "11.07.2026"
     },
     {
-        "Name": "Monika OSSOWSKA",
-        "RunnerID": "3967109",
-        "Report_Title": "250 Runs",
-        "num_of_visits": 2,
-        "Report_Template": "DYPLOMB250.png",
+        "Name": "Hubert Mateusz MIELEWCZYK",
+        "RunnerID": "11447308",
+        "Report_Title": "10 Runs",
+        "num_of_visits": 3,
+        "Report_Template": "DYPLOMB10.png",
         "CelebDate": "11.07.2026"
     },
     {
