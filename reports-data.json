@@ -3,28 +3,10 @@
         "Name": "Emilia WAWRZUSISZYN",
         "RunnerID": "10369640",
         "Report_Title": "25 Runs",
-        "num_of_visits": 4,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "08.08.2026",
-        "FirstOpportunity": "01.08.2026"
-    },
-    {
-        "Name": "Adam Franciszek NECEL",
-        "RunnerID": "7624385",
-        "Report_Title": "25 Runs",
         "num_of_visits": 3,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "08.08.2026",
+        "CelebDate": "15.08.2026",
         "FirstOpportunity": "01.08.2026"
-    },
-    {
-        "Name": "Urszula NIEDŹWIECKA",
-        "RunnerID": "9477219",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 3,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "08.08.2026",
-        "FirstOpportunity": "13.06.2026"
     },
     {
         "Name": "Hubert Mateusz MIELEWCZYK",
@@ -32,7 +14,7 @@
         "Report_Title": "10 Runs",
         "num_of_visits": 2,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "08.08.2026",
+        "CelebDate": "15.08.2026",
         "FirstOpportunity": "11.07.2026"
     },
     {
@@ -41,6 +23,15 @@
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "08.08.2026"
+        "CelebDate": "15.08.2026",
+        "FirstOpportunity": "08.08.2026"
+    },
+    {
+        "Name": "Radek KRUSZEWSKI",
+        "RunnerID": "7997957",
+        "Report_Title": "50 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB50.png",
+        "CelebDate": "15.08.2026"
     }
 ]
