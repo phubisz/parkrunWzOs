@@ -114,6 +114,7 @@ const state = {
   photoPan: { x: 0.5, y: 0.5 },
   // CSS filter applied to the photo only (the overlays are siblings, so text stays clean).
   photoFilter: { brightness: 100, contrast: 100, saturate: 100, sepia: 0, grayscale: 0, hue: 0 },
+  photoPreset: 'Brak',
 };
 
 const FILTER_PRESETS = {
@@ -878,6 +879,27 @@ function render() {
   attachPhotoDrag();
 }
 
+// Built with a ternary rather than toggling classes on a fixed base, because
+// Tailwind resolves conflicting utilities by stylesheet order, not class order —
+// adding bg-gray-900/text-white on top of bg-white/text-gray-700 gave white-on-white.
+function renderFilterPresets() {
+  const wrap = document.getElementById('filter-presets');
+  wrap.innerHTML = Object.keys(FILTER_PRESETS).map(name => {
+    const on = name === state.photoPreset;
+    return `<button class="filter-btn px-3 py-1 rounded-lg border text-sm ${
+      on ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+    }" data-preset="${name}">${name}</button>`;
+  }).join('');
+
+  wrap.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.photoPreset = btn.dataset.preset;
+      renderFilterPresets();
+      setFilter({ ...FILTER_PRESETS[btn.dataset.preset] });
+    });
+  });
+}
+
 function renderStyleButtons() {
   const wrap = document.getElementById('style-buttons');
   wrap.innerHTML = STYLES.map(s => `<button class="style-btn px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium ${s.key === state.style ? 'active bg-gray-900 text-white' : 'bg-white text-gray-700'}" data-style="${s.key}">${s.label}</button>`).join('');
@@ -961,18 +983,7 @@ function initApp() {
     setZoom(1);
   });
 
-  const presetWrap = document.getElementById('filter-presets');
-  presetWrap.innerHTML = Object.keys(FILTER_PRESETS).map(name =>
-    `<button class="filter-btn px-3 py-1 rounded-lg border border-gray-300 bg-white text-gray-700 text-sm hover:bg-gray-50" data-preset="${name}">${name}</button>`
-  ).join('');
-  presetWrap.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      presetWrap.querySelectorAll('.filter-btn').forEach(b =>
-        b.classList.remove('active', 'bg-gray-900', 'text-white'));
-      btn.classList.add('active', 'bg-gray-900', 'text-white');
-      setFilter({ ...FILTER_PRESETS[btn.dataset.preset] });
-    });
-  });
+  renderFilterPresets();
 
   ['brightness', 'contrast', 'saturate'].forEach(key => {
     document.getElementById(`input-${key}`).addEventListener('input', e => {
