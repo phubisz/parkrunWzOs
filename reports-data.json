@@ -3,10 +3,18 @@
         "Name": "Katarzyna KINOWSKA",
         "RunnerID": "1065433",
         "Report_Title": "50 Runs",
-        "num_of_visits": 5,
+        "num_of_visits": 4,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "05.09.2026",
+        "CelebDate": "12.09.2026",
         "FirstOpportunity": "29.08.2026"
+    },
+    {
+        "Name": "Tadeusz ARMATYŃSKI",
+        "RunnerID": "8564476",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 4,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "12.09.2026"
     },
     {
         "Name": "Emilia WAWRZUSISZYN",
@@ -14,17 +22,16 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 3,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "05.09.2026",
+        "CelebDate": "12.09.2026",
         "FirstOpportunity": "01.08.2026"
     },
     {
-        "Name": "Przemysław KRAKOWIAK",
-        "RunnerID": "10109997",
-        "Report_Title": "50 Runs",
+        "Name": "Joanna KUJAWSKA-FREJLICH",
+        "RunnerID": "2047203",
+        "Report_Title": "25 Runs",
         "num_of_visits": 1,
-        "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "05.09.2026",
-        "FirstOpportunity": "29.08.2026"
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "12.09.2026"
     },
     {
         "Name": "Marcin PRUSINOWSKI",
@@ -32,17 +39,8 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "05.09.2026",
+        "CelebDate": "12.09.2026",
         "FirstOpportunity": "29.08.2026"
-    },
-    {
-        "Name": "Hubert Mateusz MIELEWCZYK",
-        "RunnerID": "11447308",
-        "Report_Title": "10 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "05.09.2026",
-        "FirstOpportunity": "11.07.2026"
     },
     {
         "Name": "Magdalena MROZOWSKA",
@@ -50,7 +48,7 @@
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "05.09.2026",
+        "CelebDate": "12.09.2026",
         "FirstOpportunity": "08.08.2026"
     }
 ]

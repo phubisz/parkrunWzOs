@@ -1,0 +1,113 @@
+{
+    "event": "parkrun Wzniesienie Osowy",
+    "edition": 231,
+    "date": "2026-09-05",
+    "distanceKm": 5,
+    "finishers": 65,
+    "men": 46,
+    "women": 17,
+    "unknown": 2,
+    "volunteers": 18,
+    "personalBests": 7,
+    "firstTimers": 5,
+    "caption": "",
+    "milestones": [
+        {
+            "count": 10,
+            "name": "Michael LASKOWSKI",
+            "kind": "inne"
+        },
+        {
+            "count": 50,
+            "name": "Przemysław KRAKOWIAK",
+            "kind": "parkrun"
+        }
+    ],
+    "fastest": [
+        {
+            "name": "Michał BARTKOWIAK",
+            "sex": "M",
+            "time": "19:08",
+            "ageGroup": "VM35-39",
+            "ageGrade": 70.82
+        },
+        {
+            "name": "Aleksandra BARANOWSKA - TRZASKO",
+            "sex": "F",
+            "time": "20:09",
+            "ageGroup": "VW45-49",
+            "ageGrade": 79.57
+        }
+    ],
+    "bestAgeGrade": [
+        {
+            "name": "Michał BARTKOWIAK",
+            "sex": "M",
+            "time": "19:08",
+            "ageGroup": "VM35-39",
+            "ageGrade": 70.82
+        },
+        {
+            "name": "Aleksandra BARANOWSKA - TRZASKO",
+            "sex": "F",
+            "time": "20:09",
+            "ageGroup": "VW45-49",
+            "ageGrade": 79.57
+        }
+    ],
+    "mostParkruns": [
+        {
+            "name": "Ireneusz SYWANYCZ",
+            "sex": "M",
+            "runs": 379
+        },
+        {
+            "name": "Michael LASKOWSKI",
+            "sex": "M",
+            "runs": 232
+        }
+    ],
+    "mostVolunteerCredits": [
+        {
+            "name": "Małgorzata MACIERZANKA",
+            "credits": 221
+        },
+        {
+            "name": "Andrzej MIARCZYŃSKI",
+            "credits": 184
+        },
+        {
+            "name": "Michał ABRAMOWICZ",
+            "credits": 147
+        }
+    ],
+    "newPBs": [
+        "Aleksandra BARANOWSKA - TRZASKO",
+        "Maciej GOŁASZEWSKI",
+        "Mateusz RIEGEL",
+        "Mikołaj ZADROGA",
+        "Lesław AMBROZIAK",
+        "Mateusz GOJTOWSKI",
+        "Mirosław GRABOWSKI"
+    ],
+    "volunteerList": [
+        "Bożena SYWANYCZ",
+        "Tymon SIKORSKI",
+        "Adam SYWANYCZ",
+        "Ireneusz SYWANYCZ",
+        "Stanisław ŚWIGOST",
+        "Marian KOSZAŁKA",
+        "Andrzej MIARCZYŃSKI",
+        "Danuta RICHERT",
+        "Henryk RICHERT",
+        "Michał ABRAMOWICZ",
+        "Jarosław PIWOWARSKI",
+        "Robert SIKORSKI",
+        "Stanisław FIC",
+        "Tadeusz FIC",
+        "Agnieszka GRABOWSKA",
+        "Przemysław HUBISZ",
+        "Małgorzata MACIERZANKA",
+        "Sławomir PIETKUN"
+    ]
+}
