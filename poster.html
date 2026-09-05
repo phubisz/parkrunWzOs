@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plakat tygodnia - parkrun Wzniesienie Osowy</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;700&family=Anton&family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@600;700&family=Manrope:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Karla:wght@400;500;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+<!-- html-to-image rasterises via SVG foreignObject, so text is laid out by the browser
+     itself. html2canvas re-implements text layout and gets tight line-heights wrong
+     (the hero number uses line-height 0.84), which made exports differ from the preview. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+<style>
+  body { margin: 0; }
+  * { font-variant-numeric: tabular-nums; }
+  .drop-zone.dragover { outline: 3px dashed #4b5563; outline-offset: -3px; }
+  .style-btn.active { outline: 3px solid #111827; outline-offset: 2px; }
+  #poster-root > div { font-variant-numeric: tabular-nums; }
+  @media print {
+    body * { visibility: hidden; }
+    #poster-root, #poster-root * { visibility: visible; }
+    #poster-root { position: absolute; top: 0; left: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div class="max-w-5xl mx-auto py-8 px-4">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-2xl font-bold text-gray-900">Plakat tygodnia</h1>
+      <a href="index.html" class="text-blue-600 hover:underline">&larr; Dyplomy</a>
+    </div>
+
+    <div id="app-chrome" class="bg-white rounded-xl shadow p-6 mb-6 flex flex-col gap-5 print:hidden">
+      <div>
+        <label class="block text-sm font-semibold mb-2 text-gray-700">Styl</label>
+        <div id="style-buttons" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div id="drop-zone" class="drop-zone border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-gray-400 transition">
+        <input type="file" id="photo-input" accept="image/*" class="hidden">
+        <p class="text-gray-500 text-sm" id="drop-zone-text">Przeciągnij zdjęcie tutaj lub kliknij, aby wybrać</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <label for="input-zoom" class="text-sm font-semibold text-gray-700 whitespace-nowrap">Powiększenie</label>
+        <input type="range" id="input-zoom" min="100" max="400" step="1" value="100" class="flex-1 accent-gray-900">
+        <span id="zoom-value" class="text-sm text-gray-500 w-12 text-right">100%</span>
+        <button id="btn-zoom-reset" class="text-sm text-blue-600 hover:underline whitespace-nowrap">Resetuj</button>
+      </div>
+
+      <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-sm font-semibold text-gray-700 mr-1">Filtr</span>
+          <div id="filter-presets" class="flex flex-wrap gap-2"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <label class="flex items-center gap-2 text-sm text-gray-600">
+            <span class="w-20 shrink-0">Jasność</span>
+            <input type="range" id="input-brightness" min="50" max="180" step="1" value="100" class="flex-1 accent-gray-900">
+          </label>
+          <label class="flex items-center gap-2 text-sm text-gray-600">
+            <span class="w-20 shrink-0">Kontrast</span>
+            <input type="range" id="input-contrast" min="50" max="180" step="1" value="100" class="flex-1 accent-gray-900">
+          </label>
+          <label class="flex items-center gap-2 text-sm text-gray-600">
+            <span class="w-20 shrink-0">Nasycenie</span>
+            <input type="range" id="input-saturate" min="0" max="200" step="1" value="100" class="flex-1 accent-gray-900">
+          </label>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Podpis zdjęcia</label>
+          <textarea id="input-caption" rows="2" class="w-full border border-gray-300 rounded p-2 text-sm"></textarea>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-1 text-gray-700">Opis trasy (np. "5 km · las · deszcz")</label>
+          <input type="text" id="input-course" class="w-full border border-gray-300 rounded p-2 text-sm">
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-3 items-center">
+        <button id="btn-png" class="bg-gray-900 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-black transition">Pobierz PNG</button>
+        <button id="btn-pdf" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-300 transition">Pobierz PDF (drukuj)</button>
+        <span id="status-text" class="text-sm text-gray-500"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="poster-wrap" class="overflow-auto bg-gray-200 p-4 flex justify-center print:p-0 print:bg-white">
+    <div id="poster-scale-wrap" style="transform-origin: top center;">
+      <div id="poster-root"></div>
+    </div>
+  </div>
+
+<script>
+// ---------- State ----------
+const state = {
+  data: null,
+  style: localStorage.getItem('posterStyle') || 'modernist',
+  photoUrl: null,
+  // Natural pixel size of the loaded photo, needed to compute the "cover" fit.
+  photoNat: null,
+  // Zoom multiplier over the cover fit. 1 = exactly covers the frame.
+  photoZoom: 1,
+  // Pan as a fraction (0..1) of the available slack on each axis, so it stays
+  // meaningful when switching between styles with different frame shapes.
+  // 0.5/0.5 = centred. At zoom 1 an axis that exactly fits has no slack to pan.
+  photoPan: { x: 0.5, y: 0.5 },
+  // CSS filter applied to the photo only (the overlays are siblings, so text stays clean).
+  photoFilter: { brightness: 100, contrast: 100, saturate: 100, sepia: 0, grayscale: 0, hue: 0 },
+};
+
+const FILTER_PRESETS = {
+  'Brak':          { brightness: 100, contrast: 100, saturate: 100, sepia: 0,  grayscale: 0,   hue: 0 },
+  'Jasny':         { brightness: 115, contrast: 104, saturate: 105, sepia: 0,  grayscale: 0,   hue: 0 },
+  'Żywy':          { brightness: 104, contrast: 116, saturate: 140, sepia: 0,  grayscale: 0,   hue: 0 },
+  'Ciepły':        { brightness: 106, contrast: 104, saturate: 112, sepia: 28, grayscale: 0,   hue: -6 },
+  'Chłodny':       { brightness: 102, contrast: 110, saturate: 92,  sepia: 0,  grayscale: 0,   hue: 12 },
+  'Czarno-biały':  { brightness: 104, contrast: 112, saturate: 100, sepia: 0,  grayscale: 100, hue: 0 },
+};
+
+function filterCss(f) {
+  return `brightness(${f.brightness}%) contrast(${f.contrast}%) saturate(${f.saturate}%)`
+    + ` sepia(${f.sepia}%) grayscale(${f.grayscale}%) hue-rotate(${f.hue}deg)`;
+}
+
+const STYLES = [
+  { key: 'modernist', label: 'Modernist' },
+  { key: 'night', label: 'Night' },
+  { key: 'bib', label: 'Bib' },
+  { key: 'data', label: 'Data' },
+  { key: 'trail', label: 'Trail' },
+];
+
+// ---------- Helpers ----------
+function esc(s) {
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function fmtDate(iso) {
+  if (!iso) return '';
+  const parts = iso.split('-');
+  if (parts.length !== 3) return iso;
+  const [y, m, d] = parts;
+  return `${d}.${m}.${y}`;
+}
+function pct(n, total) {
+  if (!total) return 0;
+  return (n / total) * 100;
+}
+function nameOrDash(n) { return n ? esc(n) : '—'; }
+function joinNames(list) { return (list && list.length) ? list.map(esc).join(', ') : '—'; }
+
+function photoDiv(shapeStyle, placeholderText) {
+  if (state.photoUrl) {
+    return `<div data-photo-frame style="${shapeStyle} background-image:url('${state.photoUrl}'); background-repeat:no-repeat; background-size:cover; background-position:center; filter:${filterCss(state.photoFilter)}; cursor:grab; touch-action:none;"></div>`;
+  }
+  return `<div style="${shapeStyle} display:flex; align-items:center; justify-content:center; font-size:13px; text-align:center; padding:20px; box-sizing:border-box;">${esc(placeholderText)}</div>`;
+}
+
+// Work out how the photo should sit in whatever frame the current style uses.
+// We size the background explicitly (cover-fit x zoom) rather than using
+// `background-size: cover`, because cover leaves slack on one axis only — which is
+// why panning left/right did nothing until you zoomed in.
+function photoLayout(el) {
+  const fw = el.clientWidth, fh = el.clientHeight;
+  const nat = state.photoNat;
+  if (!nat || !fw || !fh) return null;
+  const cover = Math.max(fw / nat.w, fh / nat.h);
+  const w = nat.w * cover * state.photoZoom;
+  const h = nat.h * cover * state.photoZoom;
+  // Slack is how much bigger than the frame the image is — i.e. how far it can pan.
+  return { fw, fh, w, h, slackX: Math.max(0, w - fw), slackY: Math.max(0, h - fh) };
+}
+
+function applyPhotoTransform(el) {
+  el = el || document.querySelector('#poster-root [data-photo-frame]');
+  if (!el) return;
+  const L = photoLayout(el);
+  if (!L) return;
+  el.style.backgroundSize = `${L.w}px ${L.h}px`;
+  el.style.backgroundPosition = `${-L.slackX * state.photoPan.x}px ${-L.slackY * state.photoPan.y}px`;
+  el.style.filter = filterCss(state.photoFilter);
+}
+
+function setFilter(patch, opts) {
+  Object.assign(state.photoFilter, patch);
+  const f = state.photoFilter;
+  if (!opts || !opts.fromSlider) {
+    ['brightness', 'contrast', 'saturate'].forEach(k => {
+      const s = document.getElementById(`input-${k}`);
+      if (s) s.value = String(f[k]);
+    });
+  }
+  applyPhotoTransform();
+}
+
+const clamp01 = v => Math.min(1, Math.max(0, v));
+
+// Drag to reframe + wheel to zoom. Pan is stored as a fraction of the available
+// slack, so it stays sensible when switching to a style with a different crop.
+function attachPhotoDrag() {
+  const el = document.querySelector('#poster-root [data-photo-frame]');
+  if (!el) return;
+  applyPhotoTransform(el);
+
+  let dragging = false, startX = 0, startY = 0, startPan = null, startL = null;
+
+  el.addEventListener('pointerdown', e => {
+    startL = photoLayout(el);
+    if (!startL) return;
+    dragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    startPan = { ...state.photoPan };
+    el.setPointerCapture(e.pointerId);
+    el.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  el.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    // Dragging right moves the image right, so the pan fraction decreases.
+    if (startL.slackX > 0) {
+      state.photoPan.x = clamp01(startPan.x - (e.clientX - startX) / startL.slackX);
+    }
+    if (startL.slackY > 0) {
+      state.photoPan.y = clamp01(startPan.y - (e.clientY - startY) / startL.slackY);
+    }
+    applyPhotoTransform(el);
+  });
+
+  const stop = () => {
+    if (!dragging) return;
+    dragging = false;
+    el.style.cursor = 'grab';
+  };
+  el.addEventListener('pointerup', stop);
+  el.addEventListener('pointercancel', stop);
+
+  el.addEventListener('wheel', e => {
+    e.preventDefault();
+    setZoom(state.photoZoom * (e.deltaY < 0 ? 1.08 : 1 / 1.08));
+  }, { passive: false });
+}
+
+function setZoom(z) {
+  state.photoZoom = Math.min(4, Math.max(1, z));
+  const slider = document.getElementById('input-zoom');
+  if (slider) slider.value = String(Math.round(state.photoZoom * 100));
+  const label = document.getElementById('zoom-value');
+  if (label) label.textContent = `${Math.round(state.photoZoom * 100)}%`;
+  applyPhotoTransform();
+}
+
+function fastestRow(entry) {
+  if (!entry) return { name: '—', time: '—:—', ageGroup: '—', grade: '—' };
+  return {
+    name: esc(entry.name),
+    time: esc(entry.time || '—:—'),
+    ageGroup: esc(entry.ageGroup || '—'),
+    grade: entry.ageGrade != null ? entry.ageGrade.toFixed(2) + '%' : '—',
+  };
+}
+
+// ---------- Style 1: Modernist ----------
+function renderModernist(d) {
+  const men = pct(d.men, d.finishers), women = pct(d.women, d.finishers), unk = pct(d.unknown, d.finishers);
+  const f0 = fastestRow(d.fastest[0]), f1 = fastestRow(d.fastest[1]);
+  const a0 = fastestRow(d.bestAgeGrade[0]), a1 = fastestRow(d.bestAgeGrade[1]);
+  const mp = (d.mostParkruns || []).slice(0, 2);
+  const mv = (d.mostVolunteerCredits || []).slice(0, 3);
+  const milestoneRows = (d.milestones || []).map(m => `
+    <div style="height: 2px; background: #605d5d;"></div>
+    <div style="display: flex; align-items: baseline; gap: 18px;">
+      <span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 56px; line-height: 0.9; color: #ff9783; font-variant-numeric: tabular-nums;">${m.count}</span>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <span style="font-size: 20px; font-weight: 700;">${esc(m.name)}</span>
+        <span style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #a8a4a4;">${m.kind === 'parkrun' ? 'parkrun' : 'inne kamienie milowe'}</span>
+      </div>
+    </div>`).join('') || `<span style="font-size:15px; color:#a8a4a4;">Brak w tym tygodniu</span>`;
+
+  return `
+  <div style="width: 1240px; margin: 0 auto; background: #f3f2f2; color: #201e1d; font-family: Archivo, sans-serif; padding: 48px 56px 56px; box-sizing: border-box;">
+    <header style="display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; border-bottom: 4px solid #201e1d; padding-bottom: 30px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 15px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #ae1800;">parkrun · podsumowanie tygodnia</div>
+        <h1 style="margin: 0; font-weight: 800; font-size: 68px; line-height: 0.92; letter-spacing: -0.02em;">Wzniesienie<br>Osowy</h1>
+      </div>
+      <div style="display: flex; gap: 0; align-items: stretch; border-left: 2px solid #201e1d;">
+        <div style="padding: 8px 24px 4px; border-right: 2px solid #201e1d; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #605d5d;">Edycja</span>
+          <span style="font-weight: 800; font-size: 40px; line-height: 1; color: #ec3013;">#${d.edition}</span>
+        </div>
+        <div style="padding: 8px 0 4px 24px; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #605d5d;">Data</span>
+          <span style="font-weight: 800; font-size: 40px; line-height: 1;">${fmtDate(d.date)}</span>
+        </div>
+      </div>
+    </header>
+
+    <section style="margin-top: 28px; display: flex; flex-direction: column;">
+      <div style="position: relative; height: 470px;">
+        ${photoDiv('position:absolute; inset:0; background:#e2e0e0; color:#605d5d;', 'Przeciągnij zdjęcie z tego tygodnia')}
+        <div style="position: absolute; top: 0; left: 0; pointer-events: none; background: #ec3013; color: #f5f4f4; padding: 22px 34px 26px; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">Uczestnicy</span>
+          <span style="font-weight: 800; font-size: 132px; line-height: 0.84; letter-spacing: -0.04em;">${d.finishers}</span>
+        </div>
+        <div style="position: absolute; top: 0; right: 0; pointer-events: none; background: #201e1d; color: #f5f4f4; padding: 14px 24px; font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">${esc(d.courseNote)}</div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none; background: #201e1d; color: #f5f4f4; padding: 14px 24px; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #ff9783;">Fot.</span>
+          <p style="margin: 0; font-size: 15px; line-height: 1.4;">${esc(d.caption)}</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 40px; border-top: 4px solid #201e1d; border-bottom: 4px solid #201e1d;">
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr);">
+        <div style="padding: 36px 20px 28px 0; border-right: 2px solid rgba(32,30,29,0.4); display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-weight: 800; font-size: 44px; line-height: 1;">${d.men}</span>
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #605d5d; line-height: 1.35;">Mężczyźni</span>
+        </div>
+        <div style="padding: 36px 20px 28px; border-right: 2px solid rgba(32,30,29,0.4); display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-weight: 800; font-size: 44px; line-height: 1;">${d.women}</span>
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #605d5d; line-height: 1.35;">Kobiety</span>
+        </div>
+        <div style="padding: 36px 20px 28px; border-right: 2px solid rgba(32,30,29,0.4); display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-weight: 800; font-size: 44px; line-height: 1;">${d.unknown}</span>
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #605d5d; line-height: 1.35;">Niezeskanowani</span>
+        </div>
+        <div style="padding: 36px 20px 28px; border-right: 2px solid rgba(32,30,29,0.4); display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-weight: 800; font-size: 44px; line-height: 1; color: #ec3013;">${d.personalBests}</span>
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #605d5d; line-height: 1.35;">Rekordy życiowe</span>
+        </div>
+        <div style="padding: 36px 20px 28px; border-right: 2px solid rgba(32,30,29,0.4); display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-weight: 800; font-size: 44px; line-height: 1; color: #ec3013;">${d.firstTimers}</span>
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #605d5d; line-height: 1.35;">Debiutanci</span>
+        </div>
+        <div style="padding: 36px 0 28px 20px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-weight: 800; font-size: 44px; line-height: 1; color: #ec3013;">${d.volunteers}</span>
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #605d5d; line-height: 1.35;">Wolontariusze</span>
+        </div>
+      </div>
+      <div style="display: flex; height: 14px; border-top: 2px solid #201e1d;">
+        <div style="width: ${men}%; background: #201e1d;"></div>
+        <div style="width: ${women}%; background: #ec3013;"></div>
+        <div style="width: ${unk}%; background: #bab6b6;"></div>
+      </div>
+    </section>
+
+    <section style="margin-top: 44px; display: grid; grid-template-columns: 1.18fr 1fr; gap: 48px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 34px;">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h2 style="margin: 0; font-weight: 800; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 4px solid #201e1d; padding-bottom: 8px;">Najszybsi uczestnicy</h2>
+          <div style="display: grid; grid-template-columns: 1fr 88px 96px 84px; gap: 6px 12px; font-size: 17px; align-items: baseline;">
+            <span style="font-weight: 700;">${f0.name}</span><span style="font-weight: 800; font-size: 20px;">${f0.time}</span><span style="color: #7d7979; font-size: 15px;">${f0.ageGroup}</span><span style="text-align: right; color: #ae1800; font-weight: 700;">${f0.grade}</span>
+            <span style="font-weight: 700;">${f1.name}</span><span style="font-weight: 800; font-size: 20px;">${f1.time}</span><span style="color: #7d7979; font-size: 15px;">${f1.ageGroup}</span><span style="text-align: right; color: #ae1800; font-weight: 700;">${f1.grade}</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h2 style="margin: 0; font-weight: 800; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 4px solid #201e1d; padding-bottom: 8px;">Najwyższy współczynnik wieku</h2>
+          <div style="display: grid; grid-template-columns: 1fr 88px 96px 84px; gap: 6px 12px; font-size: 17px; align-items: baseline;">
+            <span style="font-weight: 700;">${a0.name}</span><span style="font-weight: 800; font-size: 20px;">${a0.time}</span><span style="color: #7d7979; font-size: 15px;">${a0.ageGroup}</span><span style="text-align: right; color: #ae1800; font-weight: 700;">${a0.grade}</span>
+            <span style="font-weight: 700;">${a1.name}</span><span style="font-weight: 800; font-size: 20px;">${a1.time}</span><span style="color: #7d7979; font-size: 15px;">${a1.ageGroup}</span><span style="text-align: right; color: #ae1800; font-weight: 700;">${a1.grade}</span>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <h2 style="margin: 0; font-weight: 800; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 4px solid #201e1d; padding-bottom: 8px;">Najwięcej parkrunów</h2>
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; font-size: 17px; align-items: baseline;">
+              ${mp.map(r => `<span style="font-weight: 700;">${nameOrDash(r.name)}</span><span style="font-weight: 800; font-size: 22px;">${r.runs}</span>`).join('') || '<span style="color:#7d7979;">—</span>'}
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <h2 style="margin: 0; font-weight: 800; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 4px solid #201e1d; padding-bottom: 8px;">Punkty wolontariatu</h2>
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; font-size: 17px; align-items: baseline;">
+              ${mv.map(r => `<span style="font-weight: 700;">${nameOrDash(r.name)}</span><span style="font-weight: 800; font-size: 22px;">${r.credits}</span>`).join('') || '<span style="color:#7d7979;">—</span>'}
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h2 style="margin: 0; font-weight: 800; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 4px solid #201e1d; padding-bottom: 8px;">Rekordy życiowe</h2>
+          <p style="margin: 0; font-size: 17px; line-height: 1.6;">${joinNames(d.newPBs)}</p>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 34px;">
+        <div style="background: #201e1d; color: #f5f4f4; padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 20px;">
+          <h2 style="margin: 0; font-weight: 800; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; color: #ff9783;">Kamienie milowe</h2>
+          ${milestoneRows}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h2 style="margin: 0; font-weight: 800; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; border-bottom: 4px solid #201e1d; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: baseline;"><span>Wolontariusze</span><span style="color: #ec3013;">${d.volunteers}</span></h2>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; font-size: 15px; line-height: 1.45;">
+            ${(d.volunteerList || []).map(v => `<span>${esc(v)}</span>`).join('') || '<span style="color:#7d7979;">—</span>'}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="margin-top: 48px; border-top: 4px solid #201e1d; padding-top: 14px; display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #605d5d;">
+      <span>parkrun Wzniesienie Osowy · sobota 09:00</span>
+      <span style="color: #ec3013;">#${d.edition} · ${fmtDate(d.date)}</span>
+    </footer>
+  </div>`;
+}
+
+// ---------- Style 2: Night ----------
+function renderNight(d) {
+  const men = pct(d.men, d.finishers), women = pct(d.women, d.finishers), unk = pct(d.unknown, d.finishers);
+  const f0 = fastestRow(d.fastest[0]), f1 = fastestRow(d.fastest[1]);
+  const a0 = fastestRow(d.bestAgeGrade[0]), a1 = fastestRow(d.bestAgeGrade[1]);
+  const mp = (d.mostParkruns || []).slice(0, 2);
+  const mv = (d.mostVolunteerCredits || []).slice(0, 3);
+  const milestoneItems = (d.milestones || []).map(m => `
+    <div style="display: flex; align-items: baseline; gap: 12px;">
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 52px; line-height: 0.9;">${m.count}</span>
+      <div style="display: flex; flex-direction: column;">
+        <span style="font-size: 17px; font-weight: 700;">${esc(m.name)}</span>
+        <span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.6;">${m.kind === 'parkrun' ? 'parkrun' : 'inne'}</span>
+      </div>
+    </div>`).join('') || `<span style="opacity:0.7;">Brak w tym tygodniu</span>`;
+
+  return `
+  <div style="width: 1240px; margin: 0 auto; background: #14102b; color: #f4f2ff; font-family: 'Space Grotesk', system-ui, sans-serif; padding: 44px 52px 52px; box-sizing: border-box; overflow: hidden;">
+    <header style="display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-bottom: 22px; border-bottom: 1px solid rgba(244,242,255,0.16);">
+      <div style="display: flex; align-items: baseline; gap: 14px;">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.02em; color: #d9ff4b;">parkrun</span>
+        <span style="font-size: 15px; letter-spacing: 0.26em; text-transform: uppercase; color: #8e86b8;">Wzniesienie Osowy</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: #8e86b8;">sobota ${fmtDate(d.date)}</span>
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; background: #d9ff4b; color: #14102b; padding: 6px 14px; border-radius: 999px;">#${d.edition}</span>
+      </div>
+    </header>
+
+    <section style="display: grid; grid-template-columns: 470px 1fr; gap: 44px; margin-top: 36px; align-items: start;">
+      <div style="position: relative; height: 620px;">
+        ${photoDiv('position:absolute; inset:0; border-radius:235px 235px 20px 20px; background:#1e1840;', 'Przeciągnij zdjęcie z tego tygodnia')}
+        <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 235px 235px 20px 20px; background: linear-gradient(to bottom, rgba(20,16,43,0.55) 0%, rgba(20,16,43,0) 34%, rgba(20,16,43,0) 52%, rgba(20,16,43,0.9) 100%);"></div>
+        <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 235px 235px 20px 20px; border: 1px solid rgba(217,255,75,0.35);"></div>
+        <div style="position: absolute; top: 46px; left: 0; right: 0; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+          <span style="font-size: 12px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(244,242,255,0.75);">${esc(d.courseNote)}</span>
+        </div>
+        <div style="position: absolute; left: 28px; right: 28px; bottom: 30px; pointer-events: none; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: baseline; gap: 12px;">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; line-height: 1; letter-spacing: -0.02em;">Wzniesienie</span>
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; line-height: 1; letter-spacing: -0.02em; color: #d9ff4b;">Osowy</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.5; color: rgba(244,242,255,0.7);">${esc(d.caption)}</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 30px;">
+        <div style="display: flex; align-items: flex-start; gap: 26px;">
+          <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 190px; line-height: 0.76; letter-spacing: -0.05em; color: #d9ff4b;">${d.finishers}</span>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 12px;">
+            <span style="font-size: 15px; letter-spacing: 0.24em; text-transform: uppercase; color: #8e86b8;">uczestników<br>na mecie</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; height: 16px; border-radius: 999px; overflow: hidden; gap: 3px;">
+            <div style="width: ${men}%; background: #b6a8ff;"></div>
+            <div style="width: ${women}%; background: #d9ff4b;"></div>
+            <div style="width: ${unk}%; background: #4b4470;"></div>
+          </div>
+          <div style="display: flex; gap: 28px; font-size: 15px;">
+            <span style="display: flex; align-items: center; gap: 8px;"><i style="width: 10px; height: 10px; border-radius: 999px; background: #b6a8ff; display: inline-block;"></i><strong>${d.men}</strong> <span style="color: #8e86b8;">mężczyźni</span></span>
+            <span style="display: flex; align-items: center; gap: 8px;"><i style="width: 10px; height: 10px; border-radius: 999px; background: #d9ff4b; display: inline-block;"></i><strong>${d.women}</strong> <span style="color: #8e86b8;">kobiety</span></span>
+            <span style="display: flex; align-items: center; gap: 8px;"><i style="width: 10px; height: 10px; border-radius: 999px; background: #4b4470; display: inline-block;"></i><strong>${d.unknown}</strong> <span style="color: #8e86b8;">niezeskanowani</span></span>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+          <div style="background: #1e1840; border-radius: 20px; padding: 20px 22px; display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 46px; line-height: 1;">${d.volunteers}</span>
+            <span style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #8e86b8;">wolontariuszy</span>
+          </div>
+          <div style="background: #1e1840; border-radius: 20px; padding: 20px 22px; display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 46px; line-height: 1;">${d.personalBests}</span>
+            <span style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #8e86b8;">rekordy życiowe</span>
+          </div>
+          <div style="background: #1e1840; border-radius: 20px; padding: 20px 22px; display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 46px; line-height: 1;">${d.firstTimers}</span>
+            <span style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #8e86b8;">debiutanci</span>
+          </div>
+        </div>
+        <div style="background: #d9ff4b; color: #14102b; border-radius: 24px; padding: 24px 26px; display: flex; flex-direction: column; gap: 18px;">
+          <span style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;">Kamienie milowe</span>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+            ${milestoneItems}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div style="background: #1e1840; border-radius: 24px; padding: 26px 28px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #d9ff4b;">Najszybsi uczestnicy</span>
+        <div style="display: grid; grid-template-columns: 1fr auto 92px 78px; gap: 12px 14px; align-items: baseline; font-size: 17px;">
+          <span style="font-weight: 700;">${f0.name}</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px;">${f0.time}</span><span style="font-size: 14px; color: #8e86b8;">${f0.ageGroup}</span><span style="text-align: right; color: #b6a8ff; font-weight: 700;">${f0.grade}</span>
+          <span style="font-weight: 700;">${f1.name}</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px;">${f1.time}</span><span style="font-size: 14px; color: #8e86b8;">${f1.ageGroup}</span><span style="text-align: right; color: #b6a8ff; font-weight: 700;">${f1.grade}</span>
+        </div>
+      </div>
+      <div style="background: #1e1840; border-radius: 24px; padding: 26px 28px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #d9ff4b;">Najwyższy współczynnik wieku</span>
+        <div style="display: grid; grid-template-columns: 1fr auto 92px 78px; gap: 12px 14px; align-items: baseline; font-size: 17px;">
+          <span style="font-weight: 700;">${a0.name}</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px;">${a0.time}</span><span style="font-size: 14px; color: #8e86b8;">${a0.ageGroup}</span><span style="text-align: right; color: #d9ff4b; font-weight: 700;">${a0.grade}</span>
+          <span style="font-weight: 700;">${a1.name}</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px;">${a1.time}</span><span style="font-size: 14px; color: #8e86b8;">${a1.ageGroup}</span><span style="text-align: right; color: #b6a8ff; font-weight: 700;">${a1.grade}</span>
+        </div>
+      </div>
+      <div style="background: #1e1840; border-radius: 24px; padding: 26px 28px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #d9ff4b;">Najwięcej parkrunów</span>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px 14px; align-items: baseline; font-size: 17px;">
+          ${mp.map(r => `<span style="font-weight: 700;">${nameOrDash(r.name)}</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px;">${r.runs}</span>`).join('') || '—'}
+        </div>
+      </div>
+      <div style="background: #1e1840; border-radius: 24px; padding: 26px 28px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #d9ff4b;">Punkty wolontariatu</span>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px 14px; align-items: baseline; font-size: 17px;">
+          ${mv.map(r => `<span style="font-weight: 700;">${nameOrDash(r.name)}</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px;">${r.credits}</span>`).join('') || '—'}
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 16px; display: flex; flex-direction: column; gap: 16px;">
+      <div style="border: 1px solid rgba(244,242,255,0.16); border-radius: 24px; padding: 24px 28px; display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #8e86b8;">Nowe rekordy życiowe</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          ${(d.newPBs || []).map(n => `<span style="border: 1px solid #d9ff4b; color: #d9ff4b; border-radius: 999px; padding: 7px 16px; font-size: 15px;">${esc(n)}</span>`).join('') || '<span style="opacity:0.7;">—</span>'}
+        </div>
+      </div>
+      <div style="border: 1px solid rgba(244,242,255,0.16); border-radius: 24px; padding: 24px 28px; display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #8e86b8;">Wolontariusze · ${d.volunteers}</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          ${(d.volunteerList || []).map(v => `<span style="background: rgba(182,168,255,0.14); border-radius: 999px; padding: 7px 16px; font-size: 15px;">${esc(v)}</span>`).join('') || '<span style="opacity:0.7;">—</span>'}
+        </div>
+      </div>
+    </section>
+
+    <footer style="margin-top: 34px; padding-top: 18px; border-top: 1px solid rgba(244,242,255,0.16); display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: #8e86b8;">
+      <span>Do zobaczenia w sobotę o 9:00</span>
+      <span style="color: #d9ff4b;">parkrun Wzniesienie Osowy #${d.edition}</span>
+    </footer>
+  </div>`;
+}
+
+// ---------- Style 3: Bib ----------
+function renderBib(d) {
+  const men = pct(d.men, d.finishers), women = pct(d.women, d.finishers), unk = pct(d.unknown, d.finishers);
+  const f0 = fastestRow(d.fastest[0]), f1 = fastestRow(d.fastest[1]);
+  const a0 = fastestRow(d.bestAgeGrade[0]), a1 = fastestRow(d.bestAgeGrade[1]);
+  const mp = (d.mostParkruns || []).slice(0, 2);
+  const mv = (d.mostVolunteerCredits || []).slice(0, 3);
+  const milestoneItems = (d.milestones || []).map(m => `
+    <div style="display: flex; align-items: baseline; gap: 14px;"><span style="font-family: 'Anton', sans-serif; font-size: 46px; line-height: 1; color: #ef6a58;">${m.count}</span><span style="font-size: 18px; font-weight: 600;">${esc(m.name)}</span></div>`).join('') || `<span style="opacity:0.7;">Brak w tym tygodniu</span>`;
+
+  return `
+  <div style="width: 1240px; margin: 0 auto; background: #f6f1e7; color: #171512; font-family: 'IBM Plex Sans', system-ui, sans-serif; padding: 46px 54px 54px; box-sizing: border-box;">
+    <header style="display: flex; justify-content: space-between; align-items: baseline; gap: 24px;">
+      <span style="font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: #8b8073;">parkrun · wyniki tygodnia</span>
+      <span style="font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: #8b8073;">sobota ${fmtDate(d.date)} · 09:00</span>
+    </header>
+
+    <section style="margin-top: 26px; display: grid; grid-template-columns: 1fr 400px; gap: 40px; align-items: center;">
+      <div style="border: 3px solid #171512; border-radius: 10px; padding: 30px 34px 26px; background: #fffdf8; position: relative;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px dashed #cdc3b2; padding-bottom: 14px;">
+          <span style="font-size: 14px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 600;">Wzniesienie Osowy</span>
+          <span style="font-size: 14px; letter-spacing: 0.24em; text-transform: uppercase; color: #8b8073;">edycja #${d.edition}</span>
+        </div>
+        <div style="display: flex; align-items: flex-end; gap: 26px; padding: 22px 0 18px;">
+          <span style="font-family: 'Anton', sans-serif; font-size: 210px; line-height: 0.72; letter-spacing: -0.02em; color: #c8412f;">${d.finishers}</span>
+          <div style="display: flex; flex-direction: column; gap: 6px; padding-bottom: 12px;">
+            <span style="font-family: 'Anton', sans-serif; font-size: 34px; line-height: 1; text-transform: uppercase; letter-spacing: 0.02em;">uczestników</span>
+            <span style="font-size: 15px; color: #6d6459;">${d.men} mężczyzn · ${d.women} kobiet · ${d.unknown} niezeskanowanych</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 4px; height: 12px; border-radius: 999px; overflow: hidden;">
+          <div style="width: ${men}%; background: #171512;"></div>
+          <div style="width: ${women}%; background: #c8412f;"></div>
+          <div style="width: ${unk}%; background: #cdc3b2;"></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 2px dashed #cdc3b2; margin-top: 22px; padding-top: 18px;">
+          <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-family: 'Anton', sans-serif; font-size: 40px; line-height: 1;">${d.volunteers}</span><span style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #6d6459;">wolontariuszy</span></div>
+          <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-family: 'Anton', sans-serif; font-size: 40px; line-height: 1; color: #c8412f;">${d.personalBests}</span><span style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #6d6459;">rekordy życiowe</span></div>
+          <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-family: 'Anton', sans-serif; font-size: 40px; line-height: 1; color: #c8412f;">${d.firstTimers}</span><span style="font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #6d6459;">debiutanci</span></div>
+        </div>
+      </div>
+
+      <div style="position: relative; width: 400px; height: 400px;">
+        <div style="position: absolute; inset: 0; border-radius: 999px; overflow: hidden; border: 3px solid #171512; background: #e7e0d2;">
+          ${photoDiv('position:absolute; inset:0;', 'Przeciągnij zdjęcie')}
+        </div>
+        <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 999px; background: radial-gradient(circle at 50% 118%, rgba(23,21,18,0.85) 0%, rgba(23,21,18,0.35) 30%, rgba(23,21,18,0) 55%);"></div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 34px; pointer-events: none; text-align: center;">
+          <span style="font-family: 'Anton', sans-serif; font-size: 22px; letter-spacing: 0.18em; text-transform: uppercase; color: #f6f1e7;">${esc(d.courseNote)}</span>
+        </div>
+        <span style="position: absolute; top: 14px; right: -6px; background: #c8412f; color: #fffdf8; font-family: 'Anton', sans-serif; font-size: 20px; letter-spacing: 0.06em; padding: 8px 18px; border-radius: 999px; transform: rotate(6deg);">#${d.edition}</span>
+      </div>
+    </section>
+
+    <section style="margin-top: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+      <div style="border: 2px solid #171512; border-radius: 10px; padding: 22px 26px; display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: #c8412f;">Najszybsi uczestnicy</span>
+        <div style="display: grid; grid-template-columns: 1fr auto 90px 74px; gap: 10px 14px; align-items: baseline; font-size: 17px;">
+          <span style="font-weight: 600;">${f0.name}</span><span style="font-family: 'Anton', sans-serif; font-size: 22px;">${f0.time}</span><span style="font-size: 14px; color: #8b8073;">${f0.ageGroup}</span><span style="text-align: right; font-weight: 600;">${f0.grade}</span>
+          <span style="font-weight: 600;">${f1.name}</span><span style="font-family: 'Anton', sans-serif; font-size: 22px;">${f1.time}</span><span style="font-size: 14px; color: #8b8073;">${f1.ageGroup}</span><span style="text-align: right; font-weight: 600;">${f1.grade}</span>
+        </div>
+      </div>
+      <div style="border: 2px solid #171512; border-radius: 10px; padding: 22px 26px; display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: #c8412f;">Najwyższy współczynnik wieku</span>
+        <div style="display: grid; grid-template-columns: 1fr auto 90px 74px; gap: 10px 14px; align-items: baseline; font-size: 17px;">
+          <span style="font-weight: 600;">${a0.name}</span><span style="font-family: 'Anton', sans-serif; font-size: 22px;">${a0.time}</span><span style="font-size: 14px; color: #8b8073;">${a0.ageGroup}</span><span style="text-align: right; font-weight: 600; color: #c8412f;">${a0.grade}</span>
+          <span style="font-weight: 600;">${a1.name}</span><span style="font-family: 'Anton', sans-serif; font-size: 22px;">${a1.time}</span><span style="font-size: 14px; color: #8b8073;">${a1.ageGroup}</span><span style="text-align: right; font-weight: 600;">${a1.grade}</span>
+        </div>
+      </div>
+      <div style="border: 2px solid #171512; border-radius: 10px; padding: 22px 26px; display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: #c8412f;">Najwięcej parkrunów</span>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px 14px; align-items: baseline; font-size: 17px;">
+          ${mp.map(r => `<span style="font-weight: 600;">${nameOrDash(r.name)}</span><span style="font-family: 'Anton', sans-serif; font-size: 24px;">${r.runs}</span>`).join('') || '—'}
+        </div>
+      </div>
+      <div style="border: 2px solid #171512; border-radius: 10px; padding: 22px 26px; display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: #c8412f;">Punkty wolontariatu</span>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px 14px; align-items: baseline; font-size: 17px;">
+          ${mv.map(r => `<span style="font-weight: 600;">${nameOrDash(r.name)}</span><span style="font-family: 'Anton', sans-serif; font-size: 24px;">${r.credits}</span>`).join('') || '—'}
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 18px; background: #171512; color: #f6f1e7; border-radius: 10px; padding: 26px 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #cdc3b2;">Kamienie milowe</span>
+        ${milestoneItems}
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #cdc3b2;">Nowe rekordy życiowe</span>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6;">${joinNames(d.newPBs)}</p>
+      </div>
+    </section>
+
+    <section style="margin-top: 18px; border-top: 2px dashed #cdc3b2; padding-top: 20px; display: flex; flex-direction: column; gap: 12px;">
+      <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700;">Wolontariusze · ${d.volunteers}</span>
+      <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #3b352d;">${(d.volunteerList || []).map(esc).join(' · ') || '—'}</p>
+    </section>
+  </div>`;
+}
+
+// ---------- Style 4: Data ----------
+function renderData(d) {
+  const men = pct(d.men, d.finishers), women = pct(d.women, d.finishers), unk = pct(d.unknown, d.finishers);
+  const f0 = fastestRow(d.fastest[0]), f1 = fastestRow(d.fastest[1]);
+  const a0 = fastestRow(d.bestAgeGrade[0]), a1 = fastestRow(d.bestAgeGrade[1]);
+  const mp = (d.mostParkruns || []).slice(0, 2);
+  const mv = (d.mostVolunteerCredits || []).slice(0, 3);
+  const milestoneItems = (d.milestones || []).map(m => `
+    <div style="display: flex; align-items: baseline; gap: 12px;"><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 36px; line-height: 1; color: #7c9bff;">${m.count}</span><span style="font-size: 16px;">${esc(m.name)}</span></div>`).join('') || `<span style="color:#8a8c98;">Brak w tym tygodniu</span>`;
+
+  return `
+  <div style="width: 1240px; margin: 0 auto; background: #ffffff; color: #101014; font-family: 'Manrope', system-ui, sans-serif; padding: 0; box-sizing: border-box; display: grid; grid-template-columns: 1fr 330px;">
+    <div style="padding: 52px 44px 52px 56px; display: flex; flex-direction: column; gap: 40px;">
+      <header style="display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: #6b6d78;">parkrun Wzniesienie Osowy</span>
+          <span style="font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: #6b6d78;">#${d.edition} · ${fmtDate(d.date)}</span>
+        </div>
+        <h1 style="margin: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 46px; line-height: 1.05; letter-spacing: -0.03em;">Podsumowanie<br>edycji ${d.edition}</h1>
+        <div style="height: 1px; background: #dcdde2;"></div>
+      </header>
+
+      <section style="display: grid; grid-template-columns: 250px 1fr; gap: 40px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 116px; line-height: 0.82; letter-spacing: -0.05em;">${d.finishers}</span>
+          <span style="font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #6b6d78;">uczestników</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: 14px;"><span>Mężczyźni</span><span style="color: #6b6d78;">${d.men}</span></div>
+            <div style="height: 10px; background: #f0f1f4;"><div style="width: ${men}%; height: 10px; background: #101014;"></div></div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px;"><span>Kobiety</span><span style="color: #6b6d78;">${d.women}</span></div>
+            <div style="height: 10px; background: #f0f1f4;"><div style="width: ${women}%; height: 10px; background: #2f5bff;"></div></div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px;"><span>Niezeskanowani</span><span style="color: #6b6d78;">${d.unknown}</span></div>
+            <div style="height: 10px; background: #f0f1f4;"><div style="width: ${unk}%; height: 10px; background: #b6b8c2;"></div></div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 1px solid #dcdde2; padding-top: 18px;">
+            <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 32px; line-height: 1;">${d.volunteers}</span><span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6b6d78;">wolontariuszy</span></div>
+            <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 32px; line-height: 1; color: #2f5bff;">${d.personalBests}</span><span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6b6d78;">rekordy życiowe</span></div>
+            <div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 32px; line-height: 1; color: #2f5bff;">${d.firstTimers}</span><span style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6b6d78;">debiutanci</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 26px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #2f5bff; font-weight: 700;">Najszybsi uczestnicy</span>
+          <div style="display: grid; grid-template-columns: 1fr auto 92px 78px; gap: 10px 16px; align-items: baseline; font-size: 17px; border-top: 1px solid #dcdde2; padding-top: 12px;">
+            <span style="font-weight: 700;">${f0.name}</span><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 20px;">${f0.time}</span><span style="font-size: 14px; color: #6b6d78;">${f0.ageGroup}</span><span style="text-align: right;">${f0.grade}</span>
+            <span style="font-weight: 700;">${f1.name}</span><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 20px;">${f1.time}</span><span style="font-size: 14px; color: #6b6d78;">${f1.ageGroup}</span><span style="text-align: right;">${f1.grade}</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #2f5bff; font-weight: 700;">Najwyższy współczynnik wieku</span>
+          <div style="display: grid; grid-template-columns: 1fr auto 92px 78px; gap: 10px 16px; align-items: baseline; font-size: 17px; border-top: 1px solid #dcdde2; padding-top: 12px;">
+            <span style="font-weight: 700;">${a0.name}</span><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 20px;">${a0.time}</span><span style="font-size: 14px; color: #6b6d78;">${a0.ageGroup}</span><span style="text-align: right; color: #2f5bff; font-weight: 700;">${a0.grade}</span>
+            <span style="font-weight: 700;">${a1.name}</span><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 20px;">${a1.time}</span><span style="font-size: 14px; color: #6b6d78;">${a1.ageGroup}</span><span style="text-align: right;">${a1.grade}</span>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 34px;">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #2f5bff; font-weight: 700;">Najwięcej parkrunów</span>
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px 16px; align-items: baseline; font-size: 17px; border-top: 1px solid #dcdde2; padding-top: 12px;">
+              ${mp.map(r => `<span style="font-weight: 700;">${nameOrDash(r.name)}</span><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 20px;">${r.runs}</span>`).join('') || '—'}
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #2f5bff; font-weight: 700;">Punkty wolontariatu</span>
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px 16px; align-items: baseline; font-size: 17px; border-top: 1px solid #dcdde2; padding-top: 12px;">
+              ${mv.map(r => `<span style="font-weight: 700;">${nameOrDash(r.name)}</span><span style="font-family: 'Sora', sans-serif; font-weight: 700; font-size: 20px;">${r.credits}</span>`).join('') || '—'}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #dcdde2; padding-top: 20px;">
+        <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #6b6d78;">Nowe rekordy życiowe</span>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6;">${joinNames(d.newPBs)}</p>
+      </section>
+    </div>
+
+    <aside style="background: #101014; color: #ffffff; padding: 52px 34px; display: flex; flex-direction: column; gap: 30px;">
+      <div style="position: relative; height: 460px;">
+        ${photoDiv('position:absolute; inset:0; border-radius:999px; background:#23242c; color:#8a8c98;', 'Zdjęcie')}
+        <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 999px; background: linear-gradient(to bottom, rgba(16,16,20,0.6) 0%, rgba(16,16,20,0) 30%, rgba(16,16,20,0) 60%, rgba(16,16,20,0.85) 100%);"></div>
+        <span style="position: absolute; top: 40px; left: 0; right: 0; text-align: center; pointer-events: none; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.8);">${esc(d.courseNote)}</span>
+        <span style="position: absolute; bottom: 44px; left: 0; right: 0; text-align: center; pointer-events: none; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 22px;">Wzniesienie Osowy</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: #8a8c98;">Kamienie milowe</span>
+        ${milestoneItems}
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; border-top: 1px solid rgba(255,255,255,0.16); padding-top: 20px;">
+        <span style="font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: #8a8c98;">Wolontariusze · ${d.volunteers}</span>
+        <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #d6d7dd;">${(d.volunteerList || []).map(esc).join(', ') || '—'}</p>
+      </div>
+    </aside>
+  </div>`;
+}
+
+// ---------- Style 5: Trail ----------
+function renderTrail(d) {
+  const f0 = fastestRow(d.fastest[0]), f1 = fastestRow(d.fastest[1]);
+  const a0 = fastestRow(d.bestAgeGrade[0]), a1 = fastestRow(d.bestAgeGrade[1]);
+  const mp = (d.mostParkruns || []).slice(0, 2);
+  const mv = (d.mostVolunteerCredits || []).slice(0, 3);
+  const milestoneBlocks = (d.milestones || []).map((m, i) => `
+    ${i > 0 ? '<div style="height: 1px; background: rgba(239,232,216,0.25);"></div>' : ''}
+    <div style="display: flex; align-items: baseline; gap: 16px;"><span style="font-family: 'Instrument Serif', serif; font-size: 52px; line-height: 0.9; color: #e9c98a;">${m.count}</span><div style="display: flex; flex-direction: column;"><span style="font-size: 18px; font-weight: 500;">${esc(m.name)}</span><span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.65;">${m.kind === 'parkrun' ? 'parkrun' : 'inne kamienie milowe'}</span></div></div>`).join('') || `<span style="opacity:0.7;">Brak w tym tygodniu</span>`;
+
+  return `
+  <div style="width: 1240px; margin: 0 auto; background: #efe8d8; color: #1e2a22; font-family: 'Karla', system-ui, sans-serif; padding: 50px 56px 56px; box-sizing: border-box;">
+    <header style="display: flex; justify-content: space-between; align-items: flex-end; gap: 30px;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: #7c8877;">parkrun · edycja ${d.edition} · ${fmtDate(d.date)}</span>
+        <h1 style="margin: 0; font-family: 'Instrument Serif', serif; font-size: 76px; line-height: 0.98; letter-spacing: -0.01em;">Wzniesienie Osowy</h1>
+      </div>
+      <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 26px; color: #b0552a; white-space: nowrap; padding-bottom: 10px;">pięć kilometrów, każda sobota</span>
+    </header>
+
+    <div style="height: 1px; background: #c9c0a8; margin: 30px 0 34px;"></div>
+
+    <section style="display: grid; grid-template-columns: 1fr 520px; gap: 48px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 30px;">
+        <div style="display: flex; align-items: flex-start; gap: 24px;">
+          <span style="font-family: 'Instrument Serif', serif; font-size: 172px; line-height: 0.74; color: #2f5d43;">${d.finishers}</span>
+          <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 14px;">
+            <span style="font-family: 'Instrument Serif', serif; font-size: 30px; line-height: 1.1;">uczestników<br>na mecie</span>
+            <span style="font-size: 15px; color: #6a7566;">${d.men} mężczyzn · ${d.women} kobiet · ${d.unknown} niezeskanowanych</span>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;">
+          <div style="background: #e3dcc7; border-radius: 999px 999px 24px 24px; padding: 26px 24px 22px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+            <span style="font-family: 'Instrument Serif', serif; font-size: 50px; line-height: 1; color: #2f5d43;">${d.volunteers}</span>
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #6a7566;">wolontariuszy</span>
+          </div>
+          <div style="background: #e3dcc7; border-radius: 999px 999px 24px 24px; padding: 26px 24px 22px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+            <span style="font-family: 'Instrument Serif', serif; font-size: 50px; line-height: 1; color: #b0552a;">${d.personalBests}</span>
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #6a7566;">rekordy życiowe</span>
+          </div>
+          <div style="background: #e3dcc7; border-radius: 999px 999px 24px 24px; padding: 26px 24px 22px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+            <span style="font-family: 'Instrument Serif', serif; font-size: 50px; line-height: 1; color: #b0552a;">${d.firstTimers}</span>
+            <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #6a7566;">debiutanci</span>
+          </div>
+        </div>
+        <div style="background: #2f5d43; color: #efe8d8; border-radius: 28px; padding: 26px 30px; display: flex; flex-direction: column; gap: 18px;">
+          <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: #e9c98a;">Kamienie milowe</span>
+          ${milestoneBlocks}
+        </div>
+      </div>
+
+      <div style="position: relative; height: 560px;">
+        ${photoDiv('position:absolute; inset:0; border-radius:260px 40px 260px 40px; background:#d8d0ba;', 'Przeciągnij zdjęcie z trasy')}
+        <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 260px 40px 260px 40px; background: linear-gradient(200deg, rgba(47,93,67,0.45) 0%, rgba(47,93,67,0) 40%, rgba(30,42,34,0) 55%, rgba(30,42,34,0.88) 100%);"></div>
+        <div style="position: absolute; left: 40px; right: 40px; bottom: 38px; pointer-events: none; display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #efe8d8;">${esc(d.courseNote)}</span>
+          <p style="margin: 0; font-size: 15px; line-height: 1.5; color: rgba(239,232,216,0.8);">${esc(d.caption)}</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 34px 48px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: #b0552a;">Najszybsi uczestnicy</span>
+        <div style="display: grid; grid-template-columns: 1fr auto 92px 76px; gap: 10px 14px; align-items: baseline; font-size: 17px; border-top: 1px solid #c9c0a8; padding-top: 12px;">
+          <span style="font-weight: 700;">${f0.name}</span><span style="font-family: 'Instrument Serif', serif; font-size: 24px;">${f0.time}</span><span style="font-size: 14px; color: #7c8877;">${f0.ageGroup}</span><span style="text-align: right;">${f0.grade}</span>
+          <span style="font-weight: 700;">${f1.name}</span><span style="font-family: 'Instrument Serif', serif; font-size: 24px;">${f1.time}</span><span style="font-size: 14px; color: #7c8877;">${f1.ageGroup}</span><span style="text-align: right;">${f1.grade}</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: #b0552a;">Najwyższy współczynnik wieku</span>
+        <div style="display: grid; grid-template-columns: 1fr auto 92px 76px; gap: 10px 14px; align-items: baseline; font-size: 17px; border-top: 1px solid #c9c0a8; padding-top: 12px;">
+          <span style="font-weight: 700;">${a0.name}</span><span style="font-family: 'Instrument Serif', serif; font-size: 24px;">${a0.time}</span><span style="font-size: 14px; color: #7c8877;">${a0.ageGroup}</span><span style="text-align: right; color: #2f5d43; font-weight: 700;">${a0.grade}</span>
+          <span style="font-weight: 700;">${a1.name}</span><span style="font-family: 'Instrument Serif', serif; font-size: 24px;">${a1.time}</span><span style="font-size: 14px; color: #7c8877;">${a1.ageGroup}</span><span style="text-align: right;">${a1.grade}</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: #b0552a;">Najwięcej parkrunów</span>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px 14px; align-items: baseline; font-size: 17px; border-top: 1px solid #c9c0a8; padding-top: 12px;">
+          ${mp.map(r => `<span style="font-weight: 700;">${nameOrDash(r.name)}</span><span style="font-family: 'Instrument Serif', serif; font-size: 26px;">${r.runs}</span>`).join('') || '—'}
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: #b0552a;">Punkty wolontariatu</span>
+        <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px 14px; align-items: baseline; font-size: 17px; border-top: 1px solid #c9c0a8; padding-top: 12px;">
+          ${mv.map(r => `<span style="font-weight: 700;">${nameOrDash(r.name)}</span><span style="font-family: 'Instrument Serif', serif; font-size: 26px;">${r.credits}</span>`).join('') || '—'}
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top: 38px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; border-top: 1px solid #c9c0a8; padding-top: 24px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #7c8877;">Nowe rekordy życiowe</span>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6;">${joinNames(d.newPBs)}</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #7c8877;">Wolontariusze · ${d.volunteers}</span>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6;">${(d.volunteerList || []).map(esc).join(', ') || '—'}</p>
+      </div>
+    </section>
+  </div>`;
+}
+
+const RENDERERS = { modernist: renderModernist, night: renderNight, bib: renderBib, data: renderData, trail: renderTrail };
+
+// ---------- App wiring ----------
+function currentData() {
+  const d = Object.assign({}, state.data);
+  d.caption = document.getElementById('input-caption').value;
+  d.courseNote = document.getElementById('input-course').value;
+  d.personalBests = d.personalBests || 0;
+  d.newPBs = d.newPBs || [];
+  d.fastest = d.fastest || [];
+  d.bestAgeGrade = d.bestAgeGrade || [];
+  d.mostParkruns = d.mostParkruns || [];
+  d.mostVolunteerCredits = d.mostVolunteerCredits || [];
+  d.milestones = d.milestones || [];
+  d.volunteerList = d.volunteerList || [];
+  return d;
+}
+
+function render() {
+  if (!state.data) return;
+  const fn = RENDERERS[state.style] || renderModernist;
+  document.getElementById('poster-root').innerHTML = fn(currentData());
+  attachPhotoDrag();
+}
+
+function renderStyleButtons() {
+  const wrap = document.getElementById('style-buttons');
+  wrap.innerHTML = STYLES.map(s => `<button class="style-btn px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium ${s.key === state.style ? 'active bg-gray-900 text-white' : 'bg-white text-gray-700'}" data-style="${s.key}">${s.label}</button>`).join('');
+  wrap.querySelectorAll('.style-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.style = btn.dataset.style;
+      localStorage.setItem('posterStyle', state.style);
+      renderStyleButtons();
+      render();
+    });
+  });
+}
+
+function setStatus(msg) {
+  document.getElementById('status-text').textContent = msg;
+  if (msg) setTimeout(() => { document.getElementById('status-text').textContent = ''; }, 3000);
+}
+
+async function loadData() {
+  try {
+    const res = await fetch('poster-data.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('not found');
+    state.data = await res.json();
+  } catch (e) {
+    state.data = {
+      event: 'parkrun Wzniesienie Osowy', edition: 0, date: new Date().toISOString().slice(0, 10),
+      distanceKm: 5, finishers: 0, men: 0, women: 0, unknown: 0, volunteers: 0,
+      personalBests: 0, firstTimers: 0, caption: '', milestones: [], fastest: [],
+      bestAgeGrade: [], mostParkruns: [], mostVolunteerCredits: [], newPBs: [], volunteerList: [],
+    };
+    setStatus('Brak poster-data.json — uzupełnij dane ręcznie');
+  }
+  document.getElementById('input-caption').value = state.data.caption || '';
+  document.getElementById('input-course').value = `${state.data.distanceKm || 5} km`;
+}
+
+function handleFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  if (state.photoUrl) URL.revokeObjectURL(state.photoUrl);
+  state.photoUrl = URL.createObjectURL(file);
+  state.photoNat = null;
+  state.photoPan = { x: 0.5, y: 0.5 };
+  setZoom(1);
+  document.getElementById('drop-zone-text').textContent =
+    `Wybrano: ${file.name} — przeciągnij zdjęcie na plakacie, przybliż suwakiem lub kółkiem myszy (kliknij tutaj, aby zmienić)`;
+
+  // The natural size is needed to compute the cover fit that pan/zoom work from.
+  const probe = new Image();
+  probe.onload = () => {
+    state.photoNat = { w: probe.naturalWidth, h: probe.naturalHeight };
+    render();
+  };
+  probe.src = state.photoUrl;
+
+  render();
+}
+
+function initApp() {
+  renderStyleButtons();
+  ['input-caption', 'input-course'].forEach(id => {
+    document.getElementById(id).addEventListener('input', render);
+  });
+
+  const dropZone = document.getElementById('drop-zone');
+  const photoInput = document.getElementById('photo-input');
+  dropZone.addEventListener('click', () => photoInput.click());
+  photoInput.addEventListener('change', e => handleFile(e.target.files[0]));
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    handleFile(e.dataTransfer.files[0]);
+  });
+
+  document.getElementById('input-zoom').addEventListener('input', e => {
+    setZoom(parseInt(e.target.value, 10) / 100);
+  });
+  document.getElementById('btn-zoom-reset').addEventListener('click', () => {
+    state.photoPan = { x: 0.5, y: 0.5 };
+    setZoom(1);
+  });
+
+  const presetWrap = document.getElementById('filter-presets');
+  presetWrap.innerHTML = Object.keys(FILTER_PRESETS).map(name =>
+    `<button class="filter-btn px-3 py-1 rounded-lg border border-gray-300 bg-white text-gray-700 text-sm hover:bg-gray-50" data-preset="${name}">${name}</button>`
+  ).join('');
+  presetWrap.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      presetWrap.querySelectorAll('.filter-btn').forEach(b =>
+        b.classList.remove('active', 'bg-gray-900', 'text-white'));
+      btn.classList.add('active', 'bg-gray-900', 'text-white');
+      setFilter({ ...FILTER_PRESETS[btn.dataset.preset] });
+    });
+  });
+
+  ['brightness', 'contrast', 'saturate'].forEach(key => {
+    document.getElementById(`input-${key}`).addEventListener('input', e => {
+      setFilter({ [key]: parseInt(e.target.value, 10) }, { fromSlider: true });
+    });
+  });
+
+  document.getElementById('btn-png').addEventListener('click', async () => {
+    setStatus('Generowanie PNG...');
+    const target = document.getElementById('poster-root').firstElementChild;
+
+    try {
+      // Rasterised through SVG foreignObject, so the browser lays the text out
+      // itself — the export is pixel-identical to the preview, with no
+      // scroll-position or line-height workarounds needed.
+      // NB: no cacheBust — it appends a query string to image URLs, which makes the
+      // photo's blob: URL invalid and silently drops it from the export.
+      const dataUrl = await htmlToImage.toPng(target, {
+        pixelRatio: 2,
+        width: target.offsetWidth,
+        height: target.offsetHeight,
+      });
+      const link = document.createElement('a');
+      link.download = `parkrun_${state.data.edition || 'plakat'}_${state.style}.png`;
+      link.href = dataUrl;
+      link.click();
+      setStatus('Pobrano PNG');
+    } catch (err) {
+      console.error(err);
+      setStatus('Błąd generowania PNG');
+    }
+  });
+
+  document.getElementById('btn-pdf').addEventListener('click', () => {
+    window.print();
+  });
+
+  loadData().then(render);
+}
+
+window.onload = initApp;
+</script>
+</body>
+</html>
