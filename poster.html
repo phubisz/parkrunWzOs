@@ -17,6 +17,7 @@
   * { font-variant-numeric: tabular-nums; }
   .drop-zone.dragover { outline: 3px dashed #4b5563; outline-offset: -3px; }
   .style-btn.active { outline: 3px solid #111827; outline-offset: 2px; }
+  [data-photo-frame]:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }
   #poster-root > div { font-variant-numeric: tabular-nums; }
   @media print {
     body * { visibility: hidden; }
@@ -46,9 +47,9 @@
 
       <div class="flex items-center gap-3">
         <label for="input-zoom" class="text-sm font-semibold text-gray-700 whitespace-nowrap">Powiększenie</label>
-        <input type="range" id="input-zoom" min="100" max="400" step="1" value="100" class="flex-1 accent-gray-900">
+        <input type="range" id="input-zoom" min="100" max="600" step="1" value="100" class="flex-1 accent-gray-900">
         <span id="zoom-value" class="text-sm text-gray-500 w-12 text-right">100%</span>
-        <button id="btn-zoom-reset" class="text-sm text-blue-600 hover:underline whitespace-nowrap">Resetuj</button>
+        <button id="btn-zoom-reset" class="text-sm text-blue-600 hover:underline whitespace-nowrap">Wyśrodkuj</button>
       </div>
 
       <div class="flex items-center gap-3">
@@ -58,6 +59,13 @@
         <button id="btn-rot-left" class="text-sm text-blue-600 hover:underline whitespace-nowrap">-90°</button>
         <button id="btn-rot-right" class="text-sm text-blue-600 hover:underline whitespace-nowrap">+90°</button>
       </div>
+
+      <div id="coverage-warning" class="hidden flex items-center gap-3 text-sm bg-amber-50 border border-amber-300 text-amber-800 rounded-lg px-3 py-2">
+        <span>Zdjęcie nie wypełnia całego kadru.</span>
+        <button id="btn-fill" class="font-semibold underline whitespace-nowrap">Wypełnij kadr</button>
+      </div>
+
+      <p class="-mt-2 text-xs text-gray-500">Przeciągaj zdjęcie bezpośrednio w plakacie. Kółko myszy przybliża pod kursorem, strzałki przesuwają precyzyjnie, a Shift + strzałka przesuwa o 10 px.</p>
 
       <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
         <div class="flex items-center gap-2 flex-wrap">
@@ -93,6 +101,14 @@
 
       <div class="flex flex-wrap gap-3 items-center">
         <button id="btn-png" class="bg-gray-900 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-black transition">Pobierz PNG</button>
+        <label class="flex items-center gap-2 text-sm text-gray-600">
+          <span class="font-semibold text-gray-700">Jakość PNG</span>
+          <select id="input-export-scale" class="border border-gray-300 rounded-lg px-2 py-2 bg-white">
+            <option value="2">2× · 2480 px</option>
+            <option value="3" selected>3× · 3720 px</option>
+            <option value="4">4× · 4960 px</option>
+          </select>
+        </label>
         <button id="btn-pdf" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-300 transition">Pobierz PDF (drukuj)</button>
         <span id="status-text" class="text-sm text-gray-500"></span>
       </div>
@@ -170,8 +186,8 @@ function photoDiv(shapeStyle, placeholderText) {
   if (state.photoUrl) {
     // A real <img> rather than a background, because backgrounds can't be rotated.
     // Sizing/placement is done entirely in applyPhotoTransform().
-    return `<div data-photo-frame style="${shapeStyle} overflow:hidden; filter:${filterCss(state.photoFilter)}; cursor:grab; touch-action:none;">`
-      + `<img data-photo-img src="${state.photoUrl}" alt="" style="position:absolute; left:50%; top:50%; max-width:none;">`
+    return `<div data-photo-frame tabindex="0" role="img" aria-label="Zdjęcie. Przeciągnij, aby zmienić kadr." style="${shapeStyle} overflow:hidden; filter:${filterCss(state.photoFilter)}; cursor:grab; touch-action:none; user-select:none;">`
+      + `<img data-photo-img src="${state.photoUrl}" alt="" draggable="false" style="position:absolute; left:50%; top:50%; max-width:none; pointer-events:none;">`
       + `</div>`;
   }
   return `<div style="${shapeStyle} display:flex; align-items:center; justify-content:center; font-size:13px; text-align:center; padding:20px; box-sizing:border-box;">${esc(placeholderText)}</div>`;
@@ -186,36 +202,44 @@ function photoLayout(el) {
   return { fw, fh, baseW: nat.w * cover, baseH: nat.h * cover };
 }
 
-// Rotating a photo inside a rectangular frame exposes the corners unless the photo
-// is scaled up to compensate. For a frame fw x fh turned by t, the photo must be at
-// least (fw|cos| + fh|sin|) wide and (fw|sin| + fh|cos|) tall to still cover it.
-function minZoomFor(L, deg) {
-  const r = deg * Math.PI / 180;
-  const c = Math.abs(Math.cos(r)), s = Math.abs(Math.sin(r));
-  return Math.max((L.fw * c + L.fh * s) / L.baseW, (L.fw * s + L.fh * c) / L.baseH);
+// How much zoom would be needed for the photo to still cover the frame, given a
+// rotation and an offset. Checks the worst-case frame corner in the photo's own
+// rotated space, so it is exact rather than a conservative bound.
+function zoomNeeded(L, tx, ty) {
+  const r = state.photoRot * Math.PI / 180;
+  const c = Math.cos(r), s = Math.sin(r);
+  const ac = Math.abs(c), as = Math.abs(s);
+  // Project both the frame and its offset into the photo's rotated axes.
+  const offsetU = Math.abs(c * tx + s * ty);
+  const offsetV = Math.abs(s * tx - c * ty);
+  return Math.max(
+    (ac * L.fw + as * L.fh + 2 * offsetU) / L.baseW,
+    (as * L.fw + ac * L.fh + 2 * offsetV) / L.baseH
+  );
 }
 
-// Keep the pan within the range where the frame is still fully covered. Checking the
-// worst-case frame corner in the photo's own rotated space gives the exact bound.
-function clampPan(L, zoom) {
-  const r = state.photoRot * Math.PI / 180;
-  const c = Math.abs(Math.cos(r)), s = Math.abs(Math.sin(r));
-  const W = L.baseW * zoom, H = L.baseH * zoom;
-  const EPS = 1e-6;
+// Rotating in a rectangular frame always exposes the corners, so that much is
+// corrected automatically. Panning is deliberately NOT clamped — clamping to full
+// coverage left a photo that exactly fits the frame width with zero room to move
+// sideways, which is the opposite of "position it freely". Gaps are surfaced as a
+// warning with a one-click fix instead.
+function minZoomFor(L) {
+  return zoomNeeded(L, 0, 0);
+}
 
-  const ay = Math.abs(state.photoPan.y);
-  const maxX = Math.max(0, Math.min(
-    c > EPS ? (W / 2 - (L.fh / 2 + ay) * s) / c - L.fw / 2 : Infinity,
-    s > EPS ? (H / 2 - (L.fh / 2 + ay) * c) / s - L.fw / 2 : Infinity
-  ));
-  state.photoPan.x = Math.max(-maxX, Math.min(maxX, state.photoPan.x));
+function updateCoverageWarning(L, zoom) {
+  const warn = document.getElementById('coverage-warning');
+  if (!warn) return;
+  const covered = !L || zoom >= zoomNeeded(L, state.photoPan.x, state.photoPan.y) - 1e-3;
+  warn.classList.toggle('hidden', covered);
+}
 
-  const ax = Math.abs(state.photoPan.x);
-  const maxY = Math.max(0, Math.min(
-    s > EPS ? (W / 2 - (L.fw / 2 + ax) * c) / s - L.fh / 2 : Infinity,
-    c > EPS ? (H / 2 - (L.fw / 2 + ax) * s) / c - L.fh / 2 : Infinity
-  ));
-  state.photoPan.y = Math.max(-maxY, Math.min(maxY, state.photoPan.y));
+// Zoom just enough to fill the frame at the current position and rotation.
+function fillFrame() {
+  const el = document.querySelector('#poster-root [data-photo-frame]');
+  const L = el ? photoLayout(el) : null;
+  if (!L) return;
+  setZoom(zoomNeeded(L, state.photoPan.x, state.photoPan.y));
 }
 
 function applyPhotoTransform(el) {
@@ -230,9 +254,9 @@ function applyPhotoTransform(el) {
   // photoZoom is what the user asked for; rotation may require more than that.
   // Keeping them separate means straightening back up restores their own zoom
   // instead of leaving it ratcheted up at whatever 45 degrees needed.
-  const eff = Math.max(state.photoZoom, minZoomFor(L, state.photoRot));
+  const eff = Math.max(state.photoZoom, minZoomFor(L));
   syncZoomUi(eff);
-  clampPan(L, eff);
+  updateCoverageWarning(L, eff);
 
   img.style.width = `${L.baseW}px`;
   img.style.height = `${L.baseH}px`;
@@ -264,9 +288,18 @@ function syncZoomUi(z) {
   if (label) label.textContent = `${Math.round(z * 100)}%`;
 }
 
-function setZoom(z) {
+function setZoom(z, anchor, oldVisualZoom) {
+  const el = document.querySelector('#poster-root [data-photo-frame]');
+  const L = el ? photoLayout(el) : null;
+  const floor = L ? minZoomFor(L) : 1;
+  const oldZoom = oldVisualZoom || Math.max(state.photoZoom, floor);
   state.photoZoom = Math.min(6, Math.max(1, z));
-  applyPhotoTransform();
+  if (anchor && oldZoom > 0) {
+    const ratio = Math.max(state.photoZoom, floor) / oldZoom;
+    state.photoPan.x = anchor.x + (state.photoPan.x - anchor.x) * ratio;
+    state.photoPan.y = anchor.y + (state.photoPan.y - anchor.y) * ratio;
+  }
+  applyPhotoTransform(el);
 }
 
 function setRotation(deg) {
@@ -317,9 +350,26 @@ function attachPhotoDrag() {
   el.addEventListener('pointerup', stop);
   el.addEventListener('pointercancel', stop);
 
+  el.addEventListener('keydown', e => {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+    const step = e.shiftKey ? 10 : 1;
+    if (e.key === 'ArrowLeft') state.photoPan.x -= step;
+    if (e.key === 'ArrowRight') state.photoPan.x += step;
+    if (e.key === 'ArrowUp') state.photoPan.y -= step;
+    if (e.key === 'ArrowDown') state.photoPan.y += step;
+    applyPhotoTransform(el);
+    e.preventDefault();
+  });
+
   el.addEventListener('wheel', e => {
     e.preventDefault();
-    setZoom(state.photoZoom * (e.deltaY < 0 ? 1.08 : 1 / 1.08));
+    const rect = el.getBoundingClientRect();
+    const L = photoLayout(el);
+    const visualZoom = L ? Math.max(state.photoZoom, minZoomFor(L)) : state.photoZoom;
+    setZoom(visualZoom * (e.deltaY < 0 ? 1.08 : 1 / 1.08), {
+      x: e.clientX - rect.left - rect.width / 2,
+      y: e.clientY - rect.top - rect.height / 2,
+    }, visualZoom);
   }, { passive: false });
 }
 
@@ -1012,6 +1062,8 @@ function handleFile(file) {
   const probe = new Image();
   probe.onload = () => {
     state.photoNat = { w: probe.naturalWidth, h: probe.naturalHeight };
+    document.getElementById('drop-zone-text').textContent =
+      `${file.name} · ${probe.naturalWidth} × ${probe.naturalHeight} px — przeciągnij zdjęcie bezpośrednio na plakacie`;
     render();
   };
   probe.src = state.photoUrl;
@@ -1046,6 +1098,7 @@ function initApp() {
   });
   document.getElementById('btn-rot-left').addEventListener('click', () => setRotation(state.photoRot - 90));
   document.getElementById('btn-rot-right').addEventListener('click', () => setRotation(state.photoRot + 90));
+  document.getElementById('btn-fill').addEventListener('click', fillFrame);
 
   renderFilterPresets();
 
@@ -1066,7 +1119,7 @@ function initApp() {
       // NB: no cacheBust — it appends a query string to image URLs, which makes the
       // photo's blob: URL invalid and silently drops it from the export.
       const dataUrl = await htmlToImage.toPng(target, {
-        pixelRatio: 2,
+        pixelRatio: parseInt(document.getElementById('input-export-scale').value, 10),
         width: target.offsetWidth,
         height: target.offsetHeight,
       });
