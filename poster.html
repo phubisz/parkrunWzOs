@@ -130,11 +130,12 @@
 
 <script>
 // ---------- Refresh (n8n) ----------
-// n8n webhook that re-fetches the latest results from parkrun.pl and republishes
-// poster-data.json. The token only keeps casual bots out — anyone can read it in
-// this page's source — so the server also throttles refreshes on its own.
-const REFRESH_WEBHOOK_URL = 'https://YOUR-N8N-DOMAIN/webhook/parkrun-refresh';
-const REFRESH_TOKEN = 'dn7AlddxDyGs7ohHeAPB7kmW';
+// n8n webhook that re-fetches the latest results from parkrun.pl, commits
+// poster-data.json and replies with the new data. The token only keeps casual bots
+// out — anyone can read it in this page's source — so n8n also hands back its last
+// build for 10 minutes instead of hitting parkrun.pl on every press.
+const REFRESH_WEBHOOK_URL = 'https://YOUR-N8N-DOMAIN/webhook/parkrun-poster-refresh';
+const REFRESH_TOKEN = 'yyXmmEvkFT4F53ipxkXkyg6U';
 
 // ---------- State ----------
 const state = {
@@ -1050,7 +1051,7 @@ function setRefreshStatus(msg) {
 async function requestRefresh() {
   const btn = document.getElementById('btn-refresh');
   btn.disabled = true;
-  setRefreshStatus('Zlecanie aktualizacji…');
+  setRefreshStatus('Pobieranie wyników z parkrun.pl…');
   try {
     // Deliberately a CORS "simple request" (text/plain, no custom headers): n8n's
     // webhook CORS support doesn't answer preflight OPTIONS requests, and a JSON
@@ -1058,48 +1059,22 @@ async function requestRefresh() {
     const url = `${REFRESH_WEBHOOK_URL}?token=${encodeURIComponent(REFRESH_TOKEN)}`;
     const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: 'refresh' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const reply = await res.json();
-    if (reply.status === 'throttled') {
-      setRefreshStatus(`Dane były niedawno odświeżane — spróbuj za ${Math.ceil(reply.retryAfter / 60)} min.`);
-    } else if (reply.status === 'busy') {
-      setRefreshStatus('Aktualizacja już trwa — nowe dane pojawią się za kilka minut.');
-      await waitForNewData();
-    } else if (reply.status === 'started') {
-      setRefreshStatus('Pobieranie wyników z parkrun.pl… (zwykle 2–3 min)');
-      await waitForNewData();
-    } else {
-      throw new Error(`unexpected reply: ${JSON.stringify(reply)}`);
-    }
+
+    // n8n replies with the freshly built data itself, so there's no waiting for the
+    // commit to deploy through GitHub Pages. Only the data is swapped: caption,
+    // photo, framing and style stay exactly as the user left them.
+    const fresh = await res.json();
+    if (!fresh || !fresh.edition) throw new Error(`unexpected reply: ${JSON.stringify(fresh)}`);
+    state.data = fresh;
+    renderDataInfo();
+    render();
+    setRefreshStatus('Dane zaktualizowane.');
   } catch (err) {
     console.error(err);
-    setRefreshStatus('Nie udało się zlecić aktualizacji.');
+    setRefreshStatus('Nie udało się pobrać danych — spróbuj ponownie za kilka minut.');
   } finally {
     btn.disabled = false;
   }
-}
-
-// The refresh runs on the server and then deploys through GitHub Pages, so poll
-// until generatedAt moves on. Only the data is swapped: caption, photo, framing
-// and style stay exactly as the user left them.
-async function waitForNewData() {
-  const before = state.data && state.data.generatedAt;
-  const deadline = Date.now() + 8 * 60 * 1000;
-  while (Date.now() < deadline) {
-    await new Promise(r => setTimeout(r, 15000));
-    try {
-      const fresh = await fetchPosterData();
-      if (fresh.generatedAt && fresh.generatedAt !== before) {
-        state.data = fresh;
-        renderDataInfo();
-        render();
-        setRefreshStatus('Dane zaktualizowane.');
-        return;
-      }
-    } catch (e) {
-      // The file can briefly 404 while Pages deploys; keep waiting.
-    }
-  }
-  setRefreshStatus('Aktualizacja trwa dłużej niż zwykle — odśwież stronę za kilka minut.');
 }
 
 async function loadData() {
