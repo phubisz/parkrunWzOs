@@ -35,6 +35,12 @@
     </div>
 
     <div id="app-chrome" class="bg-white rounded-xl shadow p-6 mb-6 flex flex-col gap-5 print:hidden">
+      <div class="flex flex-wrap items-center gap-3 text-sm">
+        <span id="data-info" class="text-gray-600"></span>
+        <button id="btn-refresh" class="hidden px-3 py-1 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">Odśwież dane z parkrun.pl</button>
+        <span id="refresh-status" class="text-gray-500"></span>
+      </div>
+
       <div>
         <label class="block text-sm font-semibold mb-2 text-gray-700">Styl</label>
         <div id="style-buttons" class="flex flex-wrap gap-2"></div>
@@ -46,8 +52,8 @@
       </div>
 
       <div class="flex items-center gap-3">
-        <label for="input-zoom" class="text-sm font-semibold text-gray-700 whitespace-nowrap">Powiększenie</label>
-        <input type="range" id="input-zoom" min="100" max="600" step="1" value="100" class="flex-1 accent-gray-900">
+        <label for="input-zoom" class="text-sm font-semibold text-gray-700 whitespace-nowrap">Skala zdjęcia</label>
+        <input type="range" id="input-zoom" min="10" max="600" step="1" value="100" class="flex-1 accent-gray-900">
         <span id="zoom-value" class="text-sm text-gray-500 w-12 text-right">100%</span>
         <button id="btn-zoom-reset" class="text-sm text-blue-600 hover:underline whitespace-nowrap">Wyśrodkuj</button>
       </div>
@@ -65,7 +71,7 @@
         <button id="btn-fill" class="font-semibold underline whitespace-nowrap">Wypełnij kadr</button>
       </div>
 
-      <p class="-mt-2 text-xs text-gray-500">Przeciągaj zdjęcie bezpośrednio w plakacie. Kółko myszy przybliża pod kursorem, strzałki przesuwają precyzyjnie, a Shift + strzałka przesuwa o 10 px.</p>
+      <p class="-mt-2 text-xs text-gray-500">Przeciągaj zdjęcie bezpośrednio w plakacie. Suwak i kółko myszy pomniejszają lub powiększają, strzałki przesuwają precyzyjnie, a Shift + strzałka przesuwa o 10 px.</p>
 
       <div class="border-t border-gray-200 pt-4 flex flex-col gap-3">
         <div class="flex items-center gap-2 flex-wrap">
@@ -123,6 +129,13 @@
   </div>
 
 <script>
+// ---------- Refresh (n8n) ----------
+// n8n webhook that re-fetches the latest results from parkrun.pl and republishes
+// poster-data.json. The token only keeps casual bots out — anyone can read it in
+// this page's source — so the server also throttles refreshes on its own.
+const REFRESH_WEBHOOK_URL = 'https://YOUR-N8N-DOMAIN/webhook/parkrun-refresh';
+const REFRESH_TOKEN = 'dn7AlddxDyGs7ohHeAPB7kmW';
+
 // ---------- State ----------
 const state = {
   data: null,
@@ -218,15 +231,6 @@ function zoomNeeded(L, tx, ty) {
   );
 }
 
-// Rotating in a rectangular frame always exposes the corners, so that much is
-// corrected automatically. Panning is deliberately NOT clamped — clamping to full
-// coverage left a photo that exactly fits the frame width with zero room to move
-// sideways, which is the opposite of "position it freely". Gaps are surfaced as a
-// warning with a one-click fix instead.
-function minZoomFor(L) {
-  return zoomNeeded(L, 0, 0);
-}
-
 function updateCoverageWarning(L, zoom) {
   const warn = document.getElementById('coverage-warning');
   if (!warn) return;
@@ -249,12 +253,10 @@ function applyPhotoTransform(el) {
   const L = photoLayout(el);
   if (!img || !L) return;
 
-  // Rotation can force a bigger minimum zoom than the user picked; respect it so
-  // the frame never shows through, and reflect it back in the slider.
-  // photoZoom is what the user asked for; rotation may require more than that.
-  // Keeping them separate means straightening back up restores their own zoom
-  // instead of leaving it ratcheted up at whatever 45 degrees needed.
-  const eff = Math.max(state.photoZoom, minZoomFor(L));
+  // Scaling is deliberately unconstrained: users may shrink the photo below its
+  // cover fit. Any exposed frame is reported by the existing warning and can be
+  // corrected with "Wypełnij kadr".
+  const eff = state.photoZoom;
   syncZoomUi(eff);
   updateCoverageWarning(L, eff);
 
@@ -290,12 +292,10 @@ function syncZoomUi(z) {
 
 function setZoom(z, anchor, oldVisualZoom) {
   const el = document.querySelector('#poster-root [data-photo-frame]');
-  const L = el ? photoLayout(el) : null;
-  const floor = L ? minZoomFor(L) : 1;
-  const oldZoom = oldVisualZoom || Math.max(state.photoZoom, floor);
-  state.photoZoom = Math.min(6, Math.max(1, z));
+  const oldZoom = oldVisualZoom || state.photoZoom;
+  state.photoZoom = Math.min(6, Math.max(0.1, z));
   if (anchor && oldZoom > 0) {
-    const ratio = Math.max(state.photoZoom, floor) / oldZoom;
+    const ratio = state.photoZoom / oldZoom;
     state.photoPan.x = anchor.x + (state.photoPan.x - anchor.x) * ratio;
     state.photoPan.y = anchor.y + (state.photoPan.y - anchor.y) * ratio;
   }
@@ -364,8 +364,7 @@ function attachPhotoDrag() {
   el.addEventListener('wheel', e => {
     e.preventDefault();
     const rect = el.getBoundingClientRect();
-    const L = photoLayout(el);
-    const visualZoom = L ? Math.max(state.photoZoom, minZoomFor(L)) : state.photoZoom;
+    const visualZoom = state.photoZoom;
     setZoom(visualZoom * (e.deltaY < 0 ? 1.08 : 1 / 1.08), {
       x: e.clientX - rect.left - rect.width / 2,
       y: e.clientY - rect.top - rect.height / 2,
@@ -426,11 +425,11 @@ function renderModernist(d) {
           <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">Uczestnicy</span>
           <span style="font-weight: 800; font-size: 132px; line-height: 0.84; letter-spacing: -0.04em;">${d.finishers}</span>
         </div>
-        <div style="position: absolute; top: 0; right: 0; pointer-events: none; background: #201e1d; color: #f5f4f4; padding: 14px 24px; font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">${esc(d.courseNote)}</div>
-        <div style="position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none; background: #201e1d; color: #f5f4f4; padding: 14px 24px; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline;">
+        ${d.courseNote ? `<div style="position: absolute; top: 0; right: 0; pointer-events: none; background: #201e1d; color: #f5f4f4; padding: 14px 24px; font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">${esc(d.courseNote)}</div>` : ''}
+        ${d.caption ? `<div style="position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none; background: #201e1d; color: #f5f4f4; padding: 14px 24px; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #ff9783;">Fot.</span>
           <p style="margin: 0; font-size: 15px; line-height: 1.4;">${esc(d.caption)}</p>
-        </div>
+        </div>` : ''}
       </div>
     </section>
 
@@ -558,16 +557,12 @@ function renderNight(d) {
         ${photoDiv('position:absolute; inset:0; border-radius:235px 235px 20px 20px; background:#1e1840;', 'Przeciągnij zdjęcie z tego tygodnia')}
         <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 235px 235px 20px 20px; background: linear-gradient(to bottom, rgba(20,16,43,0.55) 0%, rgba(20,16,43,0) 34%, rgba(20,16,43,0) 52%, rgba(20,16,43,0.9) 100%);"></div>
         <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 235px 235px 20px 20px; border: 1px solid rgba(217,255,75,0.35);"></div>
-        <div style="position: absolute; top: 46px; left: 0; right: 0; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+        ${d.courseNote ? `<div style="position: absolute; top: 46px; left: 0; right: 0; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 2px;">
           <span style="font-size: 12px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(244,242,255,0.75);">${esc(d.courseNote)}</span>
-        </div>
-        <div style="position: absolute; left: 28px; right: 28px; bottom: 30px; pointer-events: none; display: flex; flex-direction: column; gap: 10px;">
-          <div style="display: flex; align-items: baseline; gap: 12px;">
-            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; line-height: 1; letter-spacing: -0.02em;">Wzniesienie</span>
-            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 34px; line-height: 1; letter-spacing: -0.02em; color: #d9ff4b;">Osowy</span>
-          </div>
+        </div>` : ''}
+        ${d.caption ? `<div style="position: absolute; left: 28px; right: 28px; bottom: 30px; pointer-events: none;">
           <p style="margin: 0; font-size: 14px; line-height: 1.5; color: rgba(244,242,255,0.7);">${esc(d.caption)}</p>
-        </div>
+        </div>` : ''}
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 30px;">
@@ -782,7 +777,6 @@ function renderData(d) {
           <span style="font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: #6b6d78;">parkrun Wzniesienie Osowy</span>
           <span style="font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: #6b6d78;">#${d.edition} · ${fmtDate(d.date)}</span>
         </div>
-        <h1 style="margin: 0; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 46px; line-height: 1.05; letter-spacing: -0.03em;">Podsumowanie<br>edycji ${d.edition}</h1>
         <div style="height: 1px; background: #dcdde2;"></div>
       </header>
 
@@ -849,8 +843,7 @@ function renderData(d) {
       <div style="position: relative; height: 460px;">
         ${photoDiv('position:absolute; inset:0; border-radius:999px; background:#23242c; color:#8a8c98;', 'Zdjęcie')}
         <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 999px; background: linear-gradient(to bottom, rgba(16,16,20,0.6) 0%, rgba(16,16,20,0) 30%, rgba(16,16,20,0) 60%, rgba(16,16,20,0.85) 100%);"></div>
-        <span style="position: absolute; top: 40px; left: 0; right: 0; text-align: center; pointer-events: none; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.8);">${esc(d.courseNote)}</span>
-        <span style="position: absolute; bottom: 44px; left: 0; right: 0; text-align: center; pointer-events: none; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 22px;">Wzniesienie Osowy</span>
+        ${d.courseNote ? `<span style="position: absolute; top: 40px; left: 0; right: 0; text-align: center; pointer-events: none; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,255,255,0.8);">${esc(d.courseNote)}</span>` : ''}
       </div>
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <span style="font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: #8a8c98;">Kamienie milowe</span>
@@ -918,10 +911,10 @@ function renderTrail(d) {
       <div style="position: relative; height: 560px;">
         ${photoDiv('position:absolute; inset:0; border-radius:260px 40px 260px 40px; background:#d8d0ba;', 'Przeciągnij zdjęcie z trasy')}
         <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 260px 40px 260px 40px; background: linear-gradient(200deg, rgba(47,93,67,0.45) 0%, rgba(47,93,67,0) 40%, rgba(30,42,34,0) 55%, rgba(30,42,34,0.88) 100%);"></div>
-        <div style="position: absolute; left: 40px; right: 40px; bottom: 38px; pointer-events: none; display: flex; flex-direction: column; gap: 6px;">
-          <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #efe8d8;">${esc(d.courseNote)}</span>
-          <p style="margin: 0; font-size: 15px; line-height: 1.5; color: rgba(239,232,216,0.8);">${esc(d.caption)}</p>
-        </div>
+        ${(d.courseNote || d.caption) ? `<div style="position: absolute; left: 40px; right: 40px; bottom: 38px; pointer-events: none; display: flex; flex-direction: column; gap: 6px;">
+          ${d.courseNote ? `<span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: #efe8d8;">${esc(d.courseNote)}</span>` : ''}
+          ${d.caption ? `<p style="margin: 0; font-size: 15px; line-height: 1.5; color: rgba(239,232,216,0.8);">${esc(d.caption)}</p>` : ''}
+        </div>` : ''}
       </div>
     </section>
 
@@ -972,8 +965,8 @@ const RENDERERS = { modernist: renderModernist, night: renderNight, bib: renderB
 // ---------- App wiring ----------
 function currentData() {
   const d = Object.assign({}, state.data);
-  d.caption = document.getElementById('input-caption').value;
-  d.courseNote = document.getElementById('input-course').value;
+  d.caption = document.getElementById('input-caption').value.trim();
+  d.courseNote = document.getElementById('input-course').value.trim();
   d.personalBests = d.personalBests || 0;
   d.newPBs = d.newPBs || [];
   d.fastest = d.fastest || [];
@@ -1031,11 +1024,87 @@ function setStatus(msg) {
   if (msg) setTimeout(() => { document.getElementById('status-text').textContent = ''; }, 3000);
 }
 
+// GitHub Pages sits behind a CDN that caches for ~10 minutes. cache: 'no-store'
+// only covers the browser, so a query string is needed to get past the edge copy —
+// otherwise even a successful refresh can look like nothing changed.
+async function fetchPosterData() {
+  const res = await fetch(`poster-data.json?t=${Date.now()}`, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`poster-data.json: HTTP ${res.status}`);
+  return res.json();
+}
+
+function renderDataInfo() {
+  const d = state.data;
+  const info = document.getElementById('data-info');
+  if (!d || !d.edition) { info.textContent = ''; return; }
+  const when = d.generatedAt
+    ? new Date(d.generatedAt).toLocaleString('pl-PL', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+    : null;
+  info.textContent = `Dane: edycja #${d.edition}` + (when ? ` · pobrane ${when}` : '');
+}
+
+function setRefreshStatus(msg) {
+  document.getElementById('refresh-status').textContent = msg;
+}
+
+async function requestRefresh() {
+  const btn = document.getElementById('btn-refresh');
+  btn.disabled = true;
+  setRefreshStatus('Zlecanie aktualizacji…');
+  try {
+    // Deliberately a CORS "simple request" (text/plain, no custom headers): n8n's
+    // webhook CORS support doesn't answer preflight OPTIONS requests, and a JSON
+    // body or an auth header would trigger one that the browser then blocks.
+    const url = `${REFRESH_WEBHOOK_URL}?token=${encodeURIComponent(REFRESH_TOKEN)}`;
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: 'refresh' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const reply = await res.json();
+    if (reply.status === 'throttled') {
+      setRefreshStatus(`Dane były niedawno odświeżane — spróbuj za ${Math.ceil(reply.retryAfter / 60)} min.`);
+    } else if (reply.status === 'busy') {
+      setRefreshStatus('Aktualizacja już trwa — nowe dane pojawią się za kilka minut.');
+      await waitForNewData();
+    } else if (reply.status === 'started') {
+      setRefreshStatus('Pobieranie wyników z parkrun.pl… (zwykle 2–3 min)');
+      await waitForNewData();
+    } else {
+      throw new Error(`unexpected reply: ${JSON.stringify(reply)}`);
+    }
+  } catch (err) {
+    console.error(err);
+    setRefreshStatus('Nie udało się zlecić aktualizacji.');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// The refresh runs on the server and then deploys through GitHub Pages, so poll
+// until generatedAt moves on. Only the data is swapped: caption, photo, framing
+// and style stay exactly as the user left them.
+async function waitForNewData() {
+  const before = state.data && state.data.generatedAt;
+  const deadline = Date.now() + 8 * 60 * 1000;
+  while (Date.now() < deadline) {
+    await new Promise(r => setTimeout(r, 15000));
+    try {
+      const fresh = await fetchPosterData();
+      if (fresh.generatedAt && fresh.generatedAt !== before) {
+        state.data = fresh;
+        renderDataInfo();
+        render();
+        setRefreshStatus('Dane zaktualizowane.');
+        return;
+      }
+    } catch (e) {
+      // The file can briefly 404 while Pages deploys; keep waiting.
+    }
+  }
+  setRefreshStatus('Aktualizacja trwa dłużej niż zwykle — odśwież stronę za kilka minut.');
+}
+
 async function loadData() {
   try {
-    const res = await fetch('poster-data.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('not found');
-    state.data = await res.json();
+    state.data = await fetchPosterData();
   } catch (e) {
     state.data = {
       event: 'parkrun Wzniesienie Osowy', edition: 0, date: new Date().toISOString().slice(0, 10),
@@ -1047,6 +1116,7 @@ async function loadData() {
   }
   document.getElementById('input-caption').value = state.data.caption || '';
   document.getElementById('input-course').value = `${state.data.distanceKm || 5} km`;
+  renderDataInfo();
 }
 
 function handleFile(file) {
@@ -1101,6 +1171,14 @@ function initApp() {
   document.getElementById('btn-fill').addEventListener('click', fillFrame);
 
   renderFilterPresets();
+
+  // Stays hidden until the webhook is configured, rather than showing a button
+  // that can only ever fail.
+  if (!REFRESH_WEBHOOK_URL.includes('YOUR-N8N')) {
+    const btn = document.getElementById('btn-refresh');
+    btn.classList.remove('hidden');
+    btn.addEventListener('click', requestRefresh);
+  }
 
   ['brightness', 'contrast', 'saturate'].forEach(key => {
     document.getElementById(`input-${key}`).addEventListener('input', e => {
