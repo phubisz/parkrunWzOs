@@ -1,132 +1,128 @@
 {
-    "event": "parkrun Wzniesienie Osowy",
-    "edition": 232,
-    "date": "2026-09-12",
-    "distanceKm": 5,
-    "finishers": 89,
-    "men": 52,
-    "women": 37,
-    "unknown": 0,
-    "volunteers": 17,
-    "personalBests": 7,
-    "firstTimers": 4,
-    "caption": "",
-    "milestones": [
-        {
-            "count": 10,
-            "name": "Hubert Mateusz MIELEWCZYK",
-            "kind": "parkrun"
-        },
-        {
-            "count": 10,
-            "name": "Jagoda Katarzyna MIELEWCZYK",
-            "kind": "parkrun"
-        },
-        {
-            "count": 25,
-            "name": "Emilia WAWRZUSISZYN",
-            "kind": "parkrun"
-        },
-        {
-            "count": 25,
-            "name": "Joanna KUJAWSKA-FREJLICH",
-            "kind": "parkrun"
-        },
-        {
-            "count": 25,
-            "name": "Tadeusz ARMATYŃSKI",
-            "kind": "parkrun"
-        },
-        {
-            "count": 50,
-            "name": "Katarzyna KINOWSKA",
-            "kind": "parkrun"
-        }
-    ],
-    "fastest": [
-        {
-            "name": "Michał ABRAMOWICZ",
-            "sex": "M",
-            "time": "19:34",
-            "ageGroup": "VM35-39",
-            "ageGrade": 69.25
-        },
-        {
-            "name": "Joanna KUJAWSKA-FREJLICH",
-            "sex": "F",
-            "time": "22:07",
-            "ageGroup": "VW40-44",
-            "ageGrade": 69.56
-        }
-    ],
-    "bestAgeGrade": [
-        {
-            "name": "Tomasz HENDRICH",
-            "sex": "M",
-            "time": "21:04",
-            "ageGroup": "VM45-49",
-            "ageGrade": 69.46
-        },
-        {
-            "name": "Joanna KUJAWSKA-FREJLICH",
-            "sex": "F",
-            "time": "22:07",
-            "ageGroup": "VW40-44",
-            "ageGrade": 69.56
-        }
-    ],
-    "mostParkruns": [
-        {
-            "name": "Janek SKOPCZYŃSKI",
-            "sex": "M",
-            "runs": 372
-        },
-        {
-            "name": "Wojciech REDZIMSKI",
-            "sex": "M",
-            "runs": 328
-        }
-    ],
-    "mostVolunteerCredits": [
-        {
-            "name": "Adam JODKO-NARKIEWICZ",
-            "credits": 226
-        },
-        {
-            "name": "Małgorzata MACIERZANKA",
-            "credits": 222
-        },
-        {
-            "name": "Andrzej MIARCZYŃSKI",
-            "credits": 185
-        }
-    ],
-    "newPBs": [
-        "Oleksandr KLYMKO",
-        "Kryspin KICHLER",
-        "Artur FELDZENSZTAJN",
-        "Rafał AWDZIEJCZYK",
-        "Karol WAŻNY",
-        "Hubert Mateusz MIELEWCZYK",
-        "Jolanta, Ewa OERTEL"
-    ],
-    "volunteerList": [
-        "Adam JODKO-NARKIEWICZ",
-        "Aleksandr OBOLEVYCH",
-        "Bartosz WOJCIECHOWSKI",
-        "Jan KLEKOTKO",
-        "Tymon SIKORSKI",
-        "Oleksandr KLYMKO",
-        "Yeseniia KLYMKO",
-        "Michał ABRAMOWICZ",
-        "Ewa KRAKOWIAK",
-        "Bożena KUJAWSKA-KAPISZKA",
-        "Andrzej MIARCZYŃSKI",
-        "Ewa KREFT",
-        "Magda IWANOWICZ",
-        "Jarosław PIWOWARSKI",
-        "Tosia AWDZIEJCZYK",
-        "Małgorzata MACIERZANKA",
-        "Sławomir PIETKUN"
-    ]
+  "event": "parkrun Wzniesienie Osowy",
+  "edition": 232,
+  "date": "2026-09-12",
+  "distanceKm": 5,
+  "generatedAt": "2026-09-14T16:35:54.211Z",
+  "finishers": 89,
+  "men": 52,
+  "women": 37,
+  "unknown": 0,
+  "volunteers": 17,
+  "personalBests": 7,
+  "firstTimers": 4,
+  "caption": "",
+  "milestones": [
+    {
+      "count": 10,
+      "name": "Hubert Mateusz MIELEWCZYK",
+      "kind": "parkrun"
+    },
+    {
+      "count": 25,
+      "name": "Emilia WAWRZUSISZYN",
+      "kind": "parkrun"
+    },
+    {
+      "count": 25,
+      "name": "Joanna KUJAWSKA-FREJLICH",
+      "kind": "parkrun"
+    },
+    {
+      "count": 25,
+      "name": "Tadeusz ARMATYŃSKI",
+      "kind": "parkrun"
+    },
+    {
+      "count": 50,
+      "name": "Katarzyna KINOWSKA",
+      "kind": "parkrun"
+    }
+  ],
+  "fastest": [
+    {
+      "name": "Michał ABRAMOWICZ",
+      "sex": "M",
+      "time": "19:34",
+      "ageGroup": "VM35-39",
+      "ageGrade": 69.25
+    },
+    {
+      "name": "Joanna KUJAWSKA-FREJLICH",
+      "sex": "F",
+      "time": "22:07",
+      "ageGroup": "VW40-44",
+      "ageGrade": 69.56
+    }
+  ],
+  "bestAgeGrade": [
+    {
+      "name": "Tomasz HENDRICH",
+      "sex": "M",
+      "time": "21:04",
+      "ageGroup": "VM45-49",
+      "ageGrade": 69.46
+    },
+    {
+      "name": "Joanna KUJAWSKA-FREJLICH",
+      "sex": "F",
+      "time": "22:07",
+      "ageGroup": "VW40-44",
+      "ageGrade": 69.56
+    }
+  ],
+  "mostParkruns": [
+    {
+      "name": "Janek SKOPCZYŃSKI",
+      "sex": "M",
+      "runs": 372
+    },
+    {
+      "name": "Wojciech REDZIMSKI",
+      "sex": "M",
+      "runs": 328
+    }
+  ],
+  "mostVolunteerCredits": [
+    {
+      "name": "Małgorzata MACIERZANKA",
+      "credits": 222
+    },
+    {
+      "name": "Łukasz GOŁASZEWSKI",
+      "credits": 203
+    },
+    {
+      "name": "Andrzej MIARCZYŃSKI",
+      "credits": 185
+    }
+  ],
+  "newPBs": [
+    "Oleksandr KLYMKO",
+    "Kryspin KICHLER",
+    "Artur FELDZENSZTAJN",
+    "Rafał AWDZIEJCZYK",
+    "Karol WAŻNY",
+    "Hubert Mateusz MIELEWCZYK",
+    "Jolanta, Ewa OERTEL"
+  ],
+  "volunteerList": [
+    "Łukasz GOŁASZEWSKI",
+    "Aleksandr OBOLEVYCH",
+    "Bartosz WOJCIECHOWSKI",
+    "Jan KLEKOTKO",
+    "Tymon SIKORSKI",
+    "Oleksandr KLYMKO",
+    "Yeseniia KLYMKO",
+    "Michał ABRAMOWICZ",
+    "Ewa KRAKOWIAK",
+    "Bożena KUJAWSKA-KAPISZKA",
+    "Andrzej MIARCZYŃSKI",
+    "Ewa KREFT",
+    "Magda IWANOWICZ",
+    "Jarosław PIWOWARSKI",
+    "Tosia AWDZIEJCZYK",
+    "Małgorzata MACIERZANKA",
+    "Sławomir PIETKUN"
+  ]
 }
