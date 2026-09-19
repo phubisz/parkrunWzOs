@@ -1,118 +1,113 @@
 {
-    "event": "parkrun Wzniesienie Osowy",
-    "edition": 233,
-    "date": "2026-09-19",
-    "distanceKm": 5,
-    "finishers": 107,
-    "men": 61,
-    "women": 37,
-    "unknown": 9,
-    "volunteers": 19,
-    "personalBests": 11,
-    "firstTimers": 11,
-    "caption": "",
-    "milestones": [
-        {
-            "count": 10,
-            "name": "Michael LASKOWSKI",
-            "kind": "inne"
-        },
-        {
-            "count": 10,
-            "name": "Tomasz KRASOWSKI",
-            "kind": "inne"
-        }
-    ],
-    "fastest": [
-        {
-            "name": "Maciek PIASECKI",
-            "sex": "M",
-            "time": "18:26",
-            "ageGroup": "SM20-24",
-            "ageGrade": 69.98
-        },
-        {
-            "name": "Żaneta KRUŻYCKA",
-            "sex": "F",
-            "time": "21:30",
-            "ageGroup": "VW35-39",
-            "ageGrade": 70.39
-        }
-    ],
-    "bestAgeGrade": [
-        {
-            "name": "Maciek PIASECKI",
-            "sex": "M",
-            "time": "18:26",
-            "ageGroup": "SM20-24",
-            "ageGrade": 69.98
-        },
-        {
-            "name": "Żaneta KRUŻYCKA",
-            "sex": "F",
-            "time": "21:30",
-            "ageGroup": "VW35-39",
-            "ageGrade": 70.39
-        }
-    ],
-    "mostParkruns": [
-        {
-            "name": "Marek ŻUKOWSKI",
-            "sex": "M",
-            "runs": 560
-        },
-        {
-            "name": "Marek HUDZIK",
-            "sex": "M",
-            "runs": 511
-        }
-    ],
-    "mostVolunteerCredits": [
-        {
-            "name": "Małgorzata MACIERZANKA",
-            "credits": 223
-        },
-        {
-            "name": "Andrzej MIARCZYŃSKI",
-            "credits": 186
-        },
-        {
-            "name": "Magda IWANOWICZ",
-            "credits": 148
-        }
-    ],
-    "newPBs": [
-        "Tomasz JABŁOŃSKI",
-        "Patryk LIZAKOWSKI",
-        "Artur FELDZENSZTAJN",
-        "Jan PADEREWSKI",
-        "Janusz PIĄTKOWSKI",
-        "Karolina ŻAK",
-        "Mirosław GRABOWSKI",
-        "Monika OSSOWSKA",
-        "Aleksandra GÓRSKA",
-        "Agata NAPIÓRKOWSKA",
-        "Jakub PADEREWSKI"
-    ],
-    "volunteerList": [
-        "Arek-Osa OSSOWSKI",
-        "Aleksandr OBOLEVYCH",
-        "Amelia KACZMAREK",
-        "Joanna KACZMAREK",
-        "Bartosz WOJCIECHOWSKI",
-        "Franciszek WOŁKOWICKI",
-        "Monika OSSOWSKA",
-        "Marian KOSZAŁKA",
-        "Bartosz WITKOWSKI",
-        "Ewa KRAKOWIAK",
-        "Andrzej MIARCZYŃSKI",
-        "Magda IWANOWICZ",
-        "Jarosław PIWOWARSKI",
-        "Tosia AWDZIEJCZYK",
-        "Sebastian KRUŻYCKI",
-        "Włodzimierz KUSIAK",
-        "Małgorzata MACIERZANKA",
-        "Sławomir PIETKUN",
-        "Karolina WOJCIECHOWSKA"
-    ]
+  "event": "parkrun Wzniesienie Osowy",
+  "edition": 233,
+  "date": "2026-09-19",
+  "distanceKm": 5,
+  "generatedAt": "2026-09-19T14:58:31.495Z",
+  "finishers": 107,
+  "men": 61,
+  "women": 37,
+  "unknown": 9,
+  "volunteers": 24,
+  "personalBests": 11,
+  "firstTimers": 11,
+  "caption": "",
+  "milestones": [],
+  "fastest": [
+    {
+      "name": "Maciek PIASECKI",
+      "sex": "M",
+      "time": "18:26",
+      "ageGroup": "SM20-24",
+      "ageGrade": 69.98
+    },
+    {
+      "name": "Żaneta KRUŻYCKA",
+      "sex": "F",
+      "time": "21:30",
+      "ageGroup": "VW35-39",
+      "ageGrade": 70.39
+    }
+  ],
+  "bestAgeGrade": [
+    {
+      "name": "Maciek PIASECKI",
+      "sex": "M",
+      "time": "18:26",
+      "ageGroup": "SM20-24",
+      "ageGrade": 69.98
+    },
+    {
+      "name": "Żaneta KRUŻYCKA",
+      "sex": "F",
+      "time": "21:30",
+      "ageGroup": "VW35-39",
+      "ageGrade": 70.39
+    }
+  ],
+  "mostParkruns": [
+    {
+      "name": "Marek ŻUKOWSKI",
+      "sex": "M",
+      "runs": 560
+    },
+    {
+      "name": "Marek HUDZIK",
+      "sex": "M",
+      "runs": 511
+    }
+  ],
+  "mostVolunteerCredits": [
+    {
+      "name": "Adam JODKO-NARKIEWICZ",
+      "credits": 227
+    },
+    {
+      "name": "Małgorzata MACIERZANKA",
+      "credits": 223
+    },
+    {
+      "name": "Andrzej MIARCZYŃSKI",
+      "credits": 186
+    }
+  ],
+  "newPBs": [
+    "Tomasz JABŁOŃSKI",
+    "Patryk LIZAKOWSKI",
+    "Artur FELDZENSZTAJN",
+    "Jan PADEREWSKI",
+    "Janusz PIĄTKOWSKI",
+    "Karolina ŻAK",
+    "Mirosław GRABOWSKI",
+    "Monika OSSOWSKA",
+    "Aleksandra GÓRSKA",
+    "Agata NAPIÓRKOWSKA",
+    "Jakub PADEREWSKI"
+  ],
+  "volunteerList": [
+    "Arek-Osa OSSOWSKI",
+    "Aleksandr OBOLEVYCH",
+    "Amelia KACZMAREK",
+    "Joanna KACZMAREK",
+    "Bartosz WOJCIECHOWSKI",
+    "Franciszek WOŁKOWICKI",
+    "Monika OSSOWSKA",
+    "Marian KOSZAŁKA",
+    "Bartosz WITKOWSKI",
+    "Ewa KRAKOWIAK",
+    "Andrzej MIARCZYŃSKI",
+    "Rafał ELŻANOWSKI",
+    "Magda IWANOWICZ",
+    "Adam JODKO-NARKIEWICZ",
+    "Jarosław PIWOWARSKI",
+    "Tosia AWDZIEJCZYK",
+    "Tadeusz FIC",
+    "Julia KACZMAREK",
+    "Sebastian KRUŻYCKI",
+    "Włodzimierz KUSIAK",
+    "Małgorzata MACIERZANKA",
+    "Sławomir PIETKUN",
+    "Krystian WASILUK",
+    "Karolina WOJCIECHOWSKA"
+  ]
 }
