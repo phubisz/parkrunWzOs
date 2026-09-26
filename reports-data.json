@@ -1,11 +1,19 @@
 [
     {
-        "Name": "Tadeusz FIC",
-        "RunnerID": "8584562",
+        "Name": "Danuta RICHERT",
+        "RunnerID": "7497120",
         "Report_Title": "100 Runs",
         "num_of_visits": 5,
         "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "26.09.2026"
+        "CelebDate": "03.10.2026"
+    },
+    {
+        "Name": "Beata JASEK",
+        "RunnerID": "11190878",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 5,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "03.10.2026"
     },
     {
         "Name": "Adam STRZELCZYK",
@@ -13,16 +21,16 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "26.09.2026"
+        "CelebDate": "03.10.2026",
+        "FirstOpportunity": "26.09.2026"
     },
     {
-        "Name": "Marcin PRUSINOWSKI",
-        "RunnerID": "11289070",
+        "Name": "Łukasz BANIAK",
+        "RunnerID": "5536925",
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "26.09.2026",
-        "FirstOpportunity": "29.08.2026"
+        "CelebDate": "03.10.2026"
     },
     {
         "Name": "Magdalena MROZOWSKA",
@@ -30,7 +38,7 @@
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "26.09.2026",
+        "CelebDate": "03.10.2026",
         "FirstOpportunity": "08.08.2026"
     },
     {
@@ -39,7 +47,8 @@
         "Report_Title": "10 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "26.09.2026"
+        "CelebDate": "03.10.2026",
+        "FirstOpportunity": "26.09.2026"
     },
     {
         "Name": "Patrycja Anna PRZYBYŁEK",
@@ -47,6 +56,15 @@
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "26.09.2026"
+        "CelebDate": "03.10.2026",
+        "FirstOpportunity": "26.09.2026"
+    },
+    {
+        "Name": "Nikola KRUŻYCKA",
+        "RunnerID": "7993902",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "03.10.2026"
     }
 ]
