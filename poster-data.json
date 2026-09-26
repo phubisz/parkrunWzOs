@@ -1,113 +1,117 @@
 {
   "event": "parkrun Wzniesienie Osowy",
-  "edition": 233,
-  "date": "2026-09-19",
+  "edition": 234,
+  "date": "2026-09-26",
   "distanceKm": 5,
-  "generatedAt": "2026-09-19T14:58:31.495Z",
-  "finishers": 107,
-  "men": 61,
-  "women": 37,
-  "unknown": 9,
-  "volunteers": 24,
-  "personalBests": 11,
-  "firstTimers": 11,
+  "generatedAt": "2026-09-26T19:26:17.432Z",
+  "finishers": 100,
+  "men": 66,
+  "women": 31,
+  "unknown": 3,
+  "volunteers": 20,
+  "personalBests": 8,
+  "firstTimers": 6,
   "caption": "",
-  "milestones": [],
+  "milestones": [
+    {
+      "count": 25,
+      "name": "Marcin PRUSINOWSKI",
+      "kind": "parkrun"
+    },
+    {
+      "count": 100,
+      "name": "Tadeusz FIC",
+      "kind": "parkrun"
+    }
+  ],
   "fastest": [
     {
       "name": "Maciek PIASECKI",
       "sex": "M",
-      "time": "18:26",
+      "time": "18:03",
       "ageGroup": "SM20-24",
-      "ageGrade": 69.98
+      "ageGrade": 71.47
     },
     {
-      "name": "Żaneta KRUŻYCKA",
+      "name": "Agnieszka ADAMOWICZ",
       "sex": "F",
-      "time": "21:30",
-      "ageGroup": "VW35-39",
-      "ageGrade": 70.39
+      "time": "24:31",
+      "ageGroup": "VW55-59",
+      "ageGrade": 72.88
     }
   ],
   "bestAgeGrade": [
     {
-      "name": "Maciek PIASECKI",
+      "name": "Daniel SKRZYPKOWSKI",
       "sex": "M",
-      "time": "18:26",
-      "ageGroup": "SM20-24",
-      "ageGrade": 69.98
+      "time": "19:14",
+      "ageGroup": "VM50-54",
+      "ageGrade": 79.2
     },
     {
-      "name": "Żaneta KRUŻYCKA",
+      "name": "Agnieszka ADAMOWICZ",
       "sex": "F",
-      "time": "21:30",
-      "ageGroup": "VW35-39",
-      "ageGrade": 70.39
+      "time": "24:31",
+      "ageGroup": "VW55-59",
+      "ageGrade": 72.88
     }
   ],
   "mostParkruns": [
     {
-      "name": "Marek ŻUKOWSKI",
+      "name": "Daniel SKRZYPKOWSKI",
       "sex": "M",
-      "runs": 560
+      "runs": 386
     },
     {
-      "name": "Marek HUDZIK",
+      "name": "Ireneusz SYWANYCZ",
       "sex": "M",
-      "runs": 511
+      "runs": 382
     }
   ],
   "mostVolunteerCredits": [
     {
-      "name": "Adam JODKO-NARKIEWICZ",
-      "credits": 227
-    },
-    {
       "name": "Małgorzata MACIERZANKA",
-      "credits": 223
+      "credits": 224
     },
     {
       "name": "Andrzej MIARCZYŃSKI",
-      "credits": 186
+      "credits": 187
+    },
+    {
+      "name": "Michał ABRAMOWICZ",
+      "credits": 149
     }
   ],
   "newPBs": [
-    "Tomasz JABŁOŃSKI",
-    "Patryk LIZAKOWSKI",
+    "Franciszek BAGINSKI",
+    "Marcin PRUSINOWSKI",
     "Artur FELDZENSZTAJN",
-    "Jan PADEREWSKI",
-    "Janusz PIĄTKOWSKI",
-    "Karolina ŻAK",
-    "Mirosław GRABOWSKI",
-    "Monika OSSOWSKA",
-    "Aleksandra GÓRSKA",
-    "Agata NAPIÓRKOWSKA",
-    "Jakub PADEREWSKI"
+    "Marcin WÓJCIK",
+    "Bartosz ZIELIŃSKI",
+    "Łukasz BANIAK",
+    "Adam NABOŻNY",
+    "Tetiana SHESTAK"
   ],
   "volunteerList": [
-    "Arek-Osa OSSOWSKI",
-    "Aleksandr OBOLEVYCH",
-    "Amelia KACZMAREK",
-    "Joanna KACZMAREK",
-    "Bartosz WOJCIECHOWSKI",
+    "Bożena SYWANYCZ",
+    "Adam SYWANYCZ",
+    "Jakub GAŁĘZOWSKI",
+    "Jan KLEKOTKO",
+    "Maja SKRZYPKOWSKA",
     "Franciszek WOŁKOWICKI",
-    "Monika OSSOWSKA",
-    "Marian KOSZAŁKA",
-    "Bartosz WITKOWSKI",
-    "Ewa KRAKOWIAK",
-    "Andrzej MIARCZYŃSKI",
     "Rafał ELŻANOWSKI",
-    "Magda IWANOWICZ",
-    "Adam JODKO-NARKIEWICZ",
-    "Jarosław PIWOWARSKI",
-    "Tosia AWDZIEJCZYK",
+    "Marian KOSZAŁKA",
+    "Michał ABRAMOWICZ",
+    "Weronika WOJNAROWSKA",
+    "Bożena KUJAWSKA-KAPISZKA",
+    "Andrzej MIARCZYŃSKI",
+    "Artur SZULC",
+    "Tadeusz ARMATYŃSKI",
     "Tadeusz FIC",
-    "Julia KACZMAREK",
     "Sebastian KRUŻYCKI",
-    "Włodzimierz KUSIAK",
     "Małgorzata MACIERZANKA",
     "Sławomir PIETKUN",
-    "Krystian WASILUK",
-    "Karolina WOJCIECHOWSKA"
+    "Marcin SKŁODOWSKI",
+    "Mikołaj WÓJCIK"
   ]
 }
