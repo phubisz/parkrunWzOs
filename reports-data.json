@@ -1,19 +1,11 @@
 [
     {
-        "Name": "Danuta RICHERT",
-        "RunnerID": "7497120",
-        "Report_Title": "100 Runs",
+        "Name": "Ewa KRAKOWIAK",
+        "RunnerID": "10196738",
+        "Report_Title": "50 Runs",
         "num_of_visits": 5,
-        "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "03.10.2026"
-    },
-    {
-        "Name": "Beata JASEK",
-        "RunnerID": "11190878",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 5,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "03.10.2026"
+        "Report_Template": "DYPLOMB50.png",
+        "CelebDate": "10.10.2026"
     },
     {
         "Name": "Adam STRZELCZYK",
@@ -21,25 +13,8 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "03.10.2026",
+        "CelebDate": "10.10.2026",
         "FirstOpportunity": "26.09.2026"
-    },
-    {
-        "Name": "Łukasz BANIAK",
-        "RunnerID": "5536925",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "03.10.2026"
-    },
-    {
-        "Name": "Magdalena MROZOWSKA",
-        "RunnerID": "1546014",
-        "Report_Title": "25 Wolo",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "03.10.2026",
-        "FirstOpportunity": "08.08.2026"
     },
     {
         "Name": "Oskar GRZENKOWICZ",
@@ -47,7 +22,7 @@
         "Report_Title": "10 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "03.10.2026",
+        "CelebDate": "10.10.2026",
         "FirstOpportunity": "26.09.2026"
     },
     {
@@ -56,7 +31,7 @@
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "03.10.2026",
+        "CelebDate": "10.10.2026",
         "FirstOpportunity": "26.09.2026"
     },
     {
@@ -65,6 +40,7 @@
         "Report_Title": "25 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "03.10.2026"
+        "CelebDate": "10.10.2026",
+        "FirstOpportunity": "03.10.2026"
     }
 ]
