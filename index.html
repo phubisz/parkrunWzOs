@@ -17,6 +17,9 @@
         }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Fonts for the original (PNG template) design only. -->
+    <script src="fonts/Zeyada-Regular.js"></script>
+    <script src="fonts/CaveatBrush-Regular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
     <!-- The diploma itself (layout, colours, milestone list) lives in diploma.js. -->
     <script src="diploma.js"></script>
@@ -41,9 +44,20 @@
         <h1 class="text-3xl font-extrabold text-blue-800 mb-6 text-center">
             parkrun Wzniesienie Osowy generator dyplomów
         </h1>
-        <p class="text-gray-600 mb-8 text-center">
+        <p class="text-gray-600 mb-3 text-center">
             <b>Liczba wizyt</b> to nieprzerwana liczba wizyt na naszym parkrunie przez daną osobę w ostatnich 10 edycjach.
         </p>
+        <p id="data-info" class="text-sm text-gray-500 mb-6 text-center"></p>
+
+        <div class="mb-8 flex flex-wrap items-center justify-center gap-3">
+            <span class="text-sm font-medium text-gray-700">Wzór dyplomu</span>
+            <div class="flex rounded-md overflow-hidden border border-gray-300">
+                <button id="design-new" onclick="setDesign('new')" class="px-4 py-2 text-sm font-medium transition">Nowy</button>
+                <button id="design-original" onclick="setDesign('original')" class="px-4 py-2 text-sm font-medium transition border-l border-gray-300">Oryginalny</button>
+            </div>
+            <a href="diploma-preview.html" class="text-sm text-blue-600 hover:underline">podgląd wszystkich</a>
+            <p id="design-note" class="w-full text-xs text-gray-500 text-center"></p>
+        </div>
 
         <div id="report-table-container" class="overflow-x-auto custom-scrollbar">
             </div>
@@ -106,7 +120,8 @@
         // --- 1. DATA SOURCE (Updated with Trim Logic) ---
         async function loadReportsData() { 
             try {
-                const response = await fetch('reports-data.json');
+                // GitHub Pages caches for ~10 minutes; the query string gets past that.
+                const response = await fetch(`reports-data.json?t=${Date.now()}`, { cache: 'no-store' });
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
@@ -132,6 +147,73 @@
             }
         }
         
+        // --- 2. DIPLOMA DESIGN: new (HTML, diploma.js) or original (PNG templates) ---
+        // The original certificates exist as images for these milestones only; every
+        // other milestone is always drawn with the new design.
+        const ORIGINAL_MILESTONES = [10, 25, 50, 100, 250, 500];
+        let diplomaDesign = 'new';
+        try { diplomaDesign = localStorage.getItem('diplomaDesign') === 'original' ? 'original' : 'new'; } catch (e) {}
+
+        function setDesign(design) {
+            diplomaDesign = design;
+            try { localStorage.setItem('diplomaDesign', design); } catch (e) {}
+            for (const d of ['new', 'original']) {
+                document.getElementById(`design-${d}`).className =
+                    `px-4 py-2 text-sm font-medium transition ${d === 'original' ? 'border-l border-gray-300 ' : ''}`
+                    + (d === design ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50');
+            }
+            document.getElementById('design-note').textContent = design === 'original'
+                ? `Oryginalny wzór istnieje tylko dla ${ORIGINAL_MILESTONES.join(', ')}. Pozostałe kamienie milowe są zawsze w nowym wzorze.`
+                : '';
+        }
+
+        // The pre-2026 way: the certificate image with the name, date and place written on it.
+        async function downloadOriginalDiplomaPdf(diploma, item, fileName) {
+            const page = { width: 595, height: 842, nameY: 580, dateX: 510, dateY: 710, placeY: 732 };
+            const doc = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+
+            const img = new Image();
+            img.src = `templates/DYPLOM${diploma.type}${diploma.milestone}.png`;
+            await new Promise((resolve, reject) => {
+                img.onload = resolve;
+                img.onerror = () => reject(new Error(`Failed to load image: ${img.src}`));
+            });
+            doc.addImage(img, 'PNG', 0, 0, page.width, page.height);
+
+            doc.setFont('CaveatBrush-Regular', 'normal');
+            doc.setFontSize(48);
+            doc.setTextColor(50, 50, 50);
+            doc.text(item.Name, (page.width - doc.getTextWidth(item.Name)) / 2, page.nameY);
+
+            doc.setFont('Zeyada-Regular', 'normal');
+            doc.setFontSize(22);
+            doc.setTextColor(113, 113, 165);
+            doc.text(item.CelebDate, page.dateX, page.dateY, { align: 'right' });
+
+            doc.setFontSize(20);
+            const place = 'parkrun Wzniesienie Osowy';
+            doc.text(place, (page.width - doc.getTextWidth(place)) / 2, page.placeY);
+
+            doc.save(fileName);
+        }
+
+        // --- 2b. WHEN THE DATA WAS LAST REFRESHED ---
+        async function renderDataInfo() {
+            const el = document.getElementById('data-info');
+            try {
+                const res = await fetch(`reports-meta.json?t=${Date.now()}`, { cache: 'no-store' });
+                if (!res.ok) return;
+                const meta = await res.json();
+                const when = new Date(meta.generatedAt);
+                const pad = n => String(n).padStart(2, '0');
+                const stamp = `${pad(when.getDate())}.${pad(when.getMonth() + 1)}.${when.getFullYear()}, ${pad(when.getHours())}:${pad(when.getMinutes())}`;
+                const eventDate = (meta.lastEventDate || '').replace(/\//g, '.');
+                el.textContent = `Dane po edycji #${meta.lastEvent}${eventDate ? ` (${eventDate})` : ''} · odświeżone ${stamp} · dyplomy na ${meta.reportDate}`;
+            } catch (e) {
+                // No refresh info is not worth an error on the page.
+            }
+        }
+
         // --- 3. CORE PDF GENERATION FUNCTION ---
         async function generateSingleDiploma(item, index) {
             const notification = document.getElementById('notification');
@@ -150,10 +232,15 @@
                 const diploma = parseDiplomaTemplate(item.Report_Template);
                 if (!diploma) throw new Error(`Unrecognised diploma template: ${item.Report_Template}`);
 
-                await downloadDiplomaPdf(
-                    { type: diploma.type, milestone: diploma.milestone, name: item.Name, date: item.CelebDate },
-                    `${item.Name.replace(/\s/g, '_')}_Diploma.pdf`
-                );
+                const fileName = `${item.Name.replace(/\s/g, '_')}_Diploma.pdf`;
+                if (diplomaDesign === 'original' && ORIGINAL_MILESTONES.includes(diploma.milestone)) {
+                    await downloadOriginalDiplomaPdf(diploma, item, fileName);
+                } else {
+                    await downloadDiplomaPdf(
+                        { type: diploma.type, milestone: diploma.milestone, name: item.Name, date: item.CelebDate },
+                        fileName
+                    );
+                }
 
                 notification.classList.add('hidden');
                 titleElement.textContent = `Success!`;
@@ -313,6 +400,8 @@
             document.getElementById('manual-milestone').innerHTML = DIPLOMA_MILESTONES
                 .map(m => `<option value="${m.count}"${m.count === 50 ? ' selected' : ''}>${m.count}</option>`).join('');
             ensureDiplomaFonts();
+            setDesign(diplomaDesign);
+            renderDataInfo();
         }
 
         window.onload = initApp;
