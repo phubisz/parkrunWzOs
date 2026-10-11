@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dyplomy - podgląd wszystkich kamieni milowych</title>
+<script src="diploma.js"></script>
+<script>ensureDiplomaFonts();</script>
+<style>
+  body { margin: 0; padding: 24px; font-family: system-ui, sans-serif; background: #f3f4f6; color: #111827; }
+  h1 { margin: 0 0 4px; font-size: 22px; }
+  p { margin: 0 0 20px; color: #4b5563; font-size: 14px; }
+  a { color: #2563eb; }
+  table { border-collapse: collapse; margin-bottom: 28px; background: #fff; font-size: 14px; }
+  th, td { border: 1px solid #e5e7eb; padding: 6px 12px; text-align: left; }
+  th { background: #f9fafb; }
+  .swatch { display: inline-block; width: 18px; height: 18px; border-radius: 50%; border: 1px solid #9ca3af; vertical-align: middle; margin-right: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .card { background: #fff; border-radius: 8px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .card h2 { margin: 0 0 8px; font-size: 14px; }
+  .new { color: #b45309; font-weight: 600; }
+  .pair { display: flex; gap: 8px; }
+  .pair figure { margin: 0; flex: 1; min-width: 0; }
+  .pair figcaption { font-size: 11px; color: #6b7280; margin-bottom: 4px; }
+  /* Each diploma is drawn full size (1414 x 2000) and scaled down to fit its slot. */
+  .frame { position: relative; width: 100%; aspect-ratio: 1414 / 2000; overflow: hidden; border: 1px solid #e5e7eb; }
+  .frame > .diploma { transform-origin: 0 0; }
+  .pair img { width: 100%; display: block; border: 1px solid #e5e7eb; }
+</style>
+</head>
+<body>
+<h1>Dyplomy: wszystkie kamienie milowe</h1>
+<p>Podgląd dyplomów rysowanych w HTML (<code>diploma.js</code>). Tam, gdzie istnieje stary szablon PNG, jest pokazany obok dla porównania. <a href="index.html">← Dyplomy</a></p>
+
+<table id="colours"><thead><tr><th>Klub</th><th>Kolor</th><th>HEX</th><th>RGB</th><th>Źródło koloru</th></tr></thead><tbody></tbody></table>
+<div class="grid" id="grid"></div>
+
+<script>
+  const OLD = [10, 25, 50, 100, 250, 500];
+  const SAMPLE = { name: 'Małgorzata Żółkiewska', date: '17.10.2026' };
+
+  document.querySelector('#colours tbody').innerHTML = DIPLOMA_MILESTONES.map(m => `
+    <tr><td>${m.count}${OLD.includes(m.count) ? '' : ' <span class="new">nowy</span>'}</td>
+        <td><span class="swatch" style="background:${m.hex}"></span></td>
+        <td><code>${m.hex}</code></td><td><code>${m.rgb}</code></td><td>${m.source}</td></tr>`).join('');
+
+  const grid = document.getElementById('grid');
+  for (const m of DIPLOMA_MILESTONES) {
+    for (const type of ['B', 'W']) {
+      const isOld = OLD.includes(m.count);
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h2>${type === 'B' ? 'Biegi' : 'Wolontariat'} ${m.count} ${isOld ? '' : '<span class="new">· nowy</span>'}</h2>
+        <div class="pair">
+          <figure><figcaption>HTML</figcaption><div class="frame">${renderDiploma({ type, milestone: m.count, ...SAMPLE })}</div></figure>
+          ${isOld ? `<figure><figcaption>Stary PNG</figcaption><img src="templates/DYPLOM${type}${m.count}.png" alt=""></figure>` : ''}
+        </div>`;
+      grid.appendChild(card);
+    }
+  }
+
+  function fit() {
+    document.querySelectorAll('.frame').forEach(frame => {
+      frame.firstElementChild.style.transform = `scale(${frame.clientWidth / DIPLOMA_W})`;
+    });
+  }
+  window.addEventListener('resize', fit);
+  document.fonts.ready.then(() => { document.querySelectorAll('.diploma').forEach(fitDiplomaName); fit(); });
+  fit();
+</script>
+</body>
+</html>

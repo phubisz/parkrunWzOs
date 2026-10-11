@@ -17,8 +17,9 @@
         }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="fonts/Zeyada-Regular.js"></script>
-    <script src="fonts/CaveatBrush-Regular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+    <!-- The diploma itself (layout, colours, milestone list) lives in diploma.js. -->
+    <script src="diploma.js"></script>
     <style>
         /* Custom scrollbar for aesthetics */
         .custom-scrollbar::-webkit-scrollbar {
@@ -73,12 +74,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Milestone</label>
                     <select id="manual-milestone"
                         class="w-full rounded-md border border-gray-300 shadow-sm p-2 text-sm focus:border-blue-500 focus:ring-blue-500">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50" selected>50</option>
-                        <option value="100">100</option>
-                        <option value="250">250</option>
-                        <option value="500">500</option>
+                        <!-- Filled from DIPLOMA_MILESTONES in initApp(). -->
                     </select>
                 </div>
                 <div>
@@ -106,7 +102,6 @@
     </div>
 
 <script>
-        const { jsPDF } = window.jspdf;
 
         // --- 1. DATA SOURCE (Updated with Trim Logic) ---
         async function loadReportsData() { 
@@ -137,24 +132,6 @@
             }
         }
         
-        // --- 2. TEMPLATE CONFIGURATION MAP ---
-        const TEMPLATE_CONFIGS = {
-            "default": {
-                orientation: 'portrait',
-                width: 595,
-                height: 842,
-                nameY: 580,
-                dateX: 510,
-                dateY: 710,
-                placeY: 732
-            }
-        };
-        const TEMPLATE_FOLDER = 'templates/'; 
-        
-        function getImageUrl(templateFileName) {
-            return `${TEMPLATE_FOLDER}${templateFileName}`; 
-        }
-
         // --- 3. CORE PDF GENERATION FUNCTION ---
         async function generateSingleDiploma(item, index) {
             const notification = document.getElementById('notification');
@@ -167,57 +144,17 @@
             actionsElement.innerHTML = `<button onclick="document.getElementById('notification').classList.add('hidden')" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg shadow-md hover:bg-gray-400 transition duration-150">Dismiss</button>`;
             notification.classList.remove('hidden');
 
-            const config = TEMPLATE_CONFIGS["default"];
-            const format = 'PNG';
-
             try {
-                const doc = new jsPDF({
-                    orientation: config.orientation, 
-                    unit: 'pt',              
-                    format: 'a4'             
-                });
-                
-                const templateImageUrl = getImageUrl(item.Report_Template); 
+                // Report_Template still arrives as e.g. "DYPLOMB200.png"; only the type
+                // (B = runs, W = volunteering) and the number in it are used.
+                const diploma = parseDiplomaTemplate(item.Report_Template);
+                if (!diploma) throw new Error(`Unrecognised diploma template: ${item.Report_Template}`);
 
-                const img = new Image();
-                img.crossOrigin = 'Anonymous'; 
-                img.src = templateImageUrl;
-                
-                await new Promise((resolve, reject) => {
-                    img.onload = resolve;
-                    img.onerror = () => reject(new Error(`Failed to load image: ${templateImageUrl}`));
-                });
+                await downloadDiplomaPdf(
+                    { type: diploma.type, milestone: diploma.milestone, name: item.Name, date: item.CelebDate },
+                    `${item.Name.replace(/\s/g, '_')}_Diploma.pdf`
+                );
 
-                doc.addImage(img, format, 0, 0, config.width, config.height);
-
-                // Overlay Dynamic Text
-                doc.setFont('CaveatBrush-Regular', 'normal'); 
-                doc.setFontSize(48);
-                doc.setTextColor(50, 50, 50);
-
-                const nameWidth = doc.getTextWidth(item.Name);
-                const nameCenterX = (config.width - nameWidth) / 2;
-                doc.text(item.Name, nameCenterX, config.nameY); 
-                
-                doc.setFont('Zeyada-Regular', 'normal'); 
-                doc.setFontSize(22);
-                doc.setTextColor(113,113, 165);
-                
-                const dateX = config.dateX || (config.width - 250); 
-                const dateY = config.dateY || (config.height - 80);
-                doc.text(item.CelebDate, dateX, dateY, { align: 'right' }); 
-
-                doc.setFont('Zeyada-Regular', 'normal'); 
-                doc.setFontSize(20);
-                doc.setTextColor(113,113, 165);
-
-                const placeWidth = doc.getTextWidth("parkrun Wzniesienie Osowy");
-                const placeCenterX = (config.width - placeWidth) / 2;
-                doc.text("parkrun Wzniesienie Osowy", placeCenterX, config.placeY); 
-
-                // Save PDF (Clean filename)
-                doc.save(`${item.Name.replace(/\s/g, '_')}_Diploma.pdf`);
-                
                 notification.classList.add('hidden');
                 titleElement.textContent = `Success!`;
                 messageElement.textContent = `Diploma for ${item.Name} has been downloaded.`;
@@ -373,6 +310,9 @@
             renderTable(reportsData);
             filterTableByVisits();
             document.getElementById('manual-date').value = getNextSaturday();
+            document.getElementById('manual-milestone').innerHTML = DIPLOMA_MILESTONES
+                .map(m => `<option value="${m.count}"${m.count === 50 ? ' selected' : ''}>${m.count}</option>`).join('');
+            ensureDiplomaFonts();
         }
 
         window.onload = initApp;
