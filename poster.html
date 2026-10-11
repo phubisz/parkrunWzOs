@@ -415,6 +415,10 @@ function renderModernist(d) {
           <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #605d5d;">Edycja</span>
           <span style="font-weight: 800; font-size: 40px; line-height: 1; color: #ec3013;">#${d.edition}</span>
         </div>
+        <div style="padding: 8px 24px 4px; border-right: 2px solid #201e1d; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #605d5d;">Uczestnicy</span>
+          <span style="font-weight: 800; font-size: 40px; line-height: 1;">${d.finishers}</span>
+        </div>
         <div style="padding: 8px 0 4px 24px; display: flex; flex-direction: column; gap: 4px;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #605d5d;">Data</span>
           <span style="font-weight: 800; font-size: 40px; line-height: 1;">${fmtDate(d.date)}</span>
@@ -424,11 +428,9 @@ function renderModernist(d) {
 
     <section style="margin-top: 28px; display: flex; flex-direction: column;">
       <div style="position: relative; height: 470px;">
-        ${photoDiv('position:absolute; inset:0; background:#e2e0e0; color:#605d5d;', 'Przeciągnij zdjęcie z tego tygodnia')}
-        <div style="position: absolute; top: 0; left: 0; pointer-events: none; background: #ec3013; color: #f5f4f4; padding: 22px 34px 26px; display: flex; flex-direction: column; gap: 2px;">
-          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">Uczestnicy</span>
-          <span style="font-weight: 800; font-size: 132px; line-height: 0.84; letter-spacing: -0.04em;">${d.finishers}</span>
-        </div>
+        ${/* With a photo the frame takes the page colour, so a photo scaled narrower
+             than the frame leaves no visible bars; empty, it stays grey as a drop target. */
+          photoDiv(`position:absolute; inset:0; background:${state.photoUrl ? '#f3f2f2' : '#e2e0e0'}; color:#605d5d;`, 'Przeciągnij zdjęcie z tego tygodnia')}
         ${d.courseNote ? `<div style="position: absolute; top: 0; right: 0; pointer-events: none; background: #201e1d; color: #f5f4f4; padding: 14px 24px; font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;">${esc(d.courseNote)}</div>` : ''}
         ${d.caption ? `<div style="position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none; background: #201e1d; color: #f5f4f4; padding: 14px 24px; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: baseline;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #ff9783;">Fot.</span>
