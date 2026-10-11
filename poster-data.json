@@ -1,122 +1,112 @@
 {
   "event": "parkrun Wzniesienie Osowy",
-  "edition": 235,
-  "date": "2026-10-03",
+  "edition": 236,
+  "date": "2026-10-10",
   "distanceKm": 5,
-  "generatedAt": "2026-10-04T06:11:18.266Z",
-  "finishers": 118,
+  "generatedAt": "2026-10-11T13:20:32.288Z",
+  "finishers": 115,
   "men": 67,
-  "women": 46,
-  "unknown": 5,
-  "volunteers": 18,
-  "personalBests": 10,
-  "firstTimers": 5,
+  "women": 44,
+  "unknown": 4,
+  "volunteers": 17,
+  "personalBests": 6,
+  "firstTimers": 27,
   "caption": "",
   "milestones": [
     {
-      "count": 25,
-      "name": "Beata JASEK",
+      "count": 50,
+      "name": "Ewa KRAKOWIAK",
       "kind": "parkrun"
     },
     {
-      "count": 25,
-      "name": "Łukasz BANIAK",
-      "kind": "parkrun"
-    },
-    {
-      "count": 100,
-      "name": "Danuta RICHERT",
-      "kind": "parkrun"
+      "count": 50,
+      "name": "Monika OSSOWSKA",
+      "kind": "inne"
     }
   ],
   "fastest": [
     {
       "name": "Michał BARTKOWIAK",
       "sex": "M",
-      "time": "19:00",
+      "time": "19:10",
       "ageGroup": "VM35-39",
-      "ageGrade": 71.32
-    },
-    {
-      "name": "Weronika WOJNAROWSKA",
-      "sex": "F",
-      "time": "23:54",
-      "ageGroup": "VW40-44",
-      "ageGrade": 64.37
-    }
-  ],
-  "bestAgeGrade": [
-    {
-      "name": "Michał BARTKOWIAK",
-      "sex": "M",
-      "time": "19:00",
-      "ageGroup": "VM35-39",
-      "ageGrade": 71.32
+      "ageGrade": 70.7
     },
     {
       "name": "Agnieszka ADAMOWICZ",
       "sex": "F",
-      "time": "24:00",
+      "time": "24:04",
       "ageGroup": "VW55-59",
-      "ageGrade": 74.44
+      "ageGrade": 74.24
+    }
+  ],
+  "bestAgeGrade": [
+    {
+      "name": "Pawel KOSTKA",
+      "sex": "M",
+      "time": "19:28",
+      "ageGroup": "VM45-49",
+      "ageGrade": 72.86
+    },
+    {
+      "name": "Agnieszka ADAMOWICZ",
+      "sex": "F",
+      "time": "24:04",
+      "ageGroup": "VW55-59",
+      "ageGrade": 74.24
     }
   ],
   "mostParkruns": [
     {
-      "name": "Tomasz Henryk BAGROWSKI",
+      "name": "Mariusz PEPLIŃSKI",
       "sex": "M",
-      "runs": 502
+      "runs": 465
     },
     {
-      "name": "Marcin PACEK",
+      "name": "Janek SKOPCZYŃSKI",
       "sex": "M",
-      "runs": 480
+      "runs": 375
     }
   ],
   "mostVolunteerCredits": [
     {
       "name": "Adam JODKO-NARKIEWICZ",
-      "credits": 229
+      "credits": 230
     },
     {
       "name": "Małgorzata MACIERZANKA",
-      "credits": 225
+      "credits": 226
     },
     {
-      "name": "Andrzej MIARCZYŃSKI",
-      "credits": 188
+      "name": "Magda IWANOWICZ",
+      "credits": 151
     }
   ],
   "newPBs": [
-    "Oleksandr KLYMKO",
-    "Michał BŁAWAT",
-    "Robert NAPIÓRKOWSKI",
-    "Elżbieta TOMPOROWSKA",
-    "Hubert SIKORA",
-    "Kamil PERKOWSKI",
-    "Dominika PODWYSOCKA",
-    "Bartosz ZIELIŃSKI",
+    "Tomasz DAWICKI",
+    "Janusz PIĄTKOWSKI",
     "Mirosław GRABOWSKI",
+    "Maksymilian CZAJA",
+    "Beata JASEK",
     "Tetiana SHESTAK"
   ],
   "volunteerList": [
+    "Marcin SKŁODOWSKI",
     "Adam JODKO-NARKIEWICZ",
-    "Aleksandr OBOLEVYCH",
-    "Antonina MAKOWSKA",
-    "Yeseniia KLYMKO",
-    "Piotr LISIECKI",
-    "Mikołaj WÓJCIK",
-    "Ewa KREFT",
-    "Przemysław HUBISZ",
-    "Andrzej MIARCZYŃSKI",
+    "Monika OSSOWSKA",
+    "Franciszek WOŁKOWICKI",
+    "Michał ABRAMOWICZ",
+    "Marian KOSZAŁKA",
     "Ewa KRAKOWIAK",
-    "Bożena KUJAWSKA-KAPISZKA",
-    "Weronika WOJNAROWSKA",
+    "Ewa KREFT",
     "Magda IWANOWICZ",
+    "Arek-Osa OSSOWSKI",
     "Jarosław PIWOWARSKI",
-    "Bogusława BIEGUSZEWSKA",
     "Małgorzata MACIERZANKA",
+    "Antonina MAKOWSKA",
+    "Paweł MAKOWSKI",
     "Sławomir PIETKUN",
-    "Marcin SKŁODOWSKI"
+    "Agata PIWO",
+    "Jakub SUCHODOLSKI"
   ]
 }
