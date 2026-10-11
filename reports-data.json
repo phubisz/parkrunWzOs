@@ -40,5 +40,13 @@
         "Report_Template": "DYPLOMB25.png",
         "CelebDate": "17.10.2026",
         "FirstOpportunity": "03.10.2026"
+    },
+    {
+        "Name": "Magdalena JĘDRZEJAK",
+        "RunnerID": "1406531",
+        "Report_Title": "250 Wolo",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMW250.png",
+        "CelebDate": "17.10.2026"
     }
 ]
