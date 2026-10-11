@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nowe dyplomy parkrun: kluby 200-1000</title>
+<script src="diploma.js"></script>
+<script>ensureDiplomaFonts();</script>
+<style>
+  body { margin: 0; padding: 32px 28px 40px; font-family: Montserrat, system-ui, sans-serif; background: #f3f4f6; color: #231f20; }
+  header { max-width: 1320px; margin: 0 auto 26px; }
+  h1 { margin: 0 0 10px; font-size: 30px; font-weight: 800; color: #20275a; }
+  header p { margin: 0 0 6px; font-size: 16px; line-height: 1.5; color: #374151; max-width: 900px; }
+  .grid { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(520px, 1fr)); gap: 22px; }
+  .card { background: #fff; border-radius: 12px; padding: 16px 18px 18px; box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+  .card h2 { margin: 0 0 12px; font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+  .card h2 small { font-size: 14px; font-weight: 500; color: #6b7280; }
+  .dot { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(0,0,0,.25); flex: none; }
+  .pair { display: flex; gap: 14px; }
+  .pair figure { margin: 0; flex: 1; min-width: 0; }
+  .pair figcaption { font-size: 13px; font-weight: 500; color: #4b5563; margin-bottom: 6px; }
+  /* Each diploma is drawn full size (1414 x 2000) and scaled down to fit its slot. */
+  .frame { position: relative; width: 100%; aspect-ratio: 1414 / 2000; overflow: hidden; border: 1px solid #d1d5db; }
+  .frame > .diploma { transform-origin: 0 0; }
+  footer { max-width: 1320px; margin: 24px auto 0; font-size: 14px; color: #6b7280; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Nowe dyplomy: kluby 200, 300, 400, 600, 700, 800, 900 i 1000</h1>
+  <p>Od października 2026 parkrun świętuje kamień milowy co 100 biegów lub wolontariatów, aż do 1000. Poniżej dyplomy, które będziemy wręczać na parkrun Wzniesienie Osowy: wersja dla uczestników i dla wolontariuszy.</p>
+  <p>Kolory odznak są takie jak na oficjalnych koszulkach parkrun dla danego klubu. Imię i data to przykład.</p>
+</header>
+
+<div class="grid" id="grid"></div>
+
+<footer>Dotychczasowe kluby (10 dla juniorów, 25, 50, 100, 250, 500) zostają bez zmian. Uwagi do wyglądu dyplomów mile widziane.</footer>
+
+<script>
+  const NEW = { 200: 'błękitny', 300: 'pomarańczowy', 400: 'ciemnoczerwony', 600: 'limonkowy',
+                700: 'granatowy', 800: 'fioletowy', 900: 'zielony', 1000: 'żółty' };
+  const SAMPLE = { name: 'Imię Nazwisko', date: '17.10.2026' };
+
+  document.getElementById('grid').innerHTML = DIPLOMA_MILESTONES.filter(m => NEW[m.count]).map(m => `
+    <div class="card">
+      <h2><span class="dot" style="background:${m.hex}"></span>Klub ${m.count} <small>${NEW[m.count]}</small></h2>
+      <div class="pair">
+        <figure><figcaption>Uczestnicy</figcaption><div class="frame">${renderDiploma({ type: 'B', milestone: m.count, ...SAMPLE })}</div></figure>
+        <figure><figcaption>Wolontariusze</figcaption><div class="frame">${renderDiploma({ type: 'W', milestone: m.count, ...SAMPLE })}</div></figure>
+      </div>
+    </div>`).join('');
+
+  function fit() {
+    document.querySelectorAll('.frame').forEach(frame => {
+      frame.firstElementChild.style.transform = `scale(${frame.clientWidth / DIPLOMA_W})`;
+    });
+  }
+  window.addEventListener('resize', fit);
+  document.fonts.ready.then(fit);
+  fit();
+</script>
+</body>
+</html>

@@ -119,7 +119,7 @@ function volunteerBadgeNumber(count, ink) {
   const mark = milestoneMark(count, big);
   const numberX = 97;                        // where the number starts, from the cloud's left edge
   const totalW = numberX + mark.width;
-  const scale = Math.min(1.08, 400 / totalW);   // keeps four digits inside the disc
+  const scale = Math.min(1.08, 372 / totalW);   // keeps four digits inside the disc
   return `<g transform="translate(${(BADGE_X - (totalW * scale) / 2).toFixed(1)} ${(BADGE_Y - 148 * scale).toFixed(1)}) scale(${scale.toFixed(3)})">
       <path d="M193,68 A60,60 0 1 0 77,76 A70,70 0 1 0 84,219" fill="none" stroke="${ink}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
       ${badgeDigits(big, ink, `x="${numberX}" y="251"`, mark.content)}
