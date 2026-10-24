@@ -1,111 +1,99 @@
 {
   "event": "parkrun Wzniesienie Osowy",
-  "edition": 237,
-  "date": "2026-10-17",
+  "edition": 238,
+  "date": "2026-10-24",
   "distanceKm": 5,
-  "generatedAt": "2026-10-17T16:36:05.151Z",
-  "finishers": 97,
-  "men": 55,
+  "generatedAt": "2026-10-24T08:40:06.611Z",
+  "finishers": 101,
+  "men": 58,
   "women": 40,
-  "unknown": 2,
-  "volunteers": 17,
-  "personalBests": 16,
-  "firstTimers": 9,
+  "unknown": 3,
+  "volunteers": 15,
+  "personalBests": 6,
+  "firstTimers": 19,
   "caption": "",
   "milestones": [],
   "fastest": [
     {
-      "name": "Krzysztof SOBIESKI",
+      "name": "Michał BARTKOWIAK",
       "sex": "M",
-      "time": "19:31",
-      "ageGroup": "SM30-34",
-      "ageGrade": 66.61
+      "time": "19:40",
+      "ageGroup": "VM35-39",
+      "ageGrade": 68.9
     },
     {
-      "name": "Agnieszka ADAMOWICZ",
+      "name": "Minah NTAOPANE",
       "sex": "F",
-      "time": "24:12",
-      "ageGroup": "VW55-59",
-      "ageGrade": 73.83
+      "time": "19:13",
+      "ageGroup": "VW40-44",
+      "ageGrade": 80.05
     }
   ],
   "bestAgeGrade": [
     {
       "name": "Wojciech HILLER",
       "sex": "M",
-      "time": "21:32",
+      "time": "21:28",
       "ageGroup": "VM50-54",
-      "ageGrade": 70.2
+      "ageGrade": 70.42
     },
     {
-      "name": "Agnieszka ADAMOWICZ",
+      "name": "Minah NTAOPANE",
       "sex": "F",
-      "time": "24:12",
-      "ageGroup": "VW55-59",
-      "ageGrade": 73.83
+      "time": "19:13",
+      "ageGroup": "VW40-44",
+      "ageGrade": 80.05
     }
   ],
   "mostParkruns": [
     {
-      "name": "Jarek SKOPCZYŃSKI",
+      "name": "Daniel SKRZYPKOWSKI",
       "sex": "M",
-      "runs": 385
+      "runs": 390
     },
     {
-      "name": "Janek SKOPCZYŃSKI",
+      "name": "Jarek SKOPCZYŃSKI",
       "sex": "M",
-      "runs": 376
+      "runs": 386
     }
   ],
   "mostVolunteerCredits": [
     {
-      "name": "Adam JODKO-NARKIEWICZ",
-      "credits": 231
-    },
-    {
       "name": "Małgorzata MACIERZANKA",
-      "credits": 227
+      "credits": 228
     },
     {
-      "name": "Andrzej MIARCZYŃSKI",
-      "credits": 189
+      "name": "Michał ABRAMOWICZ",
+      "credits": 152
+    },
+    {
+      "name": "Marian KOSZAŁKA",
+      "credits": 139
     }
   ],
   "newPBs": [
-    "Tomasz SCHOENROCK",
+    "Patryk LIZAKOWSKI",
     "Wojciech HILLER",
-    "Robert NAPIÓRKOWSKI",
-    "Bartosz NAPOLSKI",
-    "Michał NOWACZYK",
-    "Mateusz GOJTOWSKI",
-    "Katarzyna KACZMAREK",
-    "Natalia OLCZYK",
-    "Adam NABOŻNY",
-    "Joanna NAKONIECZNA",
-    "Jerzy DANIELEWICZ",
-    "Aleksandra MIJA",
-    "Justyna DANIELEWICZ",
-    "Małgorzata DANIELEWICZ",
-    "Tetiana SHESTAK",
-    "Teresa STANISŁAWSKA"
+    "Tomasz RÓŻAŃSKI",
+    "Jagoda JAŹNIEWICZ",
+    "Artur JAŹNIEWICZ",
+    "Ida Aleksandra ZAKRZEWSKA"
   ],
   "volunteerList": [
-    "Adam JODKO-NARKIEWICZ",
-    "Amelia KACZMAREK",
-    "Franciszek WOŁKOWICKI",
     "Michał ABRAMOWICZ",
-    "Mikołaj HUBISZ",
+    "Tosia AWDZIEJCZYK",
+    "Jan KLEKOTKO",
+    "Franciszek WOŁKOWICKI",
+    "Małgorzata ARMATYŃSKA",
     "Przemysław HUBISZ",
-    "Andrzej MIARCZYŃSKI",
-    "Ewa KRAKOWIAK",
-    "Bożena KUJAWSKA-KAPISZKA",
+    "Marian KOSZAŁKA",
     "Magdalena ROSA",
-    "Stanisław FIC",
-    "Tadeusz FIC",
-    "Joanna KACZMAREK",
+    "Adrian KLOSKOWSKI",
+    "Sebastian ROSA",
+    "Bruno JAŹNIEWICZ",
+    "Franciszek KOWALSKI",
     "Małgorzata MACIERZANKA",
-    "Antonina MAKOWSKA",
-    "Sławomir PIETKUN",
-    "Marcin SKŁODOWSKI"
+    "Aleksandr OBOLEVYCH",
+    "Sławomir PIETKUN"
   ]
 }
