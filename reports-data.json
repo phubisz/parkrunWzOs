@@ -1,30 +1,52 @@
 [
     {
+        "Name": "Przemysław HUBISZ",
+        "RunnerID": "7360381",
+        "Report_Title": "100 Wolo",
+        "num_of_visits": 6,
+        "Report_Template": "DYPLOMW100.png",
+        "CelebDate": "31.10.2026"
+    },
+    {
+        "Name": "Anna KLEKOTKO",
+        "RunnerID": "8910498",
+        "Report_Title": "100 Runs",
+        "num_of_visits": 6,
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "31.10.2026"
+    },
+    {
         "Name": "Ewa KREFT",
         "RunnerID": "9111996",
         "Report_Title": "25 Wolo",
         "num_of_visits": 4,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "24.10.2026",
+        "CelebDate": "31.10.2026",
         "FirstOpportunity": "17.10.2026"
     },
     {
-        "Name": "Yeseniia KLYMKO",
-        "RunnerID": "11002691",
+        "Name": "Jarosław WAWRZUSISZYN",
+        "RunnerID": "7531659",
+        "Report_Title": "100 Runs",
+        "num_of_visits": 3,
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "31.10.2026"
+    },
+    {
+        "Name": "Aleksandr OBOLEVYCH",
+        "RunnerID": "8703631",
+        "Report_Title": "10 Wolo",
+        "num_of_visits": 2,
+        "Report_Template": "DYPLOMW10.png",
+        "CelebDate": "31.10.2026"
+    },
+    {
+        "Name": "Agata PIELACHOWSKA",
+        "RunnerID": "2786188",
         "Report_Title": "50 Runs",
         "num_of_visits": 2,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "24.10.2026",
-        "FirstOpportunity": "17.10.2026"
-    },
-    {
-        "Name": "Yeseniia KLYMKO",
-        "RunnerID": "11002691",
-        "Report_Title": "25 Wolo",
-        "num_of_visits": 2,
-        "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "24.10.2026",
-        "FirstOpportunity": "17.10.2026"
+        "CelebDate": "31.10.2026"
     },
     {
         "Name": "Jarosław PROKOPIUK",
@@ -32,7 +54,42 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "24.10.2026"
+        "CelebDate": "31.10.2026",
+        "FirstOpportunity": "24.10.2026"
+    },
+    {
+        "Name": "Franciszek KOWALSKI",
+        "RunnerID": "10169200",
+        "Report_Title": "10 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB10.png",
+        "CelebDate": "31.10.2026"
+    },
+    {
+        "Name": "Yeseniia KLYMKO",
+        "RunnerID": "11002691",
+        "Report_Title": "50 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB50.png",
+        "CelebDate": "31.10.2026",
+        "FirstOpportunity": "17.10.2026"
+    },
+    {
+        "Name": "Yeseniia KLYMKO",
+        "RunnerID": "11002691",
+        "Report_Title": "25 Wolo",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMW25.png",
+        "CelebDate": "31.10.2026",
+        "FirstOpportunity": "17.10.2026"
+    },
+    {
+        "Name": "Patrycja Anna PRZYBYŁEK",
+        "RunnerID": "6256699",
+        "Report_Title": "100 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "31.10.2026"
     },
     {
         "Name": "Patrycja Anna PRZYBYŁEK",
@@ -40,16 +97,15 @@
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "24.10.2026",
+        "CelebDate": "31.10.2026",
         "FirstOpportunity": "26.09.2026"
     },
     {
-        "Name": "Magdalena JĘDRZEJAK",
-        "RunnerID": "1406531",
-        "Report_Title": "250 Wolo",
+        "Name": "Jakub KIŃSKI",
+        "RunnerID": "6765287",
+        "Report_Title": "100 Runs",
         "num_of_visits": 1,
-        "Report_Template": "DYPLOMW250.png",
-        "CelebDate": "24.10.2026",
-        "FirstOpportunity": "17.10.2026"
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "31.10.2026"
     }
 ]
