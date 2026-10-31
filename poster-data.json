@@ -1,99 +1,141 @@
 {
   "event": "parkrun Wzniesienie Osowy",
-  "edition": 238,
-  "date": "2026-10-24",
+  "edition": 239,
+  "date": "2026-10-31",
   "distanceKm": 5,
-  "generatedAt": "2026-10-25T10:33:58.031Z",
-  "finishers": 101,
-  "men": 58,
-  "women": 40,
-  "unknown": 3,
-  "volunteers": 15,
-  "personalBests": 6,
+  "generatedAt": "2026-10-31T10:20:05.401Z",
+  "finishers": 158,
+  "men": 96,
+  "women": 52,
+  "unknown": 10,
+  "volunteers": 17,
+  "personalBests": 15,
   "firstTimers": 19,
   "caption": "",
-  "milestones": [],
-  "fastest": [
+  "milestones": [
     {
-      "name": "Michał BARTKOWIAK",
-      "sex": "M",
-      "time": "19:40",
-      "ageGroup": "VM35-39",
-      "ageGrade": 68.9
+      "count": 25,
+      "name": "Ewa KREFT",
+      "kind": "inne"
     },
     {
-      "name": "Minah NTAOPANE",
+      "count": 25,
+      "name": "Rafał WENTOWSKI",
+      "kind": "parkrun"
+    },
+    {
+      "count": 50,
+      "name": "Dawid TABACZYŃSKI",
+      "kind": "parkrun"
+    },
+    {
+      "count": 100,
+      "name": "Anna KLEKOTKO",
+      "kind": "parkrun"
+    },
+    {
+      "count": 100,
+      "name": "Jarosław WAWRZUSISZYN",
+      "kind": "parkrun"
+    },
+    {
+      "count": 100,
+      "name": "Przemysław HUBISZ",
+      "kind": "inne"
+    }
+  ],
+  "fastest": [
+    {
+      "name": "Dzmitry CHAMIAREUSKI",
+      "sex": "M",
+      "time": "18:37",
+      "ageGroup": "SM30-34",
+      "ageGrade": 69.65
+    },
+    {
+      "name": "Sylwia RYCHARSKA",
       "sex": "F",
-      "time": "19:13",
-      "ageGroup": "VW40-44",
-      "ageGrade": 80.05
+      "time": "23:28",
+      "ageGroup": "VW35-39",
+      "ageGrade": 64.49
     }
   ],
   "bestAgeGrade": [
     {
-      "name": "Wojciech HILLER",
+      "name": "Yury KALASOUSKI",
       "sex": "M",
-      "time": "21:28",
-      "ageGroup": "VM50-54",
-      "ageGrade": 70.42
+      "time": "19:08",
+      "ageGroup": "VM40-44",
+      "ageGrade": 73.52
     },
     {
-      "name": "Minah NTAOPANE",
+      "name": "Agnieszka ADAMOWICZ",
       "sex": "F",
-      "time": "19:13",
-      "ageGroup": "VW40-44",
-      "ageGrade": 80.05
+      "time": "24:07",
+      "ageGroup": "VW55-59",
+      "ageGrade": 74.08
     }
   ],
   "mostParkruns": [
     {
-      "name": "Daniel SKRZYPKOWSKI",
+      "name": "Paweł GOŹDZIEWICZ",
       "sex": "M",
-      "runs": 390
+      "runs": 473
     },
     {
-      "name": "Jarek SKOPCZYŃSKI",
+      "name": "Leszek NASTROŻNY",
       "sex": "M",
-      "runs": 386
+      "runs": 429
     }
   ],
   "mostVolunteerCredits": [
     {
+      "name": "Adam JODKO-NARKIEWICZ",
+      "credits": 233
+    },
+    {
       "name": "Małgorzata MACIERZANKA",
-      "credits": 228
+      "credits": 229
     },
     {
       "name": "Michał ABRAMOWICZ",
-      "credits": 152
-    },
-    {
-      "name": "Marian KOSZAŁKA",
-      "credits": 139
+      "credits": 153
     }
   ],
   "newPBs": [
-    "Patryk LIZAKOWSKI",
-    "Wojciech HILLER",
+    "Dzmitry CHAMIAREUSKI",
+    "Michał BARTKOWIAK",
+    "Marcin PRUSINOWSKI",
+    "Mateusz RIEGEL",
+    "Artur JAŹNIEWICZ",
+    "Sylwia RYCHARSKA",
+    "Piotr BANACH",
+    "Marcin WÓJCIK",
+    "Katarzyna KACZMARZ",
     "Tomasz RÓŻAŃSKI",
     "Jagoda JAŹNIEWICZ",
-    "Artur JAŹNIEWICZ",
-    "Ida Aleksandra ZAKRZEWSKA"
+    "Anna SZUMLAS",
+    "Marta BŁASZCZYK",
+    "Justyna DANIELEWICZ",
+    "Bożena KUJAWSKA-KAPISZKA"
   ],
   "volunteerList": [
-    "Michał ABRAMOWICZ",
-    "Tosia AWDZIEJCZYK",
-    "Jan KLEKOTKO",
-    "Franciszek WOŁKOWICKI",
+    "Ewa KREFT",
+    "Daria STOCKA",
+    "Adam JODKO-NARKIEWICZ",
+    "Piotr LISIECKI",
+    "Marcin SKŁODOWSKI",
+    "Mikołaj WÓJCIK",
     "Małgorzata ARMATYŃSKA",
-    "Przemysław HUBISZ",
     "Marian KOSZAŁKA",
-    "Magdalena ROSA",
-    "Adrian KLOSKOWSKI",
-    "Sebastian ROSA",
+    "Michał ABRAMOWICZ",
+    "Bogumiła CIROCKA",
+    "Przemysław HUBISZ",
+    "Magda IWANOWICZ",
+    "Jarosław PIWOWARSKI",
     "Bruno JAŹNIEWICZ",
-    "Franciszek KOWALSKI",
     "Małgorzata MACIERZANKA",
-    "Aleksandr OBOLEVYCH",
+    "Antonina MAKOWSKA",
     "Sławomir PIETKUN"
   ]
 }
