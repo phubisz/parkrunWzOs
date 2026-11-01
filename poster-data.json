@@ -3,12 +3,12 @@
   "edition": 239,
   "date": "2026-10-31",
   "distanceKm": 5,
-  "generatedAt": "2026-10-31T10:20:05.401Z",
+  "generatedAt": "2026-11-01T07:48:50.164Z",
   "finishers": 158,
-  "men": 96,
+  "men": 97,
   "women": 52,
-  "unknown": 10,
-  "volunteers": 17,
+  "unknown": 9,
+  "volunteers": 19,
   "personalBests": 15,
   "firstTimers": 19,
   "caption": "",
@@ -98,8 +98,8 @@
       "credits": 229
     },
     {
-      "name": "Michał ABRAMOWICZ",
-      "credits": 153
+      "name": "Andrzej MIARCZYŃSKI",
+      "credits": 190
     }
   ],
   "newPBs": [
@@ -122,17 +122,19 @@
   "volunteerList": [
     "Ewa KREFT",
     "Daria STOCKA",
-    "Adam JODKO-NARKIEWICZ",
     "Piotr LISIECKI",
+    "Adam JODKO-NARKIEWICZ",
     "Marcin SKŁODOWSKI",
     "Mikołaj WÓJCIK",
     "Małgorzata ARMATYŃSKA",
-    "Marian KOSZAŁKA",
     "Michał ABRAMOWICZ",
+    "Marian KOSZAŁKA",
     "Bogumiła CIROCKA",
+    "Andrzej MIARCZYŃSKI",
     "Przemysław HUBISZ",
     "Magda IWANOWICZ",
     "Jarosław PIWOWARSKI",
+    "Tadeusz FIC",
     "Bruno JAŹNIEWICZ",
     "Małgorzata MACIERZANKA",
     "Antonina MAKOWSKA",
