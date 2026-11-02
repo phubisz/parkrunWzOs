@@ -3,20 +3,40 @@
   "edition": 239,
   "date": "2026-10-31",
   "distanceKm": 5,
-  "generatedAt": "2026-11-01T17:19:47.468Z",
+  "generatedAt": "2026-11-02T10:28:46.559Z",
   "finishers": 158,
-  "men": 1,
-  "women": 0,
-  "unknown": 157,
+  "men": 98,
+  "women": 52,
+  "unknown": 8,
   "volunteers": 19,
-  "personalBests": 0,
-  "firstTimers": 0,
+  "personalBests": 15,
+  "firstTimers": 19,
   "caption": "",
   "milestones": [
     {
       "count": 25,
       "name": "Ewa KREFT",
       "kind": "inne"
+    },
+    {
+      "count": 25,
+      "name": "Rafał WENTOWSKI",
+      "kind": "parkrun"
+    },
+    {
+      "count": 50,
+      "name": "Dawid TABACZYŃSKI",
+      "kind": "parkrun"
+    },
+    {
+      "count": 100,
+      "name": "Anna KLEKOTKO",
+      "kind": "parkrun"
+    },
+    {
+      "count": 100,
+      "name": "Jarosław WAWRZUSISZYN",
+      "kind": "parkrun"
     },
     {
       "count": 100,
@@ -26,27 +46,46 @@
   ],
   "fastest": [
     {
-      "name": "Marcin SKŁODOWSKI",
+      "name": "Dzmitry CHAMIAREUSKI",
       "sex": "M",
-      "time": "34:30",
-      "ageGroup": "VM35-39",
-      "ageGrade": 39.28
+      "time": "18:37",
+      "ageGroup": "SM30-34",
+      "ageGrade": 69.65
+    },
+    {
+      "name": "Sylwia RYCHARSKA",
+      "sex": "F",
+      "time": "23:28",
+      "ageGroup": "VW35-39",
+      "ageGrade": 64.49
     }
   ],
   "bestAgeGrade": [
     {
-      "name": "Marcin SKŁODOWSKI",
+      "name": "Yury KALASOUSKI",
       "sex": "M",
-      "time": "34:30",
-      "ageGroup": "VM35-39",
-      "ageGrade": 39.28
+      "time": "19:08",
+      "ageGroup": "VM40-44",
+      "ageGrade": 73.52
+    },
+    {
+      "name": "Agnieszka ADAMOWICZ",
+      "sex": "F",
+      "time": "24:07",
+      "ageGroup": "VW55-59",
+      "ageGrade": 74.08
     }
   ],
   "mostParkruns": [
     {
-      "name": "Marcin SKŁODOWSKI",
+      "name": "Paweł GOŹDZIEWICZ",
       "sex": "M",
-      "runs": 167
+      "runs": 473
+    },
+    {
+      "name": "Leszek NASTROŻNY",
+      "sex": "M",
+      "runs": 429
     }
   ],
   "mostVolunteerCredits": [
@@ -63,7 +102,23 @@
       "credits": 190
     }
   ],
-  "newPBs": [],
+  "newPBs": [
+    "Dzmitry CHAMIAREUSKI",
+    "Michał BARTKOWIAK",
+    "Marcin PRUSINOWSKI",
+    "Mateusz RIEGEL",
+    "Artur JAŹNIEWICZ",
+    "Sylwia RYCHARSKA",
+    "Piotr BANACH",
+    "Marcin WÓJCIK",
+    "Katarzyna KACZMARZ",
+    "Tomasz RÓŻAŃSKI",
+    "Jagoda JAŹNIEWICZ",
+    "Anna SZUMLAS",
+    "Marta BŁASZCZYK",
+    "Justyna DANIELEWICZ",
+    "Bożena KUJAWSKA-KAPISZKA"
+  ],
   "volunteerList": [
     "Ewa KREFT",
     "Daria STOCKA",
