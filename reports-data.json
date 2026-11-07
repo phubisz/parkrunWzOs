@@ -1,69 +1,28 @@
 [
     {
-        "Name": "Krzysztof STYPUŁKOWSKI",
-        "RunnerID": "7500404",
-        "Report_Title": "200 Runs",
-        "num_of_visits": 9,
-        "Report_Template": "DYPLOMB200.png",
-        "CelebDate": "07.11.2026"
-    },
-    {
-        "Name": "Marian KOSZAŁKA",
-        "RunnerID": "8096401",
-        "Report_Title": "200 Runs",
-        "num_of_visits": 8,
-        "Report_Template": "DYPLOMB200.png",
-        "CelebDate": "07.11.2026"
-    },
-    {
-        "Name": "Krzysztof KULIŃSKI",
-        "RunnerID": "575720",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 8,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "07.11.2026"
-    },
-    {
         "Name": "Wojciech ANDRYSZAK",
         "RunnerID": "4841872",
         "Report_Title": "50 Runs",
         "num_of_visits": 5,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "07.11.2026"
+        "CelebDate": "14.11.2026",
+        "FirstOpportunity": "07.11.2026"
     },
     {
-        "Name": "Karolina CIEŚLIŃSKA",
-        "RunnerID": "8880804",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 4,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "07.11.2026"
-    },
-    {
-        "Name": "Aleksandr OBOLEVYCH",
-        "RunnerID": "8703631",
-        "Report_Title": "10 Wolo",
-        "num_of_visits": 3,
-        "Report_Template": "DYPLOMW10.png",
-        "CelebDate": "07.11.2026",
-        "FirstOpportunity": "31.10.2026"
-    },
-    {
-        "Name": "Sebastian KRUŻYCKI",
-        "RunnerID": "7993907",
-        "Report_Title": "10 Wolo",
-        "num_of_visits": 2,
-        "Report_Template": "DYPLOMW10.png",
-        "CelebDate": "07.11.2026"
-    },
-    {
-        "Name": "Jarosław PROKOPIUK",
-        "RunnerID": "378438",
+        "Name": "Oleksandr KLYMKO",
+        "RunnerID": "10665723",
         "Report_Title": "50 Runs",
-        "num_of_visits": 1,
+        "num_of_visits": 2,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "07.11.2026",
-        "FirstOpportunity": "24.10.2026"
+        "CelebDate": "14.11.2026"
+    },
+    {
+        "Name": "Daria SIADAK-STOCKA",
+        "RunnerID": "4178782",
+        "Report_Title": "25 Wolo",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMW25.png",
+        "CelebDate": "14.11.2026"
     },
     {
         "Name": "Franciszek KOWALSKI",
@@ -71,7 +30,7 @@
         "Report_Title": "10 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "07.11.2026",
+        "CelebDate": "14.11.2026",
         "FirstOpportunity": "31.10.2026"
     },
     {
@@ -80,15 +39,8 @@
         "Report_Title": "100 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "07.11.2026"
-    },
-    {
-        "Name": "Mikołaj WÓJCIK",
-        "RunnerID": "11426342",
-        "Report_Title": "10 Wolo",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMW10.png",
-        "CelebDate": "07.11.2026"
+        "CelebDate": "14.11.2026",
+        "FirstOpportunity": "07.11.2026"
     },
     {
         "Name": "Patrycja Anna PRZYBYŁEK",
@@ -96,7 +48,7 @@
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "07.11.2026",
+        "CelebDate": "14.11.2026",
         "FirstOpportunity": "26.09.2026"
     },
     {
@@ -105,7 +57,8 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "07.11.2026"
+        "CelebDate": "14.11.2026",
+        "FirstOpportunity": "07.11.2026"
     },
     {
         "Name": "Jakub KIŃSKI",
@@ -113,7 +66,7 @@
         "Report_Title": "100 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "07.11.2026",
+        "CelebDate": "14.11.2026",
         "FirstOpportunity": "31.10.2026"
     }
 ]
