@@ -1,143 +1,128 @@
 {
   "event": "parkrun Wzniesienie Osowy",
-  "edition": 239,
-  "date": "2026-10-31",
+  "edition": 240,
+  "date": "2026-11-07",
   "distanceKm": 5,
-  "generatedAt": "2026-11-02T10:28:46.559Z",
-  "finishers": 158,
-  "men": 98,
-  "women": 52,
-  "unknown": 8,
-  "volunteers": 19,
-  "personalBests": 15,
-  "firstTimers": 19,
+  "generatedAt": "2026-11-07T10:56:09.124Z",
+  "finishers": 111,
+  "men": 59,
+  "women": 48,
+  "unknown": 4,
+  "volunteers": 22,
+  "personalBests": 12,
+  "firstTimers": 9,
   "caption": "",
   "milestones": [
     {
       "count": 25,
-      "name": "Ewa KREFT",
-      "kind": "inne"
+      "name": "Karolina CIEŚLIŃSKA",
+      "kind": "parkrun"
     },
     {
       "count": 25,
-      "name": "Rafał WENTOWSKI",
-      "kind": "parkrun"
-    },
-    {
-      "count": 50,
-      "name": "Dawid TABACZYŃSKI",
+      "name": "Krzysztof KULIŃSKI",
       "kind": "parkrun"
     },
     {
       "count": 100,
-      "name": "Anna KLEKOTKO",
+      "name": "Krzysztof SOBIESKI",
       "kind": "parkrun"
-    },
-    {
-      "count": 100,
-      "name": "Jarosław WAWRZUSISZYN",
-      "kind": "parkrun"
-    },
-    {
-      "count": 100,
-      "name": "Przemysław HUBISZ",
-      "kind": "inne"
     }
   ],
   "fastest": [
     {
-      "name": "Dzmitry CHAMIAREUSKI",
+      "name": "Dariusz Marek KRÓL",
       "sex": "M",
-      "time": "18:37",
-      "ageGroup": "SM30-34",
-      "ageGrade": 69.65
+      "time": "20:43",
+      "ageGroup": "VM60-64",
+      "ageGrade": 78.76
     },
     {
-      "name": "Sylwia RYCHARSKA",
+      "name": "Anna KWIATKOWSKA",
       "sex": "F",
       "time": "23:28",
-      "ageGroup": "VW35-39",
-      "ageGrade": 64.49
+      "ageGroup": "VW45-49",
+      "ageGrade": 67.68
     }
   ],
   "bestAgeGrade": [
     {
-      "name": "Yury KALASOUSKI",
+      "name": "Dariusz Marek KRÓL",
       "sex": "M",
-      "time": "19:08",
-      "ageGroup": "VM40-44",
-      "ageGrade": 73.52
+      "time": "20:43",
+      "ageGroup": "VM60-64",
+      "ageGrade": 78.76
     },
     {
-      "name": "Agnieszka ADAMOWICZ",
+      "name": "Joanna DZIEWIATOWSKA",
       "sex": "F",
-      "time": "24:07",
-      "ageGroup": "VW55-59",
-      "ageGrade": 74.08
+      "time": "24:43",
+      "ageGroup": "VW50-54",
+      "ageGrade": 69.52
     }
   ],
   "mostParkruns": [
     {
-      "name": "Paweł GOŹDZIEWICZ",
+      "name": "Mariusz PEPLIŃSKI",
       "sex": "M",
-      "runs": 473
+      "runs": 468
     },
     {
       "name": "Leszek NASTROŻNY",
       "sex": "M",
-      "runs": 429
+      "runs": 430
     }
   ],
   "mostVolunteerCredits": [
     {
       "name": "Adam JODKO-NARKIEWICZ",
-      "credits": 233
+      "credits": 234
     },
     {
       "name": "Małgorzata MACIERZANKA",
-      "credits": 229
+      "credits": 230
     },
     {
-      "name": "Andrzej MIARCZYŃSKI",
-      "credits": 190
+      "name": "Michał ABRAMOWICZ",
+      "credits": 154
     }
   ],
   "newPBs": [
-    "Dzmitry CHAMIAREUSKI",
-    "Michał BARTKOWIAK",
-    "Marcin PRUSINOWSKI",
-    "Mateusz RIEGEL",
-    "Artur JAŹNIEWICZ",
-    "Sylwia RYCHARSKA",
-    "Piotr BANACH",
-    "Marcin WÓJCIK",
-    "Katarzyna KACZMARZ",
-    "Tomasz RÓŻAŃSKI",
-    "Jagoda JAŹNIEWICZ",
-    "Anna SZUMLAS",
-    "Marta BŁASZCZYK",
-    "Justyna DANIELEWICZ",
-    "Bożena KUJAWSKA-KAPISZKA"
+    "Dariusz Marek KRÓL",
+    "Paweł TYPIŃSKI",
+    "Artur FELDZENSZTAJN",
+    "Mariusz PEPLIŃSKI",
+    "Łukasz BANIAK",
+    "Karolina CIEŚLIŃSKA",
+    "Renata KUGAUDO",
+    "Natasza RÓŻAŃSKA",
+    "Magdalena ROSA",
+    "Katarzyna TYPIŃSKA",
+    "Tetiana SHESTAK",
+    "Agnieszka ZAKRZEWSKA"
   ],
   "volunteerList": [
-    "Ewa KREFT",
-    "Daria STOCKA",
-    "Piotr LISIECKI",
     "Adam JODKO-NARKIEWICZ",
-    "Marcin SKŁODOWSKI",
-    "Mikołaj WÓJCIK",
+    "Daria STOCKA",
+    "Mateusz GOJTOWSKI",
+    "Jan KLEKOTKO",
+    "Antonina NAPIÓRKOWSKA",
+    "Aleksandr OBOLEVYCH",
+    "Ignacy ROLBIECKI",
     "Małgorzata ARMATYŃSKA",
-    "Michał ABRAMOWICZ",
     "Marian KOSZAŁKA",
-    "Bogumiła CIROCKA",
-    "Andrzej MIARCZYŃSKI",
-    "Przemysław HUBISZ",
+    "Michał ABRAMOWICZ",
+    "Magdalena ROSA",
+    "Ewa KREFT",
     "Magda IWANOWICZ",
     "Jarosław PIWOWARSKI",
+    "Bogumiła CIROCKA",
     "Tadeusz FIC",
-    "Bruno JAŹNIEWICZ",
+    "Przemysław HUBISZ",
     "Małgorzata MACIERZANKA",
     "Antonina MAKOWSKA",
-    "Sławomir PIETKUN"
+    "Sławomir PIETKUN",
+    "Joanna ROLBIECKA",
+    "Stanisław ŚWIGOST"
   ]
 }
