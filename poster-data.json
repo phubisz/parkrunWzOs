@@ -1,128 +1,122 @@
 {
   "event": "parkrun Wzniesienie Osowy",
-  "edition": 240,
-  "date": "2026-11-07",
+  "edition": 241,
+  "date": "2026-11-14",
   "distanceKm": 5,
-  "generatedAt": "2026-11-07T10:56:09.124Z",
-  "finishers": 111,
-  "men": 59,
-  "women": 48,
-  "unknown": 4,
-  "volunteers": 22,
+  "generatedAt": "2026-11-14T09:40:07.441Z",
+  "finishers": 126,
+  "men": 77,
+  "women": 42,
+  "unknown": 7,
+  "volunteers": 16,
   "personalBests": 12,
-  "firstTimers": 9,
+  "firstTimers": 6,
   "caption": "",
   "milestones": [
     {
-      "count": 25,
-      "name": "Karolina CIEŚLIŃSKA",
+      "count": 50,
+      "name": "Leszek GŁUSZYŃSKI",
       "kind": "parkrun"
     },
     {
-      "count": 25,
-      "name": "Krzysztof KULIŃSKI",
+      "count": 50,
+      "name": "Mateusz MIŚ",
       "kind": "parkrun"
     },
     {
-      "count": 100,
-      "name": "Krzysztof SOBIESKI",
+      "count": 50,
+      "name": "Wojciech ANDRYSZAK",
       "kind": "parkrun"
     }
   ],
   "fastest": [
     {
-      "name": "Dariusz Marek KRÓL",
+      "name": "Łukasz GOŁASZEWSKI",
       "sex": "M",
-      "time": "20:43",
-      "ageGroup": "VM60-64",
-      "ageGrade": 78.76
+      "time": "18:49",
+      "ageGroup": "VM40-44",
+      "ageGrade": 74.76
     },
     {
-      "name": "Anna KWIATKOWSKA",
+      "name": "Weronika WOJNAROWSKA",
       "sex": "F",
-      "time": "23:28",
-      "ageGroup": "VW45-49",
-      "ageGrade": 67.68
+      "time": "24:27",
+      "ageGroup": "VW40-44",
+      "ageGrade": 62.92
     }
   ],
   "bestAgeGrade": [
     {
-      "name": "Dariusz Marek KRÓL",
+      "name": "Daniel SKRZYPKOWSKI",
       "sex": "M",
-      "time": "20:43",
-      "ageGroup": "VM60-64",
-      "ageGrade": 78.76
+      "time": "19:38",
+      "ageGroup": "VM50-54",
+      "ageGrade": 77.59
     },
     {
-      "name": "Joanna DZIEWIATOWSKA",
+      "name": "Małgorzata ARMATYŃSKA",
       "sex": "F",
-      "time": "24:43",
+      "time": "27:17",
       "ageGroup": "VW50-54",
-      "ageGrade": 69.52
+      "ageGrade": 62.98
     }
   ],
   "mostParkruns": [
     {
-      "name": "Mariusz PEPLIŃSKI",
+      "name": "Daniel SKRZYPKOWSKI",
       "sex": "M",
-      "runs": 468
+      "runs": 393
     },
     {
-      "name": "Leszek NASTROŻNY",
+      "name": "Jan POBŁOCKI",
       "sex": "M",
-      "runs": 430
+      "runs": 335
     }
   ],
   "mostVolunteerCredits": [
     {
-      "name": "Adam JODKO-NARKIEWICZ",
-      "credits": 234
-    },
-    {
       "name": "Małgorzata MACIERZANKA",
-      "credits": 230
+      "credits": 231
     },
     {
-      "name": "Michał ABRAMOWICZ",
-      "credits": 154
+      "name": "Andrzej MIARCZYŃSKI",
+      "credits": 192
+    },
+    {
+      "name": "Magda IWANOWICZ",
+      "credits": 155
     }
   ],
   "newPBs": [
-    "Dariusz Marek KRÓL",
-    "Paweł TYPIŃSKI",
+    "Adam JODKO-NARKIEWICZ",
+    "Marcin PRUSINOWSKI",
+    "Arkadiusz LEWIŃSKI",
     "Artur FELDZENSZTAJN",
-    "Mariusz PEPLIŃSKI",
-    "Łukasz BANIAK",
-    "Karolina CIEŚLIŃSKA",
-    "Renata KUGAUDO",
-    "Natasza RÓŻAŃSKA",
+    "Krzysztof KULIŃSKI",
+    "Barbara ŁUKASIK",
+    "Bartosz ZIELIŃSKI",
+    "Joanna ROLBIECKA",
     "Magdalena ROSA",
     "Katarzyna TYPIŃSKA",
-    "Tetiana SHESTAK",
-    "Agnieszka ZAKRZEWSKA"
+    "Antonina MAKOWSKA",
+    "Jolanta, Ewa OERTEL"
   ],
   "volunteerList": [
-    "Adam JODKO-NARKIEWICZ",
-    "Daria STOCKA",
-    "Mateusz GOJTOWSKI",
-    "Jan KLEKOTKO",
-    "Antonina NAPIÓRKOWSKA",
+    "Bogumiła CIROCKA",
     "Aleksandr OBOLEVYCH",
+    "Karolina Małgorzata REDZIMSKA",
+    "Piotr LISIECKI",
     "Ignacy ROLBIECKI",
+    "Mikołaj WÓJCIK",
     "Małgorzata ARMATYŃSKA",
     "Marian KOSZAŁKA",
-    "Michał ABRAMOWICZ",
-    "Magdalena ROSA",
-    "Ewa KREFT",
+    "Michał NOWACZYK",
+    "Przemysław HUBISZ",
+    "Andrzej MIARCZYŃSKI",
+    "Weronika WOJNAROWSKA",
     "Magda IWANOWICZ",
     "Jarosław PIWOWARSKI",
-    "Bogumiła CIROCKA",
-    "Tadeusz FIC",
-    "Przemysław HUBISZ",
     "Małgorzata MACIERZANKA",
-    "Antonina MAKOWSKA",
-    "Sławomir PIETKUN",
-    "Joanna ROLBIECKA",
-    "Stanisław ŚWIGOST"
+    "Sławomir PIETKUN"
   ]
 }
