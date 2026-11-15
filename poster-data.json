@@ -3,13 +3,13 @@
   "edition": 241,
   "date": "2026-11-14",
   "distanceKm": 5,
-  "generatedAt": "2026-11-14T09:40:07.441Z",
+  "generatedAt": "2026-11-15T08:03:37.070Z",
   "finishers": 126,
-  "men": 77,
-  "women": 42,
+  "men": 78,
+  "women": 41,
   "unknown": 7,
-  "volunteers": 16,
-  "personalBests": 12,
+  "volunteers": 23,
+  "personalBests": 11,
   "firstTimers": 6,
   "caption": "",
   "milestones": [
@@ -83,7 +83,7 @@
       "credits": 192
     },
     {
-      "name": "Magda IWANOWICZ",
+      "name": "Michał ABRAMOWICZ",
       "credits": 155
     }
   ],
@@ -95,7 +95,6 @@
     "Krzysztof KULIŃSKI",
     "Barbara ŁUKASIK",
     "Bartosz ZIELIŃSKI",
-    "Joanna ROLBIECKA",
     "Magdalena ROSA",
     "Katarzyna TYPIŃSKA",
     "Antonina MAKOWSKA",
@@ -113,10 +112,17 @@
     "Michał NOWACZYK",
     "Przemysław HUBISZ",
     "Andrzej MIARCZYŃSKI",
+    "Michał ABRAMOWICZ",
+    "Adam BARTKOWIAK",
+    "Michał BARTKOWIAK",
+    "Tymon BARTKOWIAK",
     "Weronika WOJNAROWSKA",
     "Magda IWANOWICZ",
     "Jarosław PIWOWARSKI",
+    "Agata BARTKOWIAK",
+    "Tadeusz FIC",
     "Małgorzata MACIERZANKA",
+    "Antonina MAKOWSKA",
     "Sławomir PIETKUN"
   ]
 }
