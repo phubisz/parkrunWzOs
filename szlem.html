@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leśny Szlem Parkrunnera · parkrun Wzniesienie Osowy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1a2b; --panel: rgba(22, 36, 58, 0.82); --line: rgba(255, 255, 255, 0.09);
+    --text: #eef2f8; --muted: #93a3bb; --accent: #f6b23d; --head: #0b1422;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding-block: 28px 40px; padding-inline: 16px; min-height: 100vh;
+    font-family: Manrope, system-ui, sans-serif; color: var(--text);
+    background:
+      radial-gradient(1200px 600px at 15% -10%, #24456b 0%, transparent 60%),
+      radial-gradient(900px 500px at 110% 30%, #1d3b39 0%, transparent 60%),
+      var(--bg);
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  .eyebrow { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  h1 { margin: 6px 0 4px; font-size: clamp(28px, 6vw, 44px); font-weight: 800; letter-spacing: -0.01em; }
+  .sub { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+  .rules { margin: 0 0 22px; color: var(--muted); font-size: 14px; line-height: 1.55; max-width: 760px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 22px; backdrop-filter: blur(6px); }
+  .panel-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+  h2 { margin: 0; font-size: 22px; font-weight: 700; }
+  .tabs { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: rgba(0,0,0,0.25); }
+  .tabs button {
+    border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 14px; font-weight: 700;
+    padding: 8px 18px; border-radius: 999px; cursor: pointer;
+  }
+  .tabs button[aria-pressed="true"] { background: var(--accent); color: #1b1408; }
+  .search { width: 100%; max-width: 280px; padding: 9px 14px; border-radius: 10px; border: 1px solid var(--line);
+            background: rgba(0,0,0,0.25); color: var(--text); font: inherit; font-size: 14px; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; font-size: 15px; font-variant-numeric: tabular-nums; }
+  th { background: var(--head); text-align: left; font-weight: 700; padding: 14px 16px; white-space: nowrap; }
+  th.num, td.num { text-align: right; }
+  th.future { color: var(--muted); font-weight: 600; }
+  td { padding: 13px 16px; border-top: 1px solid var(--line); }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.025); }
+  td.place { width: 52px; font-weight: 700; color: var(--muted); }
+  tr.podium td.place { color: var(--accent); }
+  td.name { font-weight: 600; }
+  td.name a { color: inherit; text-decoration: none; }
+  td.name a:hover { text-decoration: underline; }
+  td.cat { color: var(--muted); white-space: nowrap; }
+  td.sum { font-weight: 800; }
+  td.empty { color: rgba(255,255,255,0.22); }
+  /* Place and name stay put while the editions scroll sideways (phones). */
+  th:nth-child(1), td.place { position: sticky; left: 0; z-index: 1; }
+  th:nth-child(2), td.name { position: sticky; left: 52px; z-index: 1; box-shadow: 1px 0 0 var(--line); }
+  td.place, td.name { background: #16243a; }
+  tr:nth-child(even) td.place, tr:nth-child(even) td.name { background: #1a283e; }
+  @media (max-width: 640px) {
+    body { padding-block: 20px 28px; }
+    .panel { padding: 14px; border-radius: 14px; }
+    table { font-size: 14px; min-width: 640px; }
+    th, td { padding: 11px 10px; }
+    td.place, th:nth-child(1) { width: 40px; min-width: 40px; }
+    th:nth-child(2), td.name { left: 40px; max-width: 150px; }
+  }
+  .updated { margin-top: 14px; font-size: 13px; color: var(--muted); }
+  .empty-state { padding: 30px; text-align: center; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">parkrun Wzniesienie Osowy</div>
+  <h1 id="title">Leśny Szlem Parkrunnera</h1>
+  <p class="sub" id="subtitle"></p>
+  <p class="rules">Liczy się <b>współczynnik wieku</b> (%) z każdej edycji. Klasyfikacja to suma z wszystkich edycji Szlema — kto opuści edycję, dostaje za nią 0. Mężczyźni i kobiety mają osobne klasyfikacje open; kategoria wiekowa jest podana informacyjnie. Tabela aktualizuje się po każdej edycji.</p>
+
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Klasyfikacja generalna</h2>
+      <div class="tabs" role="group" aria-label="Klasyfikacja">
+        <button type="button" data-tab="men" aria-pressed="true">Mężczyźni</button>
+        <button type="button" data-tab="women" aria-pressed="false">Kobiety</button>
+      </div>
+      <input class="search" id="search" type="search" placeholder="Szukaj uczestnika…" aria-label="Szukaj uczestnika">
+    </div>
+    <div class="table-wrap"><table>
+      <thead id="thead"></thead>
+      <tbody id="tbody"><tr><td class="empty-state">Wczytywanie…</td></tr></tbody>
+    </table></div>
+    <div class="updated" id="updated"></div>
+  </div>
+</div>
+
+<script>
+  let data = null;
+  let tab = 'men';
+  try { if (localStorage.getItem('szlemTab') === 'women') tab = 'women'; } catch (e) {}
+
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fmtDate = iso => { const [y, m, d] = iso.split('-'); return `${d}.${m}.${y}`; };
+  const fmt = n => n.toFixed(2);
+
+  function render() {
+    document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tab === tab)));
+    const events = data.events;
+    document.getElementById('thead').innerHTML = `<tr>
+      <th>Lp.</th><th>Uczestnik</th><th>Kategoria</th>
+      ${events.map(e => `<th class="num${e.held ? '' : ' future'}">${fmtDate(e.date)}</th>`).join('')}
+      <th class="num">Suma</th></tr>`;
+
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    const rows = data[tab].filter(r => !q || r.name.toLowerCase().includes(q));
+    const tbody = document.getElementById('tbody');
+    if (!rows.length) {
+      tbody.innerHTML = `<tr><td class="empty-state" colspan="${events.length + 4}">${q ? 'Brak wyników.' : 'Brak wyników — klasyfikacja ruszy po pierwszej edycji.'}</td></tr>`;
+      return;
+    }
+    tbody.innerHTML = rows.map(r => `
+      <tr class="${r.place <= 3 ? 'podium' : ''}">
+        <td class="place">${r.place}</td>
+        <td class="name"><a href="https://www.parkrun.pl/wzniesienieosowy/parkrunner/${esc(r.runnerId)}/" target="_blank" rel="noopener">${esc(r.name)}</a></td>
+        <td class="cat">${esc(r.ageGroup)}</td>
+        ${r.grades.map((g, i) => g == null
+          ? `<td class="num empty">${events[i].held ? '0' : '–'}</td>`
+          : `<td class="num">${fmt(g)}</td>`).join('')}
+        <td class="num sum">${fmt(r.sum)}</td>
+      </tr>`).join('');
+  }
+
+  document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => {
+    tab = b.dataset.tab;
+    try { localStorage.setItem('szlemTab', tab); } catch (e) {}
+    render();
+  }));
+  document.getElementById('search').addEventListener('input', render);
+
+  // GitHub Pages caches for ~10 minutes; the query string gets past that.
+  fetch(`szlem-data.json?t=${Date.now()}`, { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(d => {
+      data = d;
+      document.getElementById('title').textContent = d.title;
+      document.getElementById('subtitle').textContent = d.subtitle;
+      const held = d.events.filter(e => e.held).length;
+      const when = new Date(d.generatedAt);
+      const pad = n => String(n).padStart(2, '0');
+      document.getElementById('updated').textContent =
+        `Po ${held} z ${d.events.length} edycji · aktualizacja ${pad(when.getDate())}.${pad(when.getMonth() + 1)}.${when.getFullYear()}, ${pad(when.getHours())}:${pad(when.getMinutes())}`;
+      render();
+    })
+    .catch(() => {
+      document.getElementById('tbody').innerHTML = '<tr><td class="empty-state">Nie udało się wczytać klasyfikacji. Spróbuj odświeżyć stronę.</td></tr>';
+    });
+</script>
+</body>
+</html>

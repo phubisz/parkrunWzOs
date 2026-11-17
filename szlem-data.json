@@ -1,0 +1,2411 @@
+{
+  "title": "Leśny Szlem Parkrunnera",
+  "subtitle": "listopad 2026 · edycja próbna",
+  "generatedAt": "2026-11-17T16:54:49+01:00",
+  "events": [
+    {
+      "event": 240,
+      "date": "2026-11-07",
+      "held": true
+    },
+    {
+      "event": 241,
+      "date": "2026-11-14",
+      "held": true
+    },
+    {
+      "event": 242,
+      "date": "2026-11-21",
+      "held": false
+    },
+    {
+      "event": 243,
+      "date": "2026-11-28",
+      "held": false
+    }
+  ],
+  "men": [
+    {
+      "runnerId": "2742990",
+      "name": "Zbigniew LULIS",
+      "ageGroup": "VM65-69",
+      "grades": [
+        67.2,
+        63.46,
+        null,
+        null
+      ],
+      "sum": 130.66,
+      "count": 2,
+      "place": 1
+    },
+    {
+      "runnerId": "11685469",
+      "name": "Robert NAPIÓRKOWSKI",
+      "ageGroup": "VM45-49",
+      "grades": [
+        63.25,
+        60.91,
+        null,
+        null
+      ],
+      "sum": 124.16,
+      "count": 2,
+      "place": 2
+    },
+    {
+      "runnerId": "7347189",
+      "name": "Maciej GOŁASZEWSKI",
+      "ageGroup": "JM11-14",
+      "grades": [
+        62.1,
+        61.53,
+        null,
+        null
+      ],
+      "sum": 123.63,
+      "count": 2,
+      "place": 3
+    },
+    {
+      "runnerId": "8047963",
+      "name": "Rafał ELŻANOWSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        62.82,
+        59.94,
+        null,
+        null
+      ],
+      "sum": 122.76,
+      "count": 2,
+      "place": 4
+    },
+    {
+      "runnerId": "5981252",
+      "name": "Krzysztof KACZMAREK",
+      "ageGroup": "VM50-54",
+      "grades": [
+        62.25,
+        60.13,
+        null,
+        null
+      ],
+      "sum": 122.38,
+      "count": 2,
+      "place": 5
+    },
+    {
+      "runnerId": "5274840",
+      "name": "Michał ABRAMOWICZ",
+      "ageGroup": "VM40-44",
+      "grades": [
+        53.08,
+        66.1,
+        null,
+        null
+      ],
+      "sum": 119.18,
+      "count": 2,
+      "place": 6
+    },
+    {
+      "runnerId": "7933365",
+      "name": "Jan KAMIŃSKI",
+      "ageGroup": "VM70-74",
+      "grades": [
+        60.53,
+        58.53,
+        null,
+        null
+      ],
+      "sum": 119.06,
+      "count": 2,
+      "place": 7
+    },
+    {
+      "runnerId": "685141",
+      "name": "Paweł TYPIŃSKI",
+      "ageGroup": "SM30-34",
+      "grades": [
+        60.03,
+        57.7,
+        null,
+        null
+      ],
+      "sum": 117.73,
+      "count": 2,
+      "place": 8
+    },
+    {
+      "runnerId": "575720",
+      "name": "Krzysztof KULIŃSKI",
+      "ageGroup": "VM50-54",
+      "grades": [
+        57.03,
+        59.35,
+        null,
+        null
+      ],
+      "sum": 116.38,
+      "count": 2,
+      "place": 9
+    },
+    {
+      "runnerId": "12423256",
+      "name": "Artur FELDZENSZTAJN",
+      "ageGroup": "VM35-39",
+      "grades": [
+        56.02,
+        57.6,
+        null,
+        null
+      ],
+      "sum": 113.62,
+      "count": 2,
+      "place": 10
+    },
+    {
+      "runnerId": "417244",
+      "name": "Michał NOWACZYK",
+      "ageGroup": "VM45-49",
+      "grades": [
+        54.81,
+        56.57,
+        null,
+        null
+      ],
+      "sum": 111.38,
+      "count": 2,
+      "place": 11
+    },
+    {
+      "runnerId": "200629",
+      "name": "Jacek ZIELIŃSKI",
+      "ageGroup": "VM55-59",
+      "grades": [
+        55.92,
+        55.42,
+        null,
+        null
+      ],
+      "sum": 111.34,
+      "count": 2,
+      "place": 12
+    },
+    {
+      "runnerId": "7922291",
+      "name": "Włodzimierz KUSIAK",
+      "ageGroup": "VM75-79",
+      "grades": [
+        55.54,
+        55.1,
+        null,
+        null
+      ],
+      "sum": 110.64,
+      "count": 2,
+      "place": 13
+    },
+    {
+      "runnerId": "234296",
+      "name": "Krzysztof RYCHTER",
+      "ageGroup": "VM45-49",
+      "grades": [
+        59.83,
+        50.2,
+        null,
+        null
+      ],
+      "sum": 110.03,
+      "count": 2,
+      "place": 14
+    },
+    {
+      "runnerId": "8595153",
+      "name": "Krzysztof SOBIESKI",
+      "ageGroup": "SM30-34",
+      "grades": [
+        53.03,
+        51.93,
+        null,
+        null
+      ],
+      "sum": 104.96,
+      "count": 2,
+      "place": 15
+    },
+    {
+      "runnerId": "8564476",
+      "name": "Tadeusz ARMATYŃSKI",
+      "ageGroup": "JM15-17",
+      "grades": [
+        52.52,
+        52.32,
+        null,
+        null
+      ],
+      "sum": 104.84,
+      "count": 2,
+      "place": 16
+    },
+    {
+      "runnerId": "7497541",
+      "name": "Artur SZULC",
+      "ageGroup": "VM55-59",
+      "grades": [
+        48.53,
+        50.92,
+        null,
+        null
+      ],
+      "sum": 99.45,
+      "count": 2,
+      "place": 17
+    },
+    {
+      "runnerId": "12991350",
+      "name": "Tomasz RÓŻAŃSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        51.43,
+        47.68,
+        null,
+        null
+      ],
+      "sum": 99.11,
+      "count": 2,
+      "place": 18
+    },
+    {
+      "runnerId": "420836",
+      "name": "Jan POBŁOCKI",
+      "ageGroup": "VM65-69",
+      "grades": [
+        51.24,
+        46.45,
+        null,
+        null
+      ],
+      "sum": 97.69,
+      "count": 2,
+      "place": 19
+    },
+    {
+      "runnerId": "7704331",
+      "name": "Przemysław LEWANDOWSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        47.79,
+        49.85,
+        null,
+        null
+      ],
+      "sum": 97.64,
+      "count": 2,
+      "place": 20
+    },
+    {
+      "runnerId": "7500404",
+      "name": "Krzysztof STYPUŁKOWSKI",
+      "ageGroup": "SM30-34",
+      "grades": [
+        46.63,
+        50.58,
+        null,
+        null
+      ],
+      "sum": 97.21,
+      "count": 2,
+      "place": 21
+    },
+    {
+      "runnerId": "12778826",
+      "name": "Bartosz ZIELIŃSKI",
+      "ageGroup": "SM25-29",
+      "grades": [
+        45.64,
+        48.07,
+        null,
+        null
+      ],
+      "sum": 93.71,
+      "count": 2,
+      "place": 22
+    },
+    {
+      "runnerId": "9889848",
+      "name": "Paweł ROLBIECKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        46.04,
+        45.81,
+        null,
+        null
+      ],
+      "sum": 91.85,
+      "count": 2,
+      "place": 23
+    },
+    {
+      "runnerId": "5525982",
+      "name": "Michael LASKOWSKI",
+      "ageGroup": "VM45-49",
+      "grades": [
+        45.81,
+        45.96,
+        null,
+        null
+      ],
+      "sum": 91.77,
+      "count": 2,
+      "place": 24
+    },
+    {
+      "runnerId": "7531659",
+      "name": "Jarosław WAWRZUSISZYN",
+      "ageGroup": "VM55-59",
+      "grades": [
+        44.37,
+        44.61,
+        null,
+        null
+      ],
+      "sum": 88.98,
+      "count": 2,
+      "place": 25
+    },
+    {
+      "runnerId": "7983466",
+      "name": "Oskar RAPALSKI",
+      "ageGroup": "SM30-34",
+      "grades": [
+        42.82,
+        44.27,
+        null,
+        null
+      ],
+      "sum": 87.09,
+      "count": 2,
+      "place": 26
+    },
+    {
+      "runnerId": "7522907",
+      "name": "Stanisław ŚWIGOST",
+      "ageGroup": "VM45-49",
+      "grades": [
+        29.55,
+        51.35,
+        null,
+        null
+      ],
+      "sum": 80.9,
+      "count": 2,
+      "place": 27
+    },
+    {
+      "runnerId": "611534",
+      "name": "Dariusz Marek KRÓL",
+      "ageGroup": "VM60-64",
+      "grades": [
+        78.76,
+        null,
+        null,
+        null
+      ],
+      "sum": 78.76,
+      "count": 1,
+      "place": 28
+    },
+    {
+      "runnerId": "2087314",
+      "name": "Daniel SKRZYPKOWSKI",
+      "ageGroup": "VM50-54",
+      "grades": [
+        null,
+        77.59,
+        null,
+        null
+      ],
+      "sum": 77.59,
+      "count": 1,
+      "place": 29
+    },
+    {
+      "runnerId": "7199535",
+      "name": "Łukasz GOŁASZEWSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        74.76,
+        null,
+        null
+      ],
+      "sum": 74.76,
+      "count": 1,
+      "place": 30
+    },
+    {
+      "runnerId": "7360381",
+      "name": "Przemysław HUBISZ",
+      "ageGroup": "VM40-44",
+      "grades": [
+        28.21,
+        45.35,
+        null,
+        null
+      ],
+      "sum": 73.56,
+      "count": 2,
+      "place": 31
+    },
+    {
+      "runnerId": "692577",
+      "name": "Adam JODKO-NARKIEWICZ",
+      "ageGroup": "VM45-49",
+      "grades": [
+        null,
+        73.12,
+        null,
+        null
+      ],
+      "sum": 73.12,
+      "count": 1,
+      "place": 32
+    },
+    {
+      "runnerId": "8584616",
+      "name": "Stanisław FIC",
+      "ageGroup": "JM11-14",
+      "grades": [
+        34.49,
+        38.51,
+        null,
+        null
+      ],
+      "sum": 73.0,
+      "count": 2,
+      "place": 33
+    },
+    {
+      "runnerId": "7763924",
+      "name": "Michał BARTKOWIAK",
+      "ageGroup": "VM35-39",
+      "grades": [
+        null,
+        70.7,
+        null,
+        null
+      ],
+      "sum": 70.7,
+      "count": 1,
+      "place": 34
+    },
+    {
+      "runnerId": "11289070",
+      "name": "Marcin PRUSINOWSKI",
+      "ageGroup": "JM15-17",
+      "grades": [
+        null,
+        69.48,
+        null,
+        null
+      ],
+      "sum": 69.48,
+      "count": 1,
+      "place": 35
+    },
+    {
+      "runnerId": "7805970",
+      "name": "Wojciech HILLER",
+      "ageGroup": "VM50-54",
+      "grades": [
+        69.03,
+        null,
+        null,
+        null
+      ],
+      "sum": 69.03,
+      "count": 1,
+      "place": 36
+    },
+    {
+      "runnerId": "8850612",
+      "name": "Arkadiusz LEWIŃSKI",
+      "ageGroup": "VM45-49",
+      "grades": [
+        null,
+        67.17,
+        null,
+        null
+      ],
+      "sum": 67.17,
+      "count": 1,
+      "place": 37
+    },
+    {
+      "runnerId": "12040437",
+      "name": "Michał BŁAWAT",
+      "ageGroup": "VM50-54",
+      "grades": [
+        66.79,
+        null,
+        null,
+        null
+      ],
+      "sum": 66.79,
+      "count": 1,
+      "place": 38
+    },
+    {
+      "runnerId": "3796960",
+      "name": "Piotr ETMAŃSKI",
+      "ageGroup": "VM55-59",
+      "grades": [
+        66.43,
+        null,
+        null,
+        null
+      ],
+      "sum": 66.43,
+      "count": 1,
+      "place": 39
+    },
+    {
+      "runnerId": "9261244",
+      "name": "Tomasz HENDRICH",
+      "ageGroup": "VM45-49",
+      "grades": [
+        null,
+        66.41,
+        null,
+        null
+      ],
+      "sum": 66.41,
+      "count": 1,
+      "place": 40
+    },
+    {
+      "runnerId": "11005120",
+      "name": "Henryk RATKOWSKI",
+      "ageGroup": "VM65-69",
+      "grades": [
+        65.63,
+        null,
+        null,
+        null
+      ],
+      "sum": 65.63,
+      "count": 1,
+      "place": 41
+    },
+    {
+      "runnerId": "4841872",
+      "name": "Wojciech ANDRYSZAK",
+      "ageGroup": "VM50-54",
+      "grades": [
+        null,
+        65.25,
+        null,
+        null
+      ],
+      "sum": 65.25,
+      "count": 1,
+      "place": 42
+    },
+    {
+      "runnerId": "7878913",
+      "name": "Ryszard CICHY",
+      "ageGroup": "VM65-69",
+      "grades": [
+        null,
+        63.94,
+        null,
+        null
+      ],
+      "sum": 63.94,
+      "count": 1,
+      "place": 43
+    },
+    {
+      "runnerId": "8503028",
+      "name": "Maciej KOWALSKI",
+      "ageGroup": "VM35-39",
+      "grades": [
+        null,
+        62.36,
+        null,
+        null
+      ],
+      "sum": 62.36,
+      "count": 1,
+      "place": 44
+    },
+    {
+      "runnerId": "10406658",
+      "name": "Marcin KONKOLEWSKI",
+      "ageGroup": "SM30-34",
+      "grades": [
+        null,
+        62.16,
+        null,
+        null
+      ],
+      "sum": 62.16,
+      "count": 1,
+      "place": 45
+    },
+    {
+      "runnerId": "9127400",
+      "name": "Marcin MRÓZ",
+      "ageGroup": "VM50-54",
+      "grades": [
+        62.11,
+        null,
+        null,
+        null
+      ],
+      "sum": 62.11,
+      "count": 1,
+      "place": 46
+    },
+    {
+      "runnerId": "233368",
+      "name": "Wojciech REDZIMSKI",
+      "ageGroup": "VM50-54",
+      "grades": [
+        61.84,
+        null,
+        null,
+        null
+      ],
+      "sum": 61.84,
+      "count": 1,
+      "place": 47
+    },
+    {
+      "runnerId": "658044",
+      "name": "Mariusz PEPLIŃSKI",
+      "ageGroup": "VM50-54",
+      "grades": [
+        61.41,
+        null,
+        null,
+        null
+      ],
+      "sum": 61.41,
+      "count": 1,
+      "place": 48
+    },
+    {
+      "runnerId": "6000070",
+      "name": "Jakub REGLIŃSKI",
+      "ageGroup": "VM35-39",
+      "grades": [
+        null,
+        60.99,
+        null,
+        null
+      ],
+      "sum": 60.99,
+      "count": 1,
+      "place": 49
+    },
+    {
+      "runnerId": "322354",
+      "name": "Marcin KRZYSZTOFIK",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        59.48,
+        null,
+        null
+      ],
+      "sum": 59.48,
+      "count": 1,
+      "place": 50
+    },
+    {
+      "runnerId": "8096401",
+      "name": "Marian KOSZAŁKA",
+      "ageGroup": "VM65-69",
+      "grades": [
+        29.93,
+        29.44,
+        null,
+        null
+      ],
+      "sum": 59.37,
+      "count": 2,
+      "place": 51
+    },
+    {
+      "runnerId": "3015553",
+      "name": "Paweł MAKOWSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        59.06,
+        null,
+        null
+      ],
+      "sum": 59.06,
+      "count": 1,
+      "place": 52
+    },
+    {
+      "runnerId": "7524336",
+      "name": "Andrzej MIARCZYŃSKI",
+      "ageGroup": "VM70-74",
+      "grades": [
+        29.6,
+        29.21,
+        null,
+        null
+      ],
+      "sum": 58.81,
+      "count": 2,
+      "place": 53
+    },
+    {
+      "runnerId": "1190389",
+      "name": "Piotr ZADROGA",
+      "ageGroup": "VM50-54",
+      "grades": [
+        null,
+        57.96,
+        null,
+        null
+      ],
+      "sum": 57.96,
+      "count": 1,
+      "place": 54
+    },
+    {
+      "runnerId": "1598758",
+      "name": "Paweł KOŁC",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        56.65,
+        null,
+        null
+      ],
+      "sum": 56.65,
+      "count": 1,
+      "place": 55
+    },
+    {
+      "runnerId": "11654550",
+      "name": "Mirosław GRABOWSKI",
+      "ageGroup": "VM55-59",
+      "grades": [
+        null,
+        56.44,
+        null,
+        null
+      ],
+      "sum": 56.44,
+      "count": 1,
+      "place": 56
+    },
+    {
+      "runnerId": "6517721",
+      "name": "Mateusz RIEGEL",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        56.29,
+        null,
+        null
+      ],
+      "sum": 56.29,
+      "count": 1,
+      "place": 57
+    },
+    {
+      "runnerId": "430893",
+      "name": "Michał FIGEL",
+      "ageGroup": "VM45-49",
+      "grades": [
+        56.1,
+        null,
+        null,
+        null
+      ],
+      "sum": 56.1,
+      "count": 1,
+      "place": 58
+    },
+    {
+      "runnerId": "7474692",
+      "name": "Rafał REDZIMSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        55.46,
+        null,
+        null
+      ],
+      "sum": 55.46,
+      "count": 1,
+      "place": 59
+    },
+    {
+      "runnerId": "12980817",
+      "name": "Piotr FRANIEWSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        55.37,
+        null,
+        null,
+        null
+      ],
+      "sum": 55.37,
+      "count": 1,
+      "place": 60
+    },
+    {
+      "runnerId": "13026287",
+      "name": "Bruno JAŹNIEWICZ",
+      "ageGroup": "JM10",
+      "grades": [
+        null,
+        55.28,
+        null,
+        null
+      ],
+      "sum": 55.28,
+      "count": 1,
+      "place": 61
+    },
+    {
+      "runnerId": "7726190",
+      "name": "Adam WODKOWSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        54.64,
+        null,
+        null
+      ],
+      "sum": 54.64,
+      "count": 1,
+      "place": 62
+    },
+    {
+      "runnerId": "9161948",
+      "name": "Waldemar SZUMSKI",
+      "ageGroup": "VM45-49",
+      "grades": [
+        null,
+        54.48,
+        null,
+        null
+      ],
+      "sum": 54.48,
+      "count": 1,
+      "place": 63
+    },
+    {
+      "runnerId": "4247924",
+      "name": "Bartosz NAPOLSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        54.24,
+        null,
+        null,
+        null
+      ],
+      "sum": 54.24,
+      "count": 1,
+      "place": 64
+    },
+    {
+      "runnerId": "247656",
+      "name": "Leszek NASTROŻNY",
+      "ageGroup": "VM50-54",
+      "grades": [
+        53.45,
+        null,
+        null,
+        null
+      ],
+      "sum": 53.45,
+      "count": 1,
+      "place": 65
+    },
+    {
+      "runnerId": "9108390",
+      "name": "Kamil KOSIOR",
+      "ageGroup": "SM25-29",
+      "grades": [
+        53.12,
+        null,
+        null,
+        null
+      ],
+      "sum": 53.12,
+      "count": 1,
+      "place": 66
+    },
+    {
+      "runnerId": "11037537",
+      "name": "Kamil PRUSINOWSKI",
+      "ageGroup": "VM45-49",
+      "grades": [
+        null,
+        52.82,
+        null,
+        null
+      ],
+      "sum": 52.82,
+      "count": 1,
+      "place": 67
+    },
+    {
+      "runnerId": "1932558",
+      "name": "Marcin WÓJCIK",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        52.18,
+        null,
+        null
+      ],
+      "sum": 52.18,
+      "count": 1,
+      "place": 68
+    },
+    {
+      "runnerId": "757295",
+      "name": "Michał TWAROWSKI",
+      "ageGroup": "VM50-54",
+      "grades": [
+        52.12,
+        null,
+        null,
+        null
+      ],
+      "sum": 52.12,
+      "count": 1,
+      "place": 69
+    },
+    {
+      "runnerId": "8287967",
+      "name": "Rafał JASTRZĘBSKI",
+      "ageGroup": "SM30-34",
+      "grades": [
+        null,
+        51.86,
+        null,
+        null
+      ],
+      "sum": 51.86,
+      "count": 1,
+      "place": 70
+    },
+    {
+      "runnerId": "7517118",
+      "name": "Jacek REMIZOWICZ",
+      "ageGroup": "SM20-24",
+      "grades": [
+        null,
+        51.57,
+        null,
+        null
+      ],
+      "sum": 51.57,
+      "count": 1,
+      "place": 71
+    },
+    {
+      "runnerId": "13022377",
+      "name": "Marcin WESOŁOWSKI",
+      "ageGroup": "SM20-24",
+      "grades": [
+        51.53,
+        null,
+        null,
+        null
+      ],
+      "sum": 51.53,
+      "count": 1,
+      "place": 72
+    },
+    {
+      "runnerId": "8289018",
+      "name": "Jarek KORDALSKI",
+      "ageGroup": "VM45-49",
+      "grades": [
+        null,
+        50.93,
+        null,
+        null
+      ],
+      "sum": 50.93,
+      "count": 1,
+      "place": 73
+    },
+    {
+      "runnerId": "366545",
+      "name": "Jarek SKOPCZYŃSKI",
+      "ageGroup": "VM45-49",
+      "grades": [
+        50.67,
+        null,
+        null,
+        null
+      ],
+      "sum": 50.67,
+      "count": 1,
+      "place": 74
+    },
+    {
+      "runnerId": "5536925",
+      "name": "Łukasz BANIAK",
+      "ageGroup": "VM40-44",
+      "grades": [
+        50.46,
+        null,
+        null,
+        null
+      ],
+      "sum": 50.46,
+      "count": 1,
+      "place": 75
+    },
+    {
+      "runnerId": "7529210",
+      "name": "Łukasz KOSAŁKA",
+      "ageGroup": "VM40-44",
+      "grades": [
+        50.27,
+        null,
+        null,
+        null
+      ],
+      "sum": 50.27,
+      "count": 1,
+      "place": 76
+    },
+    {
+      "runnerId": "251009",
+      "name": "Marek PODOLSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        49.43,
+        null,
+        null,
+        null
+      ],
+      "sum": 49.43,
+      "count": 1,
+      "place": 77
+    },
+    {
+      "runnerId": "12974403",
+      "name": "Krzysztof GÓRNY",
+      "ageGroup": "VM35-39",
+      "grades": [
+        49.41,
+        null,
+        null,
+        null
+      ],
+      "sum": 49.41,
+      "count": 1,
+      "place": 78
+    },
+    {
+      "runnerId": "4844188",
+      "name": "Karol WAŻNY",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        49.22,
+        null,
+        null
+      ],
+      "sum": 49.22,
+      "count": 1,
+      "place": 79
+    },
+    {
+      "runnerId": "970489",
+      "name": "Janek SKOPCZYŃSKI",
+      "ageGroup": "SM20-24",
+      "grades": [
+        49.21,
+        null,
+        null,
+        null
+      ],
+      "sum": 49.21,
+      "count": 1,
+      "place": 80
+    },
+    {
+      "runnerId": "8584562",
+      "name": "Tadeusz FIC",
+      "ageGroup": "VM40-44",
+      "grades": [
+        25.89,
+        23.17,
+        null,
+        null
+      ],
+      "sum": 49.06,
+      "count": 2,
+      "place": 81
+    },
+    {
+      "runnerId": "6783023",
+      "name": "Michał KOWALSKI",
+      "ageGroup": "VM50-54",
+      "grades": [
+        null,
+        48.76,
+        null,
+        null
+      ],
+      "sum": 48.76,
+      "count": 1,
+      "place": 82
+    },
+    {
+      "runnerId": "13074244",
+      "name": "Michał JASEK",
+      "ageGroup": "SM30-34",
+      "grades": [
+        48.57,
+        null,
+        null,
+        null
+      ],
+      "sum": 48.57,
+      "count": 1,
+      "place": 83
+    },
+    {
+      "runnerId": "6310268",
+      "name": "Patryk FILIPEK",
+      "ageGroup": "VM35-39",
+      "grades": [
+        47.87,
+        null,
+        null,
+        null
+      ],
+      "sum": 47.87,
+      "count": 1,
+      "place": 84
+    },
+    {
+      "runnerId": "1884943",
+      "name": "Marcin SKŁODOWSKI",
+      "ageGroup": "VM35-39",
+      "grades": [
+        null,
+        47.54,
+        null,
+        null
+      ],
+      "sum": 47.54,
+      "count": 1,
+      "place": 85
+    },
+    {
+      "runnerId": "10381189",
+      "name": "Jan KONIECZNY",
+      "ageGroup": "VM45-49",
+      "grades": [
+        null,
+        46.88,
+        null,
+        null
+      ],
+      "sum": 46.88,
+      "count": 1,
+      "place": 86
+    },
+    {
+      "runnerId": "12085524",
+      "name": "Piotr CZAPIEWSKI",
+      "ageGroup": "VM45-49",
+      "grades": [
+        null,
+        46.6,
+        null,
+        null
+      ],
+      "sum": 46.6,
+      "count": 1,
+      "place": 87
+    },
+    {
+      "runnerId": "13014418",
+      "name": "Paweł KOCHOWICZ",
+      "ageGroup": "VM35-39",
+      "grades": [
+        null,
+        46.57,
+        null,
+        null
+      ],
+      "sum": 46.57,
+      "count": 1,
+      "place": 88
+    },
+    {
+      "runnerId": "387915",
+      "name": "Jacek MAŁOLEPSZY",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        45.58,
+        null,
+        null
+      ],
+      "sum": 45.58,
+      "count": 1,
+      "place": 89
+    },
+    {
+      "runnerId": "8058150",
+      "name": "Tymon BARTKOWIAK",
+      "ageGroup": "JM10",
+      "grades": [
+        null,
+        45.46,
+        null,
+        null
+      ],
+      "sum": 45.46,
+      "count": 1,
+      "place": 90
+    },
+    {
+      "runnerId": "12992472",
+      "name": "Artur JAŹNIEWICZ",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        44.99,
+        null,
+        null
+      ],
+      "sum": 44.99,
+      "count": 1,
+      "place": 91
+    },
+    {
+      "runnerId": "13058232",
+      "name": "Krzysztof WÓJCIK",
+      "ageGroup": "SM30-34",
+      "grades": [
+        44.74,
+        null,
+        null,
+        null
+      ],
+      "sum": 44.74,
+      "count": 1,
+      "place": 92
+    },
+    {
+      "runnerId": "13092284",
+      "name": "Mikołaj Tadeusz SAWICKI",
+      "ageGroup": "SM20-24",
+      "grades": [
+        null,
+        44.08,
+        null,
+        null
+      ],
+      "sum": 44.08,
+      "count": 1,
+      "place": 93
+    },
+    {
+      "runnerId": "258248",
+      "name": "Henryk Piotr WITT",
+      "ageGroup": "VM75-79",
+      "grades": [
+        43.45,
+        null,
+        null,
+        null
+      ],
+      "sum": 43.45,
+      "count": 1,
+      "place": 94
+    },
+    {
+      "runnerId": "12151690",
+      "name": "Marcin DANIELEWICZ",
+      "ageGroup": "VM35-39",
+      "grades": [
+        42.7,
+        null,
+        null,
+        null
+      ],
+      "sum": 42.7,
+      "count": 1,
+      "place": 95
+    },
+    {
+      "runnerId": "5272371",
+      "name": "Marian KURAJK",
+      "ageGroup": "VM70-74",
+      "grades": [
+        null,
+        40.86,
+        null,
+        null
+      ],
+      "sum": 40.86,
+      "count": 1,
+      "place": 96
+    },
+    {
+      "runnerId": "11299768",
+      "name": "Mateusz MIŚ",
+      "ageGroup": "SM30-34",
+      "grades": [
+        null,
+        38.96,
+        null,
+        null
+      ],
+      "sum": 38.96,
+      "count": 1,
+      "place": 97
+    },
+    {
+      "runnerId": "7756807",
+      "name": "Piotr CHARA",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        37.31,
+        null,
+        null
+      ],
+      "sum": 37.31,
+      "count": 1,
+      "place": 98
+    },
+    {
+      "runnerId": "10305248",
+      "name": "Leszek GŁUSZYŃSKI",
+      "ageGroup": "VM60-64",
+      "grades": [
+        null,
+        35.89,
+        null,
+        null
+      ],
+      "sum": 35.89,
+      "count": 1,
+      "place": 99
+    },
+    {
+      "runnerId": "8153291",
+      "name": "Nikodem TABACZYŃSKI",
+      "ageGroup": "JM10",
+      "grades": [
+        null,
+        35.27,
+        null,
+        null
+      ],
+      "sum": 35.27,
+      "count": 1,
+      "place": 100
+    },
+    {
+      "runnerId": "8153288",
+      "name": "Dawid TABACZYŃSKI",
+      "ageGroup": "JM11-14",
+      "grades": [
+        null,
+        33.27,
+        null,
+        null
+      ],
+      "sum": 33.27,
+      "count": 1,
+      "place": 101
+    },
+    {
+      "runnerId": "8805142",
+      "name": "Adam BARTKOWIAK",
+      "ageGroup": "JM10",
+      "grades": [
+        null,
+        31.41,
+        null,
+        null
+      ],
+      "sum": 31.41,
+      "count": 1,
+      "place": 102
+    },
+    {
+      "runnerId": "1128164",
+      "name": "Łukasz TABACZYŃSKI",
+      "ageGroup": "VM40-44",
+      "grades": [
+        null,
+        31.15,
+        null,
+        null
+      ],
+      "sum": 31.15,
+      "count": 1,
+      "place": 103
+    },
+    {
+      "runnerId": "9032517",
+      "name": "Borys NIEDŹWIECKI",
+      "ageGroup": "JM11-14",
+      "grades": [
+        30.59,
+        null,
+        null,
+        null
+      ],
+      "sum": 30.59,
+      "count": 1,
+      "place": 104
+    },
+    {
+      "runnerId": "7769127",
+      "name": "Jarosław PIWOWARSKI",
+      "ageGroup": "VM50-54",
+      "grades": [
+        null,
+        25.64,
+        null,
+        null
+      ],
+      "sum": 25.64,
+      "count": 1,
+      "place": 105
+    },
+    {
+      "runnerId": "771858",
+      "name": "Krzysztof ITRICH",
+      "ageGroup": "VM35-39",
+      "grades": [
+        25.61,
+        null,
+        null,
+        null
+      ],
+      "sum": 25.61,
+      "count": 1,
+      "place": 106
+    }
+  ],
+  "women": [
+    {
+      "runnerId": "4609532",
+      "name": "Małgorzata ARMATYŃSKA",
+      "ageGroup": "VW50-54",
+      "grades": [
+        60.79,
+        62.98,
+        null,
+        null
+      ],
+      "sum": 123.77,
+      "count": 2,
+      "place": 1
+    },
+    {
+      "runnerId": "6354485",
+      "name": "Gabriela HILLER",
+      "ageGroup": "VW55-59",
+      "grades": [
+        61.01,
+        60.67,
+        null,
+        null
+      ],
+      "sum": 121.68,
+      "count": 2,
+      "place": 2
+    },
+    {
+      "runnerId": "1252707",
+      "name": "Weronika WOJNAROWSKA",
+      "ageGroup": "VW40-44",
+      "grades": [
+        54.97,
+        62.92,
+        null,
+        null
+      ],
+      "sum": 117.89,
+      "count": 2,
+      "place": 3
+    },
+    {
+      "runnerId": "5462926",
+      "name": "Joanna DZIEWIATOWSKA",
+      "ageGroup": "VW50-54",
+      "grades": [
+        69.52,
+        47.6,
+        null,
+        null
+      ],
+      "sum": 117.12,
+      "count": 2,
+      "place": 4
+    },
+    {
+      "runnerId": "7215957",
+      "name": "Oliwia GÓRSKA",
+      "ageGroup": "VW35-39",
+      "grades": [
+        55.65,
+        53.87,
+        null,
+        null
+      ],
+      "sum": 109.52,
+      "count": 2,
+      "place": 5
+    },
+    {
+      "runnerId": "8880804",
+      "name": "Karolina CIEŚLIŃSKA",
+      "ageGroup": "VW50-54",
+      "grades": [
+        60.38,
+        49.05,
+        null,
+        null
+      ],
+      "sum": 109.43,
+      "count": 2,
+      "place": 6
+    },
+    {
+      "runnerId": "7852206",
+      "name": "Monika STĘPIEŃ",
+      "ageGroup": "VW50-54",
+      "grades": [
+        54.47,
+        53.78,
+        null,
+        null
+      ],
+      "sum": 108.25,
+      "count": 2,
+      "place": 7
+    },
+    {
+      "runnerId": "12991392",
+      "name": "Natasza RÓŻAŃSKA",
+      "ageGroup": "JW11-14",
+      "grades": [
+        54.23,
+        51.25,
+        null,
+        null
+      ],
+      "sum": 105.48,
+      "count": 2,
+      "place": 8
+    },
+    {
+      "runnerId": "1913929",
+      "name": "Ewa RACZYŃSKA",
+      "ageGroup": "VW45-49",
+      "grades": [
+        46.12,
+        56.83,
+        null,
+        null
+      ],
+      "sum": 102.95,
+      "count": 2,
+      "place": 9
+    },
+    {
+      "runnerId": "7518681",
+      "name": "Angelika ZIELENIECKA",
+      "ageGroup": "VW50-54",
+      "grades": [
+        49.98,
+        49.05,
+        null,
+        null
+      ],
+      "sum": 99.03,
+      "count": 2,
+      "place": 10
+    },
+    {
+      "runnerId": "12442509",
+      "name": "Jolanta, Ewa OERTEL",
+      "ageGroup": "VW65-69",
+      "grades": [
+        46.05,
+        48.9,
+        null,
+        null
+      ],
+      "sum": 94.95,
+      "count": 2,
+      "place": 11
+    },
+    {
+      "runnerId": "7769649",
+      "name": "Magda IWANOWICZ",
+      "ageGroup": "VW40-44",
+      "grades": [
+        31.51,
+        62.52,
+        null,
+        null
+      ],
+      "sum": 94.03,
+      "count": 2,
+      "place": 12
+    },
+    {
+      "runnerId": "2249987",
+      "name": "Aleksandra KOWALSKA",
+      "ageGroup": "VW35-39",
+      "grades": [
+        45.44,
+        44.81,
+        null,
+        null
+      ],
+      "sum": 90.25,
+      "count": 2,
+      "place": 13
+    },
+    {
+      "runnerId": "9864501",
+      "name": "Hanna JASIEWICZ",
+      "ageGroup": "VW65-69",
+      "grades": [
+        44.02,
+        46.22,
+        null,
+        null
+      ],
+      "sum": 90.24,
+      "count": 2,
+      "place": 14
+    },
+    {
+      "runnerId": "9891443",
+      "name": "Violetta JEŚMAN-TYRK",
+      "ageGroup": "VW65-69",
+      "grades": [
+        43.99,
+        45.66,
+        null,
+        null
+      ],
+      "sum": 89.65,
+      "count": 2,
+      "place": 15
+    },
+    {
+      "runnerId": "4149398",
+      "name": "Magdalena ROSA",
+      "ageGroup": "SW30-34",
+      "grades": [
+        43.48,
+        44.32,
+        null,
+        null
+      ],
+      "sum": 87.8,
+      "count": 2,
+      "place": 16
+    },
+    {
+      "runnerId": "11774557",
+      "name": "Tetiana SHESTAK",
+      "ageGroup": "VW60-64",
+      "grades": [
+        44.33,
+        41.26,
+        null,
+        null
+      ],
+      "sum": 85.59,
+      "count": 2,
+      "place": 17
+    },
+    {
+      "runnerId": "9616233",
+      "name": "Jolanta FELCHNER",
+      "ageGroup": "VW60-64",
+      "grades": [
+        41.61,
+        43.6,
+        null,
+        null
+      ],
+      "sum": 85.21,
+      "count": 2,
+      "place": 18
+    },
+    {
+      "runnerId": "12423412",
+      "name": "Żaklin OLASEK",
+      "ageGroup": "VW35-39",
+      "grades": [
+        42.21,
+        41.82,
+        null,
+        null
+      ],
+      "sum": 84.03,
+      "count": 2,
+      "place": 19
+    },
+    {
+      "runnerId": "11190878",
+      "name": "Beata JASEK",
+      "ageGroup": "VW60-64",
+      "grades": [
+        45.66,
+        35.93,
+        null,
+        null
+      ],
+      "sum": 81.59,
+      "count": 2,
+      "place": 20
+    },
+    {
+      "runnerId": "11380260",
+      "name": "Aleksandra GAŃCZA",
+      "ageGroup": "VW35-39",
+      "grades": [
+        42.86,
+        38.55,
+        null,
+        null
+      ],
+      "sum": 81.41,
+      "count": 2,
+      "place": 21
+    },
+    {
+      "runnerId": "10824330",
+      "name": "Kalina GRUDZIŃSKA",
+      "ageGroup": "JW11-14",
+      "grades": [
+        38.28,
+        42.09,
+        null,
+        null
+      ],
+      "sum": 80.37,
+      "count": 2,
+      "place": 22
+    },
+    {
+      "runnerId": "753580",
+      "name": "Katarzyna TYPIŃSKA",
+      "ageGroup": "VW35-39",
+      "grades": [
+        38.02,
+        38.28,
+        null,
+        null
+      ],
+      "sum": 76.3,
+      "count": 2,
+      "place": 23
+    },
+    {
+      "runnerId": "10782608",
+      "name": "Marika KOZICKA",
+      "ageGroup": "VW40-44",
+      "grades": [
+        35.4,
+        38.9,
+        null,
+        null
+      ],
+      "sum": 74.3,
+      "count": 2,
+      "place": 24
+    },
+    {
+      "runnerId": "11730763",
+      "name": "Agnieszka ZAKRZEWSKA",
+      "ageGroup": "VW45-49",
+      "grades": [
+        36.18,
+        31.86,
+        null,
+        null
+      ],
+      "sum": 68.04,
+      "count": 2,
+      "place": 25
+    },
+    {
+      "runnerId": "2383894",
+      "name": "Anna KWIATKOWSKA",
+      "ageGroup": "VW45-49",
+      "grades": [
+        67.68,
+        null,
+        null,
+        null
+      ],
+      "sum": 67.68,
+      "count": 1,
+      "place": 26
+    },
+    {
+      "runnerId": "12992485",
+      "name": "Jagoda JAŹNIEWICZ",
+      "ageGroup": "JW11-14",
+      "grades": [
+        null,
+        60.56,
+        null,
+        null
+      ],
+      "sum": 60.56,
+      "count": 1,
+      "place": 27
+    },
+    {
+      "runnerId": "931432",
+      "name": "Karolina ŻAK",
+      "ageGroup": "VW35-39",
+      "grades": [
+        59.54,
+        null,
+        null,
+        null
+      ],
+      "sum": 59.54,
+      "count": 1,
+      "place": 28
+    },
+    {
+      "runnerId": "550118",
+      "name": "Renata KUGAUDO",
+      "ageGroup": "VW45-49",
+      "grades": [
+        59.03,
+        null,
+        null,
+        null
+      ],
+      "sum": 59.03,
+      "count": 1,
+      "place": 29
+    },
+    {
+      "runnerId": "7987808",
+      "name": "Agnieszka GRABOWSKA",
+      "ageGroup": "VW45-49",
+      "grades": [
+        57.9,
+        null,
+        null,
+        null
+      ],
+      "sum": 57.9,
+      "count": 1,
+      "place": 30
+    },
+    {
+      "runnerId": "9542540",
+      "name": "Barbara ŁUKASIK",
+      "ageGroup": "SW25-29",
+      "grades": [
+        null,
+        57.07,
+        null,
+        null
+      ],
+      "sum": 57.07,
+      "count": 1,
+      "place": 31
+    },
+    {
+      "runnerId": "1165131",
+      "name": "Bogumiła TROJANOWSKA",
+      "ageGroup": "VW60-64",
+      "grades": [
+        56.86,
+        null,
+        null,
+        null
+      ],
+      "sum": 56.86,
+      "count": 1,
+      "place": 32
+    },
+    {
+      "runnerId": "498860",
+      "name": "Zuzanna FIGEL",
+      "ageGroup": "SW20-24",
+      "grades": [
+        56.56,
+        null,
+        null,
+        null
+      ],
+      "sum": 56.56,
+      "count": 1,
+      "place": 33
+    },
+    {
+      "runnerId": "8910498",
+      "name": "Anna KLEKOTKO",
+      "ageGroup": "VW40-44",
+      "grades": [
+        55.82,
+        null,
+        null,
+        null
+      ],
+      "sum": 55.82,
+      "count": 1,
+      "place": 34
+    },
+    {
+      "runnerId": "9261365",
+      "name": "Izabela HENDRICH",
+      "ageGroup": "VW45-49",
+      "grades": [
+        null,
+        55.45,
+        null,
+        null
+      ],
+      "sum": 55.45,
+      "count": 1,
+      "place": 35
+    },
+    {
+      "runnerId": "2682402",
+      "name": "Katarzyna KACZMARZ",
+      "ageGroup": "VW35-39",
+      "grades": [
+        null,
+        55.23,
+        null,
+        null
+      ],
+      "sum": 55.23,
+      "count": 1,
+      "place": 36
+    },
+    {
+      "runnerId": "10712894",
+      "name": "Julia WASILUK",
+      "ageGroup": "SW25-29",
+      "grades": [
+        55.09,
+        null,
+        null,
+        null
+      ],
+      "sum": 55.09,
+      "count": 1,
+      "place": 37
+    },
+    {
+      "runnerId": "5246049",
+      "name": "Patrycja KIRYLUK",
+      "ageGroup": "VW35-39",
+      "grades": [
+        null,
+        54.53,
+        null,
+        null
+      ],
+      "sum": 54.53,
+      "count": 1,
+      "place": 38
+    },
+    {
+      "runnerId": "12329942",
+      "name": "Zuzanna KOWALSKA",
+      "ageGroup": "VW45-49",
+      "grades": [
+        null,
+        53.47,
+        null,
+        null
+      ],
+      "sum": 53.47,
+      "count": 1,
+      "place": 39
+    },
+    {
+      "runnerId": "4935112",
+      "name": "Agnieszka SITEK",
+      "ageGroup": "SW30-34",
+      "grades": [
+        52.98,
+        null,
+        null,
+        null
+      ],
+      "sum": 52.98,
+      "count": 1,
+      "place": 40
+    },
+    {
+      "runnerId": "9908209",
+      "name": "Marta SZMYGIEL",
+      "ageGroup": "SW30-34",
+      "grades": [
+        52.56,
+        null,
+        null,
+        null
+      ],
+      "sum": 52.56,
+      "count": 1,
+      "place": 41
+    },
+    {
+      "runnerId": "9757637",
+      "name": "Agnieszka ROLBIECKA",
+      "ageGroup": "VW35-39",
+      "grades": [
+        null,
+        51.91,
+        null,
+        null
+      ],
+      "sum": 51.91,
+      "count": 1,
+      "place": 42
+    },
+    {
+      "runnerId": "2786188",
+      "name": "Agata PIELACHOWSKA",
+      "ageGroup": "VW40-44",
+      "grades": [
+        51.47,
+        null,
+        null,
+        null
+      ],
+      "sum": 51.47,
+      "count": 1,
+      "place": 43
+    },
+    {
+      "runnerId": "8392082",
+      "name": "Karolina PAETKE",
+      "ageGroup": "SW30-34",
+      "grades": [
+        null,
+        49.92,
+        null,
+        null
+      ],
+      "sum": 49.92,
+      "count": 1,
+      "place": 44
+    },
+    {
+      "runnerId": "9609323",
+      "name": "Julia WAWRZUSISZYN",
+      "ageGroup": "SW20-24",
+      "grades": [
+        46.96,
+        null,
+        null,
+        null
+      ],
+      "sum": 46.96,
+      "count": 1,
+      "place": 45
+    },
+    {
+      "runnerId": "6818301",
+      "name": "Kamila LATOSIŃSKA",
+      "ageGroup": "VW35-39",
+      "grades": [
+        null,
+        46.55,
+        null,
+        null
+      ],
+      "sum": 46.55,
+      "count": 1,
+      "place": 46
+    },
+    {
+      "runnerId": "2012880",
+      "name": "Agnieszka ZALEWSKA",
+      "ageGroup": "VW50-54",
+      "grades": [
+        46.38,
+        null,
+        null,
+        null
+      ],
+      "sum": 46.38,
+      "count": 1,
+      "place": 47
+    },
+    {
+      "runnerId": "4421560",
+      "name": "Agnieszka Beata WAŻNA",
+      "ageGroup": "VW35-39",
+      "grades": [
+        null,
+        45.77,
+        null,
+        null
+      ],
+      "sum": 45.77,
+      "count": 1,
+      "place": 48
+    },
+    {
+      "runnerId": "6629431",
+      "name": "Ewa KURAJK",
+      "ageGroup": "VW65-69",
+      "grades": [
+        null,
+        45.28,
+        null,
+        null
+      ],
+      "sum": 45.28,
+      "count": 1,
+      "place": 49
+    },
+    {
+      "runnerId": "8168495",
+      "name": "Agata BARTKOWIAK",
+      "ageGroup": "VW35-39",
+      "grades": [
+        null,
+        43.78,
+        null,
+        null
+      ],
+      "sum": 43.78,
+      "count": 1,
+      "place": 50
+    },
+    {
+      "runnerId": "430896",
+      "name": "Monika FIGEL",
+      "ageGroup": "VW45-49",
+      "grades": [
+        42.75,
+        null,
+        null,
+        null
+      ],
+      "sum": 42.75,
+      "count": 1,
+      "place": 51
+    },
+    {
+      "runnerId": "12351652",
+      "name": "Aleksandra NOSEL",
+      "ageGroup": "VW55-59",
+      "grades": [
+        42.29,
+        null,
+        null,
+        null
+      ],
+      "sum": 42.29,
+      "count": 1,
+      "place": 52
+    },
+    {
+      "runnerId": "11037628",
+      "name": "Malgorzata KUROWSKA",
+      "ageGroup": "VW60-64",
+      "grades": [
+        42.07,
+        null,
+        null,
+        null
+      ],
+      "sum": 42.07,
+      "count": 1,
+      "place": 53
+    },
+    {
+      "runnerId": "13070834",
+      "name": "Anna KULECZKA",
+      "ageGroup": "VW40-44",
+      "grades": [
+        41.63,
+        null,
+        null,
+        null
+      ],
+      "sum": 41.63,
+      "count": 1,
+      "place": 54
+    },
+    {
+      "runnerId": "7961850",
+      "name": "Dominika RIEGEL",
+      "ageGroup": "VW35-39",
+      "grades": [
+        null,
+        41.42,
+        null,
+        null
+      ],
+      "sum": 41.42,
+      "count": 1,
+      "place": 55
+    },
+    {
+      "runnerId": "9309816",
+      "name": "Bogumiła CIROCKA",
+      "ageGroup": "VW60-64",
+      "grades": [
+        41.35,
+        null,
+        null,
+        null
+      ],
+      "sum": 41.35,
+      "count": 1,
+      "place": 56
+    },
+    {
+      "runnerId": "13065324",
+      "name": "Daria DAWID",
+      "ageGroup": "VW45-49",
+      "grades": [
+        40.67,
+        null,
+        null,
+        null
+      ],
+      "sum": 40.67,
+      "count": 1,
+      "place": 57
+    },
+    {
+      "runnerId": "10424807",
+      "name": "Agata GŁUSZYŃSKA",
+      "ageGroup": "VW55-59",
+      "grades": [
+        null,
+        39.71,
+        null,
+        null
+      ],
+      "sum": 39.71,
+      "count": 1,
+      "place": 58
+    },
+    {
+      "runnerId": "11259919",
+      "name": "Antonina MAKOWSKA",
+      "ageGroup": "JW15-17",
+      "grades": [
+        null,
+        38.96,
+        null,
+        null
+      ],
+      "sum": 38.96,
+      "count": 1,
+      "place": 59
+    },
+    {
+      "runnerId": "8153296",
+      "name": "Olga TABACZYŃSKA",
+      "ageGroup": "VW40-44",
+      "grades": [
+        null,
+        34.14,
+        null,
+        null
+      ],
+      "sum": 34.14,
+      "count": 1,
+      "place": 60
+    },
+    {
+      "runnerId": "10375077",
+      "name": "Bożena KUJAWSKA-KAPISZKA",
+      "ageGroup": "VW65-69",
+      "grades": [
+        33.2,
+        null,
+        null,
+        null
+      ],
+      "sum": 33.2,
+      "count": 1,
+      "place": 61
+    },
+    {
+      "runnerId": "9477219",
+      "name": "Urszula NIEDŹWIECKA",
+      "ageGroup": "VW40-44",
+      "grades": [
+        31.44,
+        null,
+        null,
+        null
+      ],
+      "sum": 31.44,
+      "count": 1,
+      "place": 62
+    },
+    {
+      "runnerId": "9108660",
+      "name": "Milena FIC",
+      "ageGroup": "JW10",
+      "grades": [
+        30.11,
+        null,
+        null,
+        null
+      ],
+      "sum": 30.11,
+      "count": 1,
+      "place": 63
+    },
+    {
+      "runnerId": "9111996",
+      "name": "Ewa KREFT",
+      "ageGroup": "VW50-54",
+      "grades": [
+        27.02,
+        null,
+        null,
+        null
+      ],
+      "sum": 27.02,
+      "count": 1,
+      "place": 64
+    }
+  ]
+}
