@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/", "destination": "/szlem.html" }
+  ],
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": false },
+    { "source": "/poster.html", "destination": "/", "permanent": false },
+    { "source": "/diploma-preview.html", "destination": "/", "permanent": false },
+    { "source": "/nowe-dyplomy.html", "destination": "/", "permanent": false },
+    { "source": "/reports-:file", "destination": "/", "permanent": false },
+    { "source": "/poster-data.json", "destination": "/", "permanent": false },
+    { "source": "/templates/:path*", "destination": "/", "permanent": false }
+  ],
+  "headers": [
+    { "source": "/szlem-data.json", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] }
+  ]
+}
