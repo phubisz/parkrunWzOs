@@ -1,11 +1,52 @@
 [
     {
+        "Name": "Robert NAPIÓRKOWSKI",
+        "RunnerID": "11685469",
+        "Report_Title": "50 Runs",
+        "num_of_visits": 10,
+        "Report_Template": "DYPLOMB50.png",
+        "CelebDate": "28.11.2026"
+    },
+    {
+        "Name": "Przemysław HUBISZ",
+        "RunnerID": "7360381",
+        "Report_Title": "100 Runs",
+        "num_of_visits": 9,
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "28.11.2026"
+    },
+    {
+        "Name": "Jakub REGLIŃSKI",
+        "RunnerID": "6000070",
+        "Report_Title": "200 Runs",
+        "num_of_visits": 6,
+        "Report_Template": "DYPLOMB200.png",
+        "CelebDate": "28.11.2026"
+    },
+    {
+        "Name": "Tomasz HENDRICH",
+        "RunnerID": "9261244",
+        "Report_Title": "100 Runs",
+        "num_of_visits": 6,
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "28.11.2026"
+    },
+    {
+        "Name": "Izabela HENDRICH",
+        "RunnerID": "9261365",
+        "Report_Title": "100 Runs",
+        "num_of_visits": 5,
+        "Report_Template": "DYPLOMB100.png",
+        "CelebDate": "28.11.2026"
+    },
+    {
         "Name": "Aleksandra KOWALSKA",
         "RunnerID": "2249987",
         "Report_Title": "100 Runs",
         "num_of_visits": 3,
         "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "21.11.2026"
+        "CelebDate": "28.11.2026",
+        "FirstOpportunity": "21.11.2026"
     },
     {
         "Name": "Franciszek KOWALSKI",
@@ -13,7 +54,7 @@
         "Report_Title": "10 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB10.png",
-        "CelebDate": "21.11.2026",
+        "CelebDate": "28.11.2026",
         "FirstOpportunity": "31.10.2026"
     },
     {
@@ -22,16 +63,8 @@
         "Report_Title": "100 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB100.png",
-        "CelebDate": "21.11.2026",
+        "CelebDate": "28.11.2026",
         "FirstOpportunity": "07.11.2026"
-    },
-    {
-        "Name": "Paweł KOŁC",
-        "RunnerID": "1598758",
-        "Report_Title": "25 Runs",
-        "num_of_visits": 1,
-        "Report_Template": "DYPLOMB25.png",
-        "CelebDate": "21.11.2026"
     },
     {
         "Name": "Patrycja Anna PRZYBYŁEK",
@@ -39,7 +72,7 @@
         "Report_Title": "25 Wolo",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMW25.png",
-        "CelebDate": "21.11.2026",
+        "CelebDate": "28.11.2026",
         "FirstOpportunity": "26.09.2026"
     },
     {
@@ -48,7 +81,15 @@
         "Report_Title": "50 Runs",
         "num_of_visits": 1,
         "Report_Template": "DYPLOMB50.png",
-        "CelebDate": "21.11.2026",
+        "CelebDate": "28.11.2026",
         "FirstOpportunity": "07.11.2026"
+    },
+    {
+        "Name": "Rafał KUJAWSKI",
+        "RunnerID": "12126778",
+        "Report_Title": "25 Runs",
+        "num_of_visits": 1,
+        "Report_Template": "DYPLOMB25.png",
+        "CelebDate": "28.11.2026"
     }
 ]
